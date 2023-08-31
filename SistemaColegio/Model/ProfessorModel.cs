@@ -1,7 +1,6 @@
 ﻿using SistemaColegio.Entidades;
 using SistemaColegio.DAO;
 using System.Data;
-using System;
 
 namespace SistemaColegio.Model
 {
@@ -11,29 +10,29 @@ namespace SistemaColegio.Model
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public DataTable ListarProfessores()
         {
+            DataTable dt = new DataTable();
             try
             {
-                DataTable dt = new DataTable();
                 dt = professorDAO.ListarProfessores();
-                return dt;
             }
-            catch (Exception ex)
+            catch  
             {
-                throw ex;
+                throw;
             }
+            return dt;
         }
         public DataTable ListarProfessoresPorMateria(int professor)
         {
+            DataTable dt = new DataTable();
             try
             {
-                DataTable dt = new DataTable();
                 dt = professorDAO.ListarProfessoresPorMateria(professor);
-                return dt;
             }
-            catch (Exception ex)
+            catch  
             {
-                throw ex;
+                throw;
             }
+            return dt;
         }
         public void SalvarProfessor(Professor professor)
         {
@@ -41,9 +40,9 @@ namespace SistemaColegio.Model
             {
                 professorDAO.SalvarProfessor(professor);
             }
-            catch (Exception ex)
+            catch  
             {
-                throw ex;
+                throw;
             }
         }
         public void EditarProfessor(Professor professor)
@@ -52,9 +51,9 @@ namespace SistemaColegio.Model
             {
                 professorDAO.EditarProfessor(professor);
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
         }
         public void AtualizarNaoLecionando(Professor professor)
@@ -63,9 +62,9 @@ namespace SistemaColegio.Model
             {
                 professorDAO.AtualizarNaoLecionando(professor);
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                throw;
             }
         }
         public void AtualizarLecionando(Professor professor)
@@ -74,9 +73,9 @@ namespace SistemaColegio.Model
             {
                 professorDAO.AtualizarLecionando(professor);
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                throw;
             }
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

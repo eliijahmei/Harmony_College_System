@@ -9,68 +9,70 @@ namespace SistemaColegio.Model
     {
         ProvaDAO provaDAO = new ProvaDAO();
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public bool VerificarLimiteProvas(Provas provas)
+        public bool VerificarLimiteProvas(Prova provas)
         {
+            int numeroProvas;
             try
             {
-                int numeroProvas = provaDAO.ContarProvas(provas);
-                return numeroProvas >= 1;
+                numeroProvas = provaDAO.ContarProvas(provas);
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                throw;
             }
+            return numeroProvas >= 1;
         }
-        public bool VerificarLimiteNotasPorProva(Notas notas)
+        public bool VerificarLimiteNotasPorProva(Nota notas)
         {
+            int numeroNotas;
             try
             {
-                int numeroNotas = provaDAO.ContarNotasPorProva(notas);
-                return numeroNotas >= 1;
+                numeroNotas = provaDAO.ContarNotasPorProva(notas);
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
+            return numeroNotas >= 1;
         }
         public DataTable ListarProvasPorMateriaTurma(int materia, int turma)
         {
+            DataTable dt = new DataTable();
             try
             {
-                DataTable dt = new DataTable();
                 dt = provaDAO.ListarProvasPorMateriaTurma(materia, turma);
-                return dt;
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                throw;
             }
+            return dt;
         }
         public DataTable ListarProvas()
         {
+            DataTable dt = new DataTable();
             try
             {
-                DataTable dt = new DataTable();
                 dt = provaDAO.ListarProvas();
-                return dt;
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                throw;
             }
+            return dt;
         }
         public DataTable ListarBimestres()
         {
+            DataTable dt = new DataTable();
             try
             {
-                DataTable dt = new DataTable();
                 dt = provaDAO.ListarBimestres();
-                return dt;
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                throw;
             }
+            return dt;
         }
         public string ListarBimestre(int id)
         {
@@ -78,25 +80,25 @@ namespace SistemaColegio.Model
             {
                 return provaDAO.ListarBimestre(id);
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                throw;
             }
         }
         public DataTable ListarNotas(int ra, int materia)
         {
+            DataTable dt = new DataTable();
             try
             {
-                DataTable dt = new DataTable();
                 dt = provaDAO.ListarNotas(ra, materia);
-                return dt;
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
+            return dt;
         }
-        public void SalvarProva(Provas provas)
+        public void SalvarProva(Prova provas)
         {
             try
             {
@@ -106,34 +108,34 @@ namespace SistemaColegio.Model
                 }
                 provaDAO.SalvarProva(provas);
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                throw;
             }
         }
-        public void EditarProva(Provas provas)
+        public void EditarProva(Prova provas)
         {
             try
             {
                 provaDAO.EditarProva(provas);
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
         }
-        public void ExcluirProva(Provas provas)
+        public void ExcluirProva(Prova provas)
         {
             try
             {
                 provaDAO.ExcluirProva(provas);
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
         }
-        public void SalvarNota(Notas notas)
+        public void SalvarNota(Nota notas)
         {
             try
             {
@@ -143,31 +145,31 @@ namespace SistemaColegio.Model
                 }
                 provaDAO.SalvarNota(notas);
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
         }
-        public void EditarNota(Notas notas)
+        public void EditarNota(Nota notas)
         {
             try
             {
                 provaDAO.EditarNota(notas);
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                throw;
             }
         }
-        public void ExcluirNota(Notas notas)
+        public void ExcluirNota(Nota notas)
         {
             try
             {
                 provaDAO.ExcluirNota(notas);
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                throw;
             }
         }
         public string ReceberNotaProva(Aluno aluno, int idMateria, int idBimestre)
@@ -176,9 +178,9 @@ namespace SistemaColegio.Model
             {
                 return provaDAO.ReceberNotaProva(aluno, idMateria, idBimestre);
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
         }
         public string ReceberNotaMedia(Aluno aluno, int idMateria)
@@ -187,9 +189,9 @@ namespace SistemaColegio.Model
             {
                 return provaDAO.ReceberNotaMedia(aluno, idMateria);
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,11 +1,11 @@
 ﻿namespace SistemaColegio.Entidades
 {
-    public class Materias
+    public class Classe
     {
         private int id;
-        private string materia;
+        private string classe;
 
-        public string Materia { get => materia; set => materia = value; }
+        public string Classee { get => classe; set => classe = value; }
         public int Id { get => id; set => id = value; }
     }
 }

@@ -1,25 +1,24 @@
 ﻿using SistemaColegio.DAO;
 using System.Data;
-using System;
 
 namespace SistemaColegio.Model
 {
     public class ClassesModel
     {
-        ClassesDAO classesDAO = new ClassesDAO();
+        ClasseDAO classesDAO = new ClasseDAO();
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public DataTable ListarClasses()
         {
+            DataTable dt = new DataTable();
             try
             {
-                DataTable dt = new DataTable();
                 dt = classesDAO.ListarClasses();
-                return dt;
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                throw;
             }
+            return dt;
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }

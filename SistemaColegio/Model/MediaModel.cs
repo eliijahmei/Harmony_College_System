@@ -2,6 +2,7 @@
 using SistemaColegio.DAO;
 using System.Data;
 using System;
+using System.Collections.Generic;
 
 namespace SistemaColegio.Model
 {
@@ -9,32 +10,44 @@ namespace SistemaColegio.Model
     {
         MediaDAO mediaDAO = new MediaDAO();
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public bool VerificarLimiteMedias(Medias medias)
+        public List<double> NotasMedia(int materia, int ra)
         {
             try
             {
-                int numeroProvas = mediaDAO.ContarMedias(medias);
-                return numeroProvas >= 1;
+                return mediaDAO.ObterNotasPorRaMateria(materia, ra);
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
+        }
+        public bool VerificarLimiteMedias(Media medias)
+        {
+            int numeroProvas;
+            try
+            {
+                numeroProvas = mediaDAO.ContarMedias(medias);
+            }
+            catch 
+            {
+                throw;
+            }
+            return numeroProvas >= 1;
         }
         public DataTable ListarMedias(int ra)
         {
+            DataTable dt = new DataTable();
             try
             {
-                DataTable dt = new DataTable();
                 dt = mediaDAO.ListarMedias(ra);
-                return dt;
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                throw;
             }
+            return dt;
         }
-        public void SalvarMedia(Medias medias)
+        public void SalvarMedia(Media medias)
         {
             try
             {
@@ -44,9 +57,9 @@ namespace SistemaColegio.Model
                 }
                 mediaDAO.SalvarMedia(medias);
             }
-            catch (Exception ex)
+            catch  
             {
-                throw ex;
+                throw;
             }
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

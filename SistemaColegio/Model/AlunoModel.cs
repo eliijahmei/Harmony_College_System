@@ -9,70 +9,70 @@ namespace SistemaColegio.Model
     {
         AlunoDAO alunoDAO = new AlunoDAO();
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public DataTable ListarAlunos()
-        {
-            try
-            {
-                DataTable dt = new DataTable();
-                dt = alunoDAO.ListarAlunos();
-                return dt;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
         public Aluno AlunoPorRA(int alunoRA)
         {
+            Aluno aluno = new Aluno();
             try
             {
-                Aluno aluno = new Aluno();
                 aluno = alunoDAO.AlunoPorRA(alunoRA);
-                return aluno;
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
+            return aluno;
         }
-        public DataTable ListarRAPorsala(int classe) 
+        public DataTable ListarAlunos()
         {
+            DataTable dt = new DataTable();
             try
             {
-                DataTable dt = new DataTable();
-                dt = alunoDAO.ListarRAPorSala(classe);
-                return dt;
+                dt = alunoDAO.ListarAlunos();
             }
-            catch (Exception ex)
+            catch  
             {
-                throw ex;
+                throw;
             }
+            return dt;
+        }
+        public DataTable ListarRAPorsala(int classe)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = alunoDAO.ListarRAPorSala(classe);
+            }
+            catch  
+            {
+                throw;
+            }
+            return dt;
         }
         public DataTable ListarAlunosPorsala(int classe)
         {
+            DataTable dt = new DataTable();
             try
             {
-                DataTable dt = new DataTable();
                 dt = alunoDAO.ListarAlunosPorSala(classe);
-                return dt;
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                throw;
             }
+            return dt;
         }
         public DataTable BuscarAlunosPorRA(string ra)
         {
+            DataTable dt = new DataTable();
             try
             {
-                DataTable dt = new DataTable();
                 dt = alunoDAO.BuscarAlunosPorRA(ra);
-                return dt;
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                throw;
             }
+            return dt;
         }
         public void SalvarAluno(Aluno aluno)
         {
@@ -80,9 +80,9 @@ namespace SistemaColegio.Model
             {
                 alunoDAO.SalvarAluno(aluno);
             }
-            catch (Exception ex)
+            catch  
             {
-                throw ex;
+                throw;
             }
         }
         public void EditarAluno(Aluno aluno)
@@ -91,9 +91,9 @@ namespace SistemaColegio.Model
             {
                 alunoDAO.EditarAluno(aluno);
             }
-            catch (Exception ex)
+            catch  
             {
-                throw ex;
+                throw;
             }
         }
         public void AtualizarNaoEstudando(Aluno aluno)
@@ -102,9 +102,9 @@ namespace SistemaColegio.Model
             {
                 alunoDAO.AtualizarNaoEstudando(aluno);
             }
-            catch (Exception ex)
+            catch  
             {
-                throw ex;
+                throw;
             }
         }
         public void AtualizarEstudando(Aluno aluno)
@@ -113,9 +113,9 @@ namespace SistemaColegio.Model
             {
                 alunoDAO.AtualizarEstudando(aluno);
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                throw;
             }
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

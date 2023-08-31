@@ -3,6 +3,7 @@ using SistemaColegio.Model;
 using System.Windows.Forms;
 using System.Drawing;
 using System;
+using System.Collections.Generic;
 
 namespace SistemaColegio.View
 {
@@ -20,95 +21,59 @@ namespace SistemaColegio.View
         }
         private void FormMedia_Load(object sender, System.EventArgs e)
         {
-            materia.ValueMember = "ID";
-            materia.DisplayMember = "Materia";
-            turma.ValueMember = "ID";
-            turma.DisplayMember = "Classe";
-            ra.ValueMember = "RA";
+            comboMateria.ValueMember = "ID";
+            comboMateria.DisplayMember = "Materia";
+            comboTurma.ValueMember = "ID";
+            comboTurma.DisplayMember = "Classe";
+            comboRa.ValueMember = "RA";
 
             timer.Start();
-            hora.Text = DateTime.Now.ToLongTimeString();
-            data.Text = DateTime.Now.ToLongDateString();
 
-            materia.DataSource = materiasModel.ListarMateria();
-            turma.DataSource = classesModel.ListarClasses();
-            int raAluno = Convert.ToInt32(ra.SelectedValue);
+            lblHora.Text = DateTime.Now.ToLongTimeString();
+            lblData.Text = DateTime.Now.ToLongDateString();
+
+            comboMateria.DataSource = materiasModel.ListarMateria();
+            comboTurma.DataSource = classesModel.ListarClasses();
+            int raAluno = Convert.ToInt32(comboRa.SelectedValue);
             ListarMedias(raAluno);
         }
         private void timer_Tick(object sender, EventArgs e)
         {
-            hora.Text = DateTime.Now.ToLongTimeString();
+            lblHora.Text = DateTime.Now.ToLongTimeString();
         }
         private void turmaMedia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (turma.SelectedValue != null)
+            if (comboTurma.SelectedValue != null)
             {
-                int turmaId = Convert.ToInt32(turma.SelectedValue);
-                ra.DataSource = alunoModel.ListarRAPorsala(turmaId);
+                int turmaId = Convert.ToInt32(comboTurma.SelectedValue);
+                comboRa.DataSource = alunoModel.ListarRAPorsala(turmaId);
             }
         }
         private void materia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (materia.SelectedValue != null)
+            if (comboMateria.SelectedValue != null)
             {
 
-                int ra = Convert.ToInt32(this.ra.SelectedValue);
-                int materiaId = Convert.ToInt32(materia.SelectedValue);
-                int turmaId = Convert.ToInt32(turma.SelectedValue);
-                this.ra.DataSource = alunoModel.ListarRAPorsala(turmaId);
+                int ra = Convert.ToInt32(comboRa.SelectedValue);
+                int materiaId = Convert.ToInt32(comboMateria.SelectedValue);
+                int turmaId = Convert.ToInt32(comboTurma.SelectedValue);
+                comboRa.DataSource = alunoModel.ListarRAPorsala(turmaId);
                 ListarNotas(ra, materiaId);
             }
         }
         private void raMedia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ra.SelectedValue != null)
+            if (comboRa.SelectedValue != null)
             {
 
-                int ra = Convert.ToInt32(this.ra.SelectedValue);
-                int materiaId = Convert.ToInt32(materia.SelectedValue);
-                ra1.Text = ra.ToString();
-                ra2.Text = ra.ToString();
+                int ra = Convert.ToInt32(comboRa.SelectedValue);
+                int materiaId = Convert.ToInt32(comboMateria.SelectedValue);
+                txtRaNotas.Text = ra.ToString();
+                txtRa.Text = ra.ToString();
                 ListarNotas(ra, materiaId);
             }
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public void CalculoDeMedia()
-        {
-            try
-            {
-                if (ra.SelectedValue != null && materia.SelectedValue != null)
-                {
-                    int selectedRa = Convert.ToInt32(ra.SelectedValue);
-                    int selectedMateriaId = Convert.ToInt32(materia.SelectedValue);
-                    double mediaNotas = 0;
-                    int selecao = 0;
-
-                    foreach (DataGridViewRow row in gridNotas.Rows)
-                    {
-                        if (row.Cells["RA"].Value.ToString() == selectedRa.ToString() && Convert.ToInt32(row.Cells["Materia"].Value) == selectedMateriaId)
-                        {
-                            double nota = Convert.ToDouble(row.Cells["Nota"].Value);
-                            mediaNotas += nota;
-                            selecao++;
-                        }
-                    }
-                    if (selecao == 4)
-                    {
-                        mediaNotas /= selecao;
-                        media.Text = mediaNotas.ToString("F2");
-                    }
-                    else
-                    {
-                        media.Text = string.Empty;
-                        MessageBox.Show("É necessário ter exatamente 4 notas para calcular a média.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                } 
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("É necessário ter exatamente 4 notas para calcular a média.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
         public void ListarNotas(int ra, int materia)
         {
             try
@@ -123,23 +88,39 @@ namespace SistemaColegio.View
                 gridNotas.Columns[3].HeaderText = "Professor avaliador";
                 gridNotas.Columns[4].HeaderText = "Materia";
                 gridNotas.Columns[4].Visible = false;
+
+                foreach (DataGridViewRow row in gridNotas.Rows)
+                {
+                    double nota = Convert.ToDouble(row.Cells["Nota"].Value);
+                    DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
+                    if (nota < 6)
+                    {
+                        cellStyle.ForeColor = Color.Red;
+                    }
+                    else
+                    {
+                        cellStyle.ForeColor = Color.Green;
+                    }
+                    row.Cells["Nota"].Style = cellStyle;
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao listar as notas! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         public void ListarMedias(int ra)
         {
             try
             {
-                gridMedias.EnableHeadersVisualStyles = false;
-                gridMedias.ColumnHeadersDefaultCellStyle.BackColor = Color.Beige;
-                gridMedias.DataSource = mediaModel.ListarMedias(ra);
-                gridMedias.Columns[0].HeaderText = "RA";
-                gridMedias.Columns[0].Visible = false;
-                gridMedias.Columns[1].HeaderText = "Matéria";
-                gridMedias.Columns[2].HeaderText = "Média";
+                dgvMedias.EnableHeadersVisualStyles = false;
+                dgvMedias.ColumnHeadersDefaultCellStyle.BackColor = Color.Beige;
+                dgvMedias.DataSource = mediaModel.ListarMedias(ra);
+                dgvMedias.Columns[0].HeaderText = "RA";
+                dgvMedias.Columns[0].Visible = false;
+                dgvMedias.Columns[1].HeaderText = "Matéria";
+                dgvMedias.Columns[2].HeaderText = "Média";
             }
             catch (Exception ex)
             {
@@ -148,16 +129,16 @@ namespace SistemaColegio.View
         }
         private void gridNotas2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            salvar.Enabled = false;
-            ra.Text = gridNotas.CurrentRow.Cells[0].Value.ToString();
-            materia.Text = gridNotas.CurrentRow.Cells[1].Value.ToString();
+            btnSalvar.Enabled = false;
+            comboRa.Text = gridNotas.CurrentRow.Cells[0].Value.ToString();
+            comboMateria.Text = gridNotas.CurrentRow.Cells[1].Value.ToString();
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public void SalvarMedias(Medias medias)
+        public void SalvarMedias(Media medias)
         {
             try
             {
-                medias.Media = Convert.ToDouble(media.Text);
+                medias.Mediaa = Convert.ToDouble(txtMedia.Text);
 
                 mediaModel.SalvarMedia(medias);
                 MessageBox.Show("Média atribuída com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -170,17 +151,39 @@ namespace SistemaColegio.View
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void calcular_Click(object sender, EventArgs e)
         {
-            CalculoDeMedia();
+            Media medias = new Media();
+            List<double> notas = new List<double>();
+            int ra = Convert.ToInt32(comboRa.SelectedValue);
+            int materia = Convert.ToInt32(comboMateria.SelectedValue);
+
+            medias.Aluno = new Aluno();
+            medias.Aluno.Ra = ra;
+            medias.Materia = new Materia();
+            medias.Materia.Id = materia;
+
+            notas = mediaModel.NotasMedia(ra, materia);
+
+            double calculatedMedia = medias.CalcularMedia(notas);
+
+            if (calculatedMedia != -1)
+            {
+                txtMedia.Text = calculatedMedia.ToString("F2");
+            }
+            else
+            {
+                txtMedia.Text = string.Empty;
+                MessageBox.Show("É necessário ter exatamente 4 notas para calcular a média.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
         private void salvarMedia_Click(object sender, EventArgs e)
         {
             try
             {
-                Medias medias = new Medias();
+                Media medias = new Media();
                 medias.Aluno = new Aluno();
-                medias.Materia = new Materias();
-                medias.Aluno.Ra = Convert.ToInt32(ra.SelectedValue);
-                medias.Materia.Id = Convert.ToInt32(materia.SelectedValue);
+                medias.Materia = new Materia();
+                medias.Aluno.Ra = Convert.ToInt32(comboRa.SelectedValue);
+                medias.Materia.Id = Convert.ToInt32(comboMateria.SelectedValue);
                 if (MessageBox.Show("Tem certeza que deseja atribuir a média? Após a atribuição a média não pode ser alterada.", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
                 {
                     return;

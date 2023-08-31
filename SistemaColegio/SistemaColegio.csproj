@@ -100,21 +100,21 @@
   <ItemGroup>
     <Compile Include="Conexao.cs" />
     <Compile Include="DAO\AlunoDAO.cs" />
-    <Compile Include="DAO\BoletimDAO.cs" />
-    <Compile Include="DAO\ClassesDAO.cs" />
-    <Compile Include="DAO\MateriasDAO.cs" />
+    <Compile Include="DAO\ClasseDAO.cs" />
+    <Compile Include="DAO\MateriaDAO.cs" />
     <Compile Include="DAO\MediaDAO.cs" />
     <Compile Include="DAO\ProfessorDAO.cs" />
     <Compile Include="DAO\ProvaDAO.cs" />
     <Compile Include="Entidades\Aluno.cs" />
-    <Compile Include="Entidades\Bimestres.cs" />
-    <Compile Include="Entidades\Classes.cs" />
-    <Compile Include="Entidades\Materias.cs" />
-    <Compile Include="Entidades\Medias.cs" />
-    <Compile Include="Entidades\Notas.cs" />
+    <Compile Include="Entidades\Bimestre.cs" />
+    <Compile Include="Entidades\Classe.cs" />
+    <Compile Include="Entidades\Materia.cs" />
+    <Compile Include="Entidades\Media.cs" />
+    <Compile Include="Entidades\Nota.cs" />
     <Compile Include="Entidades\Pessoa.cs" />
     <Compile Include="Entidades\Professor.cs" />
-    <Compile Include="Entidades\Provas.cs" />
+    <Compile Include="Entidades\Prova.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>

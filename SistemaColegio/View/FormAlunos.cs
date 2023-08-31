@@ -15,32 +15,44 @@ namespace SistemaColegio.View
         }
         private void FormAlunos_Load(object sender, EventArgs e)
         {
-            ListarAlunos();
+            ListarAlunos(); 
+
             timer.Start();
-            hora.Text = DateTime.Now.ToLongTimeString();
-            data.Text = DateTime.Now.ToLongDateString();
+
+            lblHora.Text = DateTime.Now.ToLongTimeString();
+            lblData.Text = DateTime.Now.ToLongDateString();
         }
         private void timer_Tick(object sender, EventArgs e)
         {
-            hora.Text = DateTime.Now.ToLongTimeString();
+            lblHora.Text = DateTime.Now.ToLongTimeString();
+        }
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text == "")
+            {
+                ListarAlunos();
+                return;
+            }
+            BuscarAlunos(txtBuscar.Text);
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public void ListarAlunos()
         {
             try
             {
-                grid.EnableHeadersVisualStyles = false;
-                grid.ColumnHeadersDefaultCellStyle.BackColor = Color.IndianRed;
-                grid.DataSource = alunoModel.ListarAlunos();
-                grid.Columns[0].HeaderText = "RA";
-                grid.Columns[1].HeaderText = "Nome";
-                grid.Columns[2].HeaderText = "Sexo";
-                grid.Columns[3].HeaderText = "Data de Nascimento";
-                grid.Columns[4].HeaderText = "Classe";
+                dgv.EnableHeadersVisualStyles = false;
+                dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.IndianRed;
+                dgv.DataSource = alunoModel.ListarAlunos();
+
+                dgv.Columns[0].HeaderText = "RA";
+                dgv.Columns[1].HeaderText = "Nome";
+                dgv.Columns[2].HeaderText = "Sexo";
+                dgv.Columns[3].HeaderText = "Data de Nascimento";
+                dgv.Columns[4].HeaderText = "Classe";
             }
             catch (Exception)
             {
-                MessageBox.Show("Erro ao listar os dados!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Erro ao listar os dados dos alunos!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,32 +60,19 @@ namespace SistemaColegio.View
         {
             try
             {
-                grid.DataSource = alunoModel.BuscarAlunosPorRA(ra);
+                dgv.DataSource = alunoModel.BuscarAlunosPorRA(ra);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Erro ao listar os dados! " + ex, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Erro ao buscar os dados do aluno! ", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-        private void buscarAluno_TextChanged(object sender, EventArgs e)
-        {
-            if (buscar.Text == "")
-            {
-                ListarAlunos();
-                return;
-            }
-            BuscarAlunos(buscar.Text);
-        }
-        private void buscar_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("A busca é feita por RA.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        private void sairAlunos_Click(object sender, EventArgs e)
+        private void btnSair_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-        private void voltarAlunos_Click(object sender, EventArgs e)
+        private void btnVoltar_Click(object sender, EventArgs e)
         {
             this.Close();
         }

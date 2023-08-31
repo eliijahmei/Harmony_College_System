@@ -1,6 +1,5 @@
 ﻿using SistemaColegio.Entidades;
 using MySql.Data.MySqlClient;
-using System.Windows.Forms;
 using System.Data;
 using System;
 
@@ -14,6 +13,7 @@ namespace SistemaColegio.DAO
         public int ProfessorGerarID()
         {
             int idProfessor = 0;
+            int count;
             try
             {
                 do
@@ -22,16 +22,16 @@ namespace SistemaColegio.DAO
                     con.abrirConexao();
                     cmd = new MySqlCommand("SELECT COUNT(*) FROM professor WHERE ID = @ID", con.con);
                     cmd.Parameters.AddWithValue("@ID", idProfessor);
-                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    count = Convert.ToInt32(cmd.ExecuteScalar());
                     if (count == 0)
                     {
                         break;
                     }
                 } while (true);
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("Erro ao gerar ID! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw;
             }
             finally
             {
@@ -50,9 +50,9 @@ namespace SistemaColegio.DAO
                 da.SelectCommand = cmd;
                 da.Fill(dt);
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("Erro ao listar os professores! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw;
             }
             finally
             {
@@ -72,9 +72,9 @@ namespace SistemaColegio.DAO
                 da.SelectCommand = cmd;
                 da.Fill(dt);
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("Erro ao listar os professores! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw;
             }
             finally
             {
@@ -84,13 +84,11 @@ namespace SistemaColegio.DAO
         }
         public void SalvarProfessor(Professor professor)
         {
+            int idProfessor = ProfessorGerarID();
             try
             {
-                int idProfessor = ProfessorGerarID();
                 con.abrirConexao();
-
                 cmd = new MySqlCommand("INSERT INTO professor(ID, Nome, Sexo, DataNascimento, MateriaProf, Situacao) VALUES(@ID, @Nome, @Sexo, @DataNascimento, @MateriaProf, @Situacao)", con.con);
-
                 cmd.Parameters.AddWithValue("@ID", idProfessor);
                 cmd.Parameters.AddWithValue("@Nome", professor.Nome);
                 cmd.Parameters.AddWithValue("@Sexo", professor.Sexo);
@@ -99,9 +97,9 @@ namespace SistemaColegio.DAO
                 cmd.Parameters.AddWithValue("@Situacao", "Lecionando");
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("Erro ao salvar professor! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw;
             }
             finally
             {
@@ -124,9 +122,9 @@ namespace SistemaColegio.DAO
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("Erro ao editar professor! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw;
             }
             finally
             {
@@ -142,9 +140,9 @@ namespace SistemaColegio.DAO
                 cmd.Parameters.AddWithValue("@ID", professor.Id);
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("Erro ao atualizar situação do professor!" + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw;
             }
             finally
             {
@@ -160,9 +158,9 @@ namespace SistemaColegio.DAO
                 cmd.Parameters.AddWithValue("@ID", professor.Id);
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("Erro ao atualizar situação do professor!" + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw;
             }
             finally
             {

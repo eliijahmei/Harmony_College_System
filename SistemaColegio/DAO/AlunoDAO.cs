@@ -14,6 +14,7 @@ namespace SistemaColegio.DAO
         public int AlunoGerarRA()
         {
             int raAluno = 0;
+            int count;
             try
             {
                 do
@@ -22,16 +23,16 @@ namespace SistemaColegio.DAO
                     con.abrirConexao();
                     cmd = new MySqlCommand("SELECT COUNT(*) FROM aluno WHERE RA = @RA", con.con);
                     cmd.Parameters.AddWithValue("@RA", raAluno);
-                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    count = Convert.ToInt32(cmd.ExecuteScalar());
                     if (count == 0)
                     {
                         break;
                     }
                 } while (true);
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("Erro ao gerar RA! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw;
             }
             finally
             {
@@ -50,9 +51,9 @@ namespace SistemaColegio.DAO
                 da.SelectCommand = cmd;
                 da.Fill(dt);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao listar os alunos! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            catch
+            { 
+                throw; 
             }
             finally 
             { 
@@ -62,30 +63,30 @@ namespace SistemaColegio.DAO
         }
         public Aluno AlunoPorRA(int alunoRA)
         {
+            Aluno aluno;
+            string nome;
             try
             {
                 con.abrirConexao();
-                Aluno aluno;
                 cmd = new MySqlCommand("SELECT * FROM aluno INNER JOIN classe ON aluno.Classe = classe.ID WHERE RA = @RA ORDER BY ID ASC, Nome", con.con);
                 cmd.Parameters.AddWithValue("@RA", alunoRA);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    string nome = reader["Nome"].ToString();
-
+                    nome = reader["Nome"].ToString();
                     aluno = new Aluno(alunoRA, nome);
                     return aluno;
-                }
-
-                return null;
+                }  
             }
-            catch (Exception)
+            catch 
             {
-
                 throw;
             }
-            finally { con.fecharConexao(); }
-          
+            finally 
+            { 
+                con.fecharConexao(); 
+            }
+            return null;
         }
         public DataTable ListarRAPorSala(int classe)
         {
@@ -99,9 +100,9 @@ namespace SistemaColegio.DAO
                 da.SelectCommand = cmd;
                 da.Fill(dt);
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("Erro ao listar os alunos! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw; 
             }
             finally
             {
@@ -121,9 +122,9 @@ namespace SistemaColegio.DAO
                 da.SelectCommand = cmd;
                 da.Fill(dt);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao listar os alunos! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            catch 
+            { 
+                throw;
             }
             finally
             {
@@ -143,9 +144,9 @@ namespace SistemaColegio.DAO
                 da.SelectCommand = cmd;
                 da.Fill(dt);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao buscar os alunos! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            catch 
+            { 
+                throw; 
             }
             finally
             {
@@ -155,9 +156,9 @@ namespace SistemaColegio.DAO
         }
         public void SalvarAluno(Aluno aluno)
         {
+            int ra = AlunoGerarRA();
             try
             {
-                int ra = AlunoGerarRA();
                 con.abrirConexao();
                 cmd = new MySqlCommand("INSERT INTO aluno(RA, Nome, Sexo, DataNascimento, Classe, Situacao) VALUES(@RA, @Nome, @Sexo, @DataNascimento, @Classe, @Situacao)", con.con);
                 {
@@ -170,9 +171,9 @@ namespace SistemaColegio.DAO
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch (Exception ex)
+            catch 
             {
-                MessageBox.Show("Erro ao salvar o aluno! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw; 
             }
             finally
             {
@@ -194,9 +195,9 @@ namespace SistemaColegio.DAO
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("Erro ao editar o aluno! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw; 
             }
             finally
             {
@@ -212,9 +213,9 @@ namespace SistemaColegio.DAO
                 cmd.Parameters.AddWithValue("@RA", aluno.Ra);
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao atualizar situação do aluno!" + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            catch 
+            { 
+                throw; 
             }
             finally
             {
@@ -230,9 +231,9 @@ namespace SistemaColegio.DAO
                 cmd.Parameters.AddWithValue("@RA", aluno.Ra);
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao atualizar situação do aluno!" + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            catch 
+            { 
+                throw; 
             }
             finally
             {

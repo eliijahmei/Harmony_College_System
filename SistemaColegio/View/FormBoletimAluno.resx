@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="voltar.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnVoltar.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAA7dEVYdENvbW1lbnQAeHI6ZDpEQUZzMUVJWkY4UTo2LGo6
-        ODk3NDk0OTI5MDIzODUyMzM5NCx0OjIzMDgyODEyWyR1KwAAANpJREFUaEPt2sEJhDAQhWFLspjYhWUI
-        3gUrsAKV4DWFCKkgNYw7wrIRcgpseJEnfJeIzPw3D2k+j7xEI8MwyHEc1ZmmSbqu+4XoYQhBvPdV2fdd
-        +r5/hpznKc65qizLwhAoDEHDEDQMQcMQNAxBwxA0DEHDEDQMQcMQNAxBwxA0DEHDEGutbNtWhM5K7RDL
-        DpnnWcZxLEJnpXaIZYe0bfv96O90VmqHGENeE2KMuQeUoLNSO8SyQ9AwBA1D0DAEzXtD9JbNuq73i5ro
-        j+UjRK8K6UGNHtec6tfIBczUk5DCzqzKAAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wgAADsIBFShKgAAAADt0RVh0Q29tbWVudAB4cjpkOkRBRnMxRUlaRjhROjYsajo4OTc0OTQ5MjkwMjM4
+        NTIzMzk0LHQ6MjMwODI4MTJbJHUrAAAA2klEQVRoQ+3awQmEMBCFYUuymNiFZQjeBSuwApXgNYUIqSA1
+        jDvCshFyCmx4kSd8l4jM/DcPaT6PvEQjwzDIcRzVmaZJuq77hehhCEG891XZ9136vn+GnOcpzrmqLMvC
+        ECgMQcMQNAxBwxA0DEHDEDQMQcMQNAxBwxA0DEHDEDQMQcMQa61s21aEzkrtEMsOmedZxnEsQmeldohl
+        h7Rt+/3o73RWaocYQ14TYoy5B5Sgs1I7xLJD0DAEDUPQMATNe0P0ls26rveLmuiP5SNErwrpQY0e15zq
+        18gFzNSTkMLOrMoAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAyAAAANSCAYAAACdmqqiAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAAADx0RVh0Q29tbWVudAB4cjpkOkRBRnNqd3ZpWFVvOjE3LGo6NzgyOTkwODgwMDA3
+        wQAADsEBuJFr7QAAADx0RVh0Q29tbWVudAB4cjpkOkRBRnNqd3ZpWFVvOjE3LGo6NzgyOTkwODgwMDA3
         Mzg0NTA2NSx0OjIzMDgyNTE3KhlqhwAAukRJREFUeF7tvQmUVWd6nuvl5ZU4cWLHzo0TJ7Zv3B662213
         e+zYTre77fZw7XhuO57iebZjp51GIASaJTQjMc9CaEASkxBilhCSEEIgxCQGMc9CQmhEQsjd7v/ybdhH
         pw7vLr6idu2vfnjetZ5V5+y9zz6n6q069T9nT1911Vd9VQIAAAAAAGgCBAQAAAAAABoDAQEAAAAAgMZA

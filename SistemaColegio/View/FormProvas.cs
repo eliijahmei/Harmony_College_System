@@ -20,89 +20,94 @@ namespace SistemaColegio.View
         }
         private void FormProvas_Load(object sender, EventArgs e)
         {
-            materiaProva.ValueMember = "ID";
-            materiaProva.DisplayMember = "Materia";
-            turmaProva.ValueMember = "ID";
-            turmaProva.DisplayMember = "Classe";
-            bimestreProva.ValueMember = "ID";
-            bimestreProva.DisplayMember = "Bimestre";
-            materiaNota.ValueMember = "ID";
-            materiaNota.DisplayMember = "Materia";
-            professor.ValueMember = "ID";
-            professor.DisplayMember = "Nome";
-            idNota.ValueMember = "ID";
-            turmaNota.ValueMember = "ID";
-            turmaNota.DisplayMember = "Classe";
-            ra.ValueMember = "RA";
+            comboMateriaProva.ValueMember = "ID";
+            comboMateriaProva.DisplayMember = "Materia";
+            comboTurmaProva.ValueMember = "ID";
+            comboTurmaProva.DisplayMember = "Classe";
+            comboBimestreProva.ValueMember = "ID";
+            comboBimestreProva.DisplayMember = "Bimestre";
+            comboMateriaNota.ValueMember = "ID";
+            comboMateriaNota.DisplayMember = "Materia";
+            comboProfessor.ValueMember = "ID";
+            comboProfessor.DisplayMember = "Nome";
+            comboId.ValueMember = "ID";
+            comboTurmaNota.ValueMember = "ID";
+            comboTurmaNota.DisplayMember = "Classe";
+            comboRa.ValueMember = "RA";
 
-            int raAluno = Convert.ToInt32(this.ra.SelectedValue);
-            int materiaId = Convert.ToInt32(materiaNota.SelectedValue);
+            int raAluno = Convert.ToInt32(comboRa.SelectedValue);
+            int materiaId = Convert.ToInt32(comboMateriaNota.SelectedValue);
             ListarProvas();
             ListarNotas(raAluno, materiaId);
 
             timer.Start();
-            hora.Text = DateTime.Now.ToLongTimeString();
-            data.Text = DateTime.Now.ToLongDateString();
 
-            materiaProva.DataSource = materiasModel.ListarMateria();
-            turmaProva.DataSource = classesModel.ListarClasses();
-            materiaNota.DataSource = materiasModel.ListarMateria();
-            turmaNota.DataSource = classesModel.ListarClasses();
-            bimestreProva.DataSource = provaModel.ListarBimestres();
+            btnHora.Text = DateTime.Now.ToLongTimeString();
+            lblData.Text = DateTime.Now.ToLongDateString();
+
+            comboMateriaProva.DataSource = materiasModel.ListarMateria();
+            comboTurmaProva.DataSource = classesModel.ListarClasses();
+            comboMateriaNota.DataSource = materiasModel.ListarMateria();
+            comboTurmaNota.DataSource = classesModel.ListarClasses();
+            comboBimestreProva.DataSource = provaModel.ListarBimestres();
         }
         private void timer_Tick(object sender, EventArgs e)
         {
-            hora.Text = DateTime.Now.ToLongTimeString();
+            btnHora.Text = DateTime.Now.ToLongTimeString();
         }
         public void LimparCampos()
         {
-            idNota.Text = "";
-            idProva.Text = "";
-            bimestreProva.Text = "";
-            materiaProva.SelectedIndex = 0;
-            materiaNota.SelectedIndex = 0;
-            turmaNota.SelectedIndex = 0;
-            turmaProva.SelectedIndex = 0;
-            nota.Text = "";
-            dataAgendamento.Value = DateTime.Now;
+            comboId.Text = "";
+            txtIdProva.Text = "";
+            comboBimestreProva.Text = "";
+            comboMateriaProva.SelectedIndex = 0;
+            comboMateriaNota.SelectedIndex = 0;
+            comboTurmaNota.SelectedIndex = 0;
+            comboTurmaProva.SelectedIndex = 0;
+            txtNota.Text = "";
+            dtDataAgendamento.Value = DateTime.Now;
         }
-        private void RaTurma(out int ra, out int turma)
+        private void GetRaTurma(out int ra, out int turma)
         {
-            ra = Convert.ToInt32(this.ra.SelectedValue);
-            turma = Convert.ToInt32(turmaNota.SelectedValue);
+            ra = Convert.ToInt32(comboRa.SelectedValue);
+            turma = Convert.ToInt32(comboTurmaNota.SelectedValue);
         }
-        private void Notas(out int raAluno, out int materia)
+        private void GetRaNotas(out int raAluno, out int materia)
         {
-            raAluno = Convert.ToInt32(ra.SelectedValue);
-            materia = Convert.ToInt32(materiaNota.SelectedValue);
+            raAluno = Convert.ToInt32(comboRa.SelectedValue);
+            materia = Convert.ToInt32(comboMateriaNota.SelectedValue);
         }
         private void turmaProvaAT_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (turmaNota.SelectedValue != null)
+            if (comboTurmaNota.SelectedValue != null)
             {
-                int classe = Convert.ToInt32(turmaNota.SelectedValue);
-                int materia = Convert.ToInt32(materiaNota.SelectedValue);
-                idNota.DataSource = provaModel.ListarProvasPorMateriaTurma(materia, classe);
-                ra.DataSource = alunoModel.ListarRAPorsala(classe);
+                int classe = Convert.ToInt32(comboTurmaNota.SelectedValue);
+                int materia = Convert.ToInt32(comboMateriaNota.SelectedValue);
+                comboId.DataSource = provaModel.ListarProvasPorMateriaTurma(materia, classe);
+                comboRa.DataSource = alunoModel.ListarRAPorsala(classe);
             }
         }
         private void raAlunoAt_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (turmaNota.SelectedValue != null && ra.SelectedValue != null)
+            if (comboTurmaNota.SelectedValue != null && comboRa.SelectedValue != null)
             {
-                RaTurma(out int ra, out int turma);
-                ra1.Text = ra.ToString();
+                GetRaTurma(out int ra, out int turma);
+                txtRaGrid.Text = ra.ToString();
                 ListarNotas(ra, turma);
             }
         }
         private void materiaProvaAT_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            RaTurma(out int ra, out int turma);
-            int professor = Convert.ToInt32(materiaNota.SelectedValue);
-            idNota.DataSource = provaModel.ListarProvasPorMateriaTurma(professor, turma);
-            this.professor.DataSource = professorModel.ListarProfessoresPorMateria(professor);
+            GetRaTurma(out int ra, out int turma);
+            int professor = Convert.ToInt32(comboMateriaNota.SelectedValue);
+            comboId.DataSource = provaModel.ListarProvasPorMateriaTurma(professor, turma);
+            comboProfessor.DataSource = professorModel.ListarProfessoresPorMateria(professor);
             ListarNotas(ra, professor);
+        }
+        private void idNota_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(comboId.SelectedValue);
+            txtBimestre.Text = provaModel.ListarBimestre(id);
         }
         private void valorNota_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -116,158 +121,150 @@ namespace SistemaColegio.View
                 e.Handled = true;
             }
         }
-        private void idNota_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int id = Convert.ToInt32(idNota.SelectedValue);
-            bimestre.Text = provaModel.ListarBimestre(id);
-        }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public void ListarProvas()
         {
             try
             {
-                gridProvas.EnableHeadersVisualStyles = false;
-                gridProvas.ColumnHeadersDefaultCellStyle.BackColor = Color.Beige;
-                gridProvas.DataSource = provaModel.ListarProvas();
-                gridProvas.Columns[0].HeaderText = "ID";
-                gridProvas.Columns[1].HeaderText = "Data de agendamento";
-                gridProvas.Columns[2].HeaderText = "Matéria";
-                gridProvas.Columns[3].HeaderText = "Turma";
-                gridProvas.Columns[3].HeaderText = "Bimestre";
+                dgvProvas.EnableHeadersVisualStyles = false;
+                dgvProvas.ColumnHeadersDefaultCellStyle.BackColor = Color.Beige;
+                dgvProvas.DataSource = provaModel.ListarProvas();
+
+                dgvProvas.Columns[0].HeaderText = "ID";
+                dgvProvas.Columns[1].HeaderText = "Data de agendamento";
+                dgvProvas.Columns[2].HeaderText = "Matéria";
+                dgvProvas.Columns[3].HeaderText = "Turma";
+                dgvProvas.Columns[3].HeaderText = "Bimestre";
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Erro ao listar as provas! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Erro ao listar as provas!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         public void ListarNotas(int ra, int materia)
         {
             try
             {
-                gridNotas.EnableHeadersVisualStyles = false;
-                gridNotas.ColumnHeadersDefaultCellStyle.BackColor = Color.Beige;
-                gridNotas.DataSource = provaModel.ListarNotas(ra, materia);
-                gridNotas.Columns[0].HeaderText = "RA";
-                gridNotas.Columns[0].Visible = false;
-                gridNotas.Columns[1].HeaderText = "Prova";
-                gridNotas.Columns[2].HeaderText = "Nota";
-                gridNotas.Columns[3].HeaderText = "Professor";
-                gridNotas.Columns[4].HeaderText = "Materia";
-                gridNotas.Columns[4].Visible = false;
+                dgvNotas.EnableHeadersVisualStyles = false;
+                dgvNotas.ColumnHeadersDefaultCellStyle.BackColor = Color.Beige;
+                dgvNotas.DataSource = provaModel.ListarNotas(ra, materia);
+
+                dgvNotas.Columns[0].HeaderText = "RA";
+                dgvNotas.Columns[0].Visible = false;
+                dgvNotas.Columns[1].HeaderText = "Prova";
+                dgvNotas.Columns[2].HeaderText = "Nota";
+                dgvNotas.Columns[3].HeaderText = "Professor";
+                dgvNotas.Columns[4].HeaderText = "Materia";
+                dgvNotas.Columns[4].Visible = false;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Erro ao listar as notas! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Erro ao listar as notas!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         private void gridProvas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            turmaProva.Enabled = true;
-            dataAgendamento.Enabled = true;
-            materiaProva.Enabled = true;
-            salvarProva.Enabled = false;
-            editarProva.Enabled = true;
-            excluirProva.Enabled = true;
-            novoProva.Enabled = true;
-            bimestreProva.Enabled = false;
-            idProva.Text = gridProvas.CurrentRow.Cells[0].Value.ToString();
-            dataAgendamento.Text = gridProvas.CurrentRow.Cells[1].Value.ToString();
-            materiaProva.Text = gridProvas.CurrentRow.Cells[2].Value.ToString();
-            turmaProva.Text = gridProvas.CurrentRow.Cells[3].Value.ToString();
-            bimestreProva.Text = gridProvas.CurrentRow.Cells[4].Value.ToString();
+            comboTurmaProva.Enabled = true;
+            dtDataAgendamento.Enabled = true;
+            comboMateriaProva.Enabled = true;
+            btnSalvarProva.Enabled = false;
+            btnEditarProva.Enabled = true;
+            btnExcluirProva.Enabled = true;
+            btnNovoProva.Enabled = true;
+            comboBimestreProva.Enabled = false;
+
+            txtIdProva.Text = dgvProvas.CurrentRow.Cells[0].Value.ToString();
+            dtDataAgendamento.Text = dgvProvas.CurrentRow.Cells[1].Value.ToString();
+            comboMateriaProva.Text = dgvProvas.CurrentRow.Cells[2].Value.ToString();
+            comboTurmaProva.Text = dgvProvas.CurrentRow.Cells[3].Value.ToString();
+            comboBimestreProva.Text = dgvProvas.CurrentRow.Cells[4].Value.ToString();
         }
         private void gridNotas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            novoNota.Enabled = true;
-            salvarNota.Enabled = false;
-            editarNota.Enabled = true;
-            excluirNota.Enabled = true;
-            idNota.Enabled = false;
-            bimestre.Enabled = false;
-            materiaNota.Enabled = false;
-            turmaNota.Enabled = false;
-            ra.Enabled = false;
-            professor.Enabled = true;
-            nota.Enabled = true;
-            ra.Text = gridNotas.CurrentRow.Cells[0].Value.ToString();
-            idNota.Text = gridNotas.CurrentRow.Cells[1].Value.ToString();
-            nota.Text = gridNotas.CurrentRow.Cells[2].Value.ToString();
-            professor.Text = gridNotas.CurrentRow.Cells[3].Value.ToString();
-            materiaNota.Text = gridNotas.CurrentRow.Cells[4].Value.ToString();
+            btnNovoNota.Enabled = true;
+            btnSalvarNota.Enabled = false;
+            btnEditarNota.Enabled = true;
+            btnExcluirNota.Enabled = true;
+            comboId.Enabled = false;
+            txtBimestre.Enabled = false;
+            comboMateriaNota.Enabled = false;
+            comboTurmaNota.Enabled = false;
+            comboRa.Enabled = false;
+            comboProfessor.Enabled = true;
+            txtNota.Enabled = true;
+
+            comboRa.Text = dgvNotas.CurrentRow.Cells[0].Value.ToString();
+            comboId.Text = dgvNotas.CurrentRow.Cells[1].Value.ToString();
+            txtNota.Text = dgvNotas.CurrentRow.Cells[2].Value.ToString();
+            comboProfessor.Text = dgvNotas.CurrentRow.Cells[3].Value.ToString();
+            comboMateriaNota.Text = dgvNotas.CurrentRow.Cells[4].Value.ToString();
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public void SalvarProva(Provas provas)
+        public void SalvarProva(Prova provas)
         {
             try
             {
-                provas.Materia = new Materias();
-                provas.Classe = new Classes();
-                provas.Bimestre =  new Bimestres();
-                provas.Materia.Id = Convert.ToInt32(materiaProva.SelectedValue);
-                provas.DataProva = Convert.ToDateTime(dataAgendamento.Value);
-                provas.Classe.Id = Convert.ToInt32(turmaProva.SelectedValue);
-                provas.Bimestre.Id = Convert.ToInt32(bimestreProva.SelectedValue);
+                provas.Materia = new Materia();
+                provas.Classe = new Classe();
+                provas.Bimestre =  new Bimestre();
+                provas.Materia.Id = Convert.ToInt32(comboMateriaProva.SelectedValue);
+                provas.DataProva = Convert.ToDateTime(dtDataAgendamento.Value);
+                provas.Classe.Id = Convert.ToInt32(comboTurmaProva.SelectedValue);
+                provas.Bimestre.Id = Convert.ToInt32(comboBimestreProva.SelectedValue);
                 provaModel.SalvarProva(provas);
                 MessageBox.Show("Prova agendada com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MessageBox.Show("Selecione + para agendar mais alguma prova.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
             {
-                MessageBox.Show("Limite de prova por bimestre dessa matéria pora essa sala atingido.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Limite de prova por bimestre dessa matéria para essa sala atingido!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        public void EditarProva(Provas provas)
+        public void EditarProva(Prova provas)
         {
             try
             {
-                provas.Materia = new Materias();
-                provas.Classe = new Classes();
-                provas.Bimestre = new Bimestres();
-                provas.Materia.Id = Convert.ToInt32(materiaProva.SelectedValue);
-                provas.DataProva = Convert.ToDateTime(dataAgendamento.Value);
-                provas.Classe.Id = Convert.ToInt32(turmaProva.SelectedValue);
+                provas.Materia = new Materia();
+                provas.Classe = new Classe();
+                provas.Bimestre = new Bimestre();
+                provas.Materia.Id = Convert.ToInt32(comboMateriaProva.SelectedValue);
+                provas.DataProva = Convert.ToDateTime(dtDataAgendamento.Value);
+                provas.Classe.Id = Convert.ToInt32(comboTurmaProva.SelectedValue);
 
                 provaModel.EditarProva(provas);
                 MessageBox.Show("Prova editada com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MessageBox.Show("Selecione + para agendar mais alguma prova.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Erro ao editar a prova! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Erro ao editar a prova!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        public void ExcluirProva(Provas provas)
+        public void ExcluirProva(Prova provas)
         {
             try
             {
                 provaModel.ExcluirProva(provas);
                 MessageBox.Show("Prova cancelada com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Erro ao cancelar a prova! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Erro ao cancelar a prova!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        public void SalvarNota(Notas notas)
+        public void SalvarNota(Nota notas)
         {
             try
             {
                 notas.Professor = new Professor();
-                notas.Materia = new Materias();
-                notas.Provas = new Provas();
+                notas.Materia = new Materia();
+                notas.Provas = new Prova();
                 notas.Aluno = new Aluno();
-                notas.Aluno.Ra = Convert.ToInt32(ra.SelectedValue);
-                notas.Provas.Id = Convert.ToInt32(idNota.SelectedValue);
-                notas.Nota = Convert.ToDouble(nota.Text);
-                notas.Professor.Id = Convert.ToInt32(professor.SelectedValue);
-                notas.Materia.Id = Convert.ToInt32(materiaNota.SelectedValue);
+                notas.Aluno.Ra = Convert.ToInt32(comboRa.SelectedValue);
+                notas.Provas.Id = Convert.ToInt32(comboId.SelectedValue);
+                notas.Notaa = Convert.ToDouble(txtNota.Text);
+                notas.Professor.Id = Convert.ToInt32(comboProfessor.SelectedValue);
+                notas.Materia.Id = Convert.ToInt32(comboMateriaNota.SelectedValue);
 
-                if (idNota.SelectedValue == null)
-                {
-                    MessageBox.Show("Selecione uma prova!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (!double.TryParse(nota.Text, out double nt) || nt < 0 || nt > 10)
+                if (!double.TryParse(txtNota.Text, out double nt) || nt < 0 || nt > 10)
                 {
                     MessageBox.Show("A nota deve estar entre 0 e 10!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -275,33 +272,27 @@ namespace SistemaColegio.View
 
                 provaModel.SalvarNota(notas);
                 MessageBox.Show("Nota atribuida com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MessageBox.Show("Selecione + para atribuir mais alguma nota.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
             {
-                MessageBox.Show("Limite de nota por prova excedido, apenas uma nota em cada prova por aluno.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Limite de nota por prova excedido! Apenas uma nota em cada prova por aluno.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        public void EditarNota(Notas notas)
+        public void EditarNota(Nota notas)
         {
             try
             {
                 notas.Professor = new Professor();
-                notas.Materia = new Materias();
-                notas.Provas = new Provas();
+                notas.Materia = new Materia();
+                notas.Provas = new Prova();
                 notas.Aluno = new Aluno();
-                notas.Aluno.Ra = Convert.ToInt32(ra.SelectedValue);
-                notas.Provas.Id = Convert.ToInt32(idNota.SelectedValue);
-                notas.Nota = Convert.ToDouble(nota.Text);
-                notas.Professor.Id = Convert.ToInt32(professor.SelectedValue);
-                notas.Materia.Id = Convert.ToInt32(materiaNota.SelectedValue);
+                notas.Aluno.Ra = Convert.ToInt32(comboRa.SelectedValue);
+                notas.Provas.Id = Convert.ToInt32(comboId.SelectedValue);
+                notas.Notaa = Convert.ToDouble(txtNota.Text);
+                notas.Professor.Id = Convert.ToInt32(comboProfessor.SelectedValue);
+                notas.Materia.Id = Convert.ToInt32(comboMateriaNota.SelectedValue);
 
-                if (idNota.SelectedValue == null)
-                {
-                    MessageBox.Show("Selecione uma prova!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (!double.TryParse(nota.Text, out double nt) || nt < 0 || nt > 10)
+                if (!double.TryParse(txtNota.Text, out double nt) || nt < 0 || nt > 10)
                 {
                     MessageBox.Show("A nota deve estar entre 0 e 10!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -309,146 +300,145 @@ namespace SistemaColegio.View
 
                 provaModel.EditarNota(notas);
                 MessageBox.Show("Nota editada com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MessageBox.Show("Selecione + para atribuir mais alguma nota.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Erro editar a nota! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Erro editar a nota!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        public void ExcluirNota(Notas notas)
+        public void ExcluirNota(Nota notas)
         {
             try
             {
                 provaModel.ExcluirNota(notas);
                 MessageBox.Show("Nota excluida com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Erro ao excluir a nota! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Erro ao excluir a nota!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void novoProva_Click(object sender, EventArgs e)
         {
-            materiaProva.Enabled = true;
-            dataAgendamento.Enabled = true;
-            turmaProva.Enabled = true;
-            salvarProva.Enabled = true;
-            editarProva.Enabled = false;
-            excluirProva.Enabled = false;
-            novoProva.Enabled = false;
-            bimestreProva.Enabled = true;
+            comboMateriaProva.Enabled = true;
+            dtDataAgendamento.Enabled = true;
+            comboTurmaProva.Enabled = true;
+            btnSalvarProva.Enabled = true;
+            btnEditarProva.Enabled = false;
+            btnExcluirProva.Enabled = false;
+            btnNovoProva.Enabled = false;
+            comboBimestreProva.Enabled = true;
             LimparCampos();
         }
         private void salvarProva_Click(object sender, EventArgs e)
         {
-            Provas provas = new Provas();
-            salvarProva.Enabled = false;
-            editarProva.Enabled = false;
-            excluirProva.Enabled = false;
-            novoProva.Enabled = true;
-            materiaProva.Enabled = false;
-            turmaProva.Enabled = false;
-            bimestreProva.Enabled = false;
-            dataAgendamento.Enabled = false;
-            provas.Materia = new Materias();
+            Prova provas = new Prova();
+            btnSalvarProva.Enabled = false;
+            btnEditarProva.Enabled = false;
+            btnExcluirProva.Enabled = false;
+            btnNovoProva.Enabled = true;
+            comboMateriaProva.Enabled = false;
+            comboTurmaProva.Enabled = false;
+            comboBimestreProva.Enabled = false;
+            dtDataAgendamento.Enabled = false;
+            provas.Materia = new Materia();
             SalvarProva(provas);
             ListarProvas();
             LimparCampos();
         }
         private void editarProva_Click(object sender, EventArgs e)
         {
-            Provas provas = new Provas();
-            provas.Materia = new Materias();
-            salvarProva.Enabled = false;
-            editarProva.Enabled = false;
-            excluirProva.Enabled = false;
-            novoProva.Enabled = true;
+            Prova provas = new Prova();
+            provas.Materia = new Materia();
+            btnSalvarProva.Enabled = false;
+            btnEditarProva.Enabled = false;
+            btnExcluirProva.Enabled = false;
+            btnNovoProva.Enabled = true;
 
-            provas.Id = Convert.ToInt32(gridProvas.CurrentRow.Cells["ID"].Value);
+            provas.Id = Convert.ToInt32(dgvProvas.CurrentRow.Cells["ID"].Value);
             EditarProva(provas);
             ListarProvas();
             LimparCampos();
         }
         private void excluirProva_Click(object sender, EventArgs e)
         {
-            Provas provas = new Provas();
-            bimestreProva.Enabled = false;
-            dataAgendamento.Enabled = false;
-            salvarProva.Enabled = false;
-            editarProva.Enabled = false;
-            excluirProva.Enabled = false;
-            novoProva.Enabled = true;
+            Prova provas = new Prova();
+            comboBimestreProva.Enabled = false;
+            dtDataAgendamento.Enabled = false;
+            btnSalvarProva.Enabled = false;
+            btnEditarProva.Enabled = false;
+            btnExcluirProva.Enabled = false;
+            btnNovoProva.Enabled = true;
             if (MessageBox.Show("Tem certeza que deseja cancelar o agendamento?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
             {
                 LimparCampos();
-                materiaProva.Enabled = false;
-                turmaProva.Enabled = false;
-                dataAgendamento.Enabled = false;
+                comboMateriaProva.Enabled = false;
+                comboTurmaProva.Enabled = false;
+                dtDataAgendamento.Enabled = false;
                 return;
             }
-            provas.Id = Convert.ToInt32(gridProvas.CurrentRow.Cells["ID"].Value);
+            provas.Id = Convert.ToInt32(dgvProvas.CurrentRow.Cells["ID"].Value);
             ExcluirProva(provas);
             LimparCampos();
-            int raAluno = Convert.ToInt32(ra.SelectedValue);
-            int materia = Convert.ToInt32(materiaNota.SelectedValue);
+            int raAluno = Convert.ToInt32(comboRa.SelectedValue);
+            int materia = Convert.ToInt32(comboMateriaNota.SelectedValue);
             ListarNotas(raAluno, materia);
             ListarProvas();
         }
         private void novoNota_Click(object sender, EventArgs e)
         {
-            materiaNota.Enabled = true;
-            turmaNota.Enabled = true;
-            idNota.Enabled = true;
-            ra.Enabled = true;
-            professor.Enabled = true;
-            nota.Enabled = true;
-            salvarNota.Enabled = true;
-            editarNota.Enabled = false;
-            excluirNota.Enabled = false;
-            novoNota.Enabled = false;
+            comboMateriaNota.Enabled = true;
+            comboTurmaNota.Enabled = true;
+            comboId.Enabled = true;
+            comboRa.Enabled = true;
+            comboProfessor.Enabled = true;
+            txtNota.Enabled = true;
+            btnSalvarNota.Enabled = true;
+            btnEditarNota.Enabled = false;
+            btnExcluirNota.Enabled = false;
+            btnNovoNota.Enabled = false;
             LimparCampos();
         }
         private void salvarNota_Click(object sender, EventArgs e)
         {
-            Notas(out int raAluno, out int materia);
-            Notas notas = new Notas();
-            salvarNota.Enabled = false;
-            editarNota.Enabled = false;
-            excluirNota.Enabled = false;
-            novoNota.Enabled = true;
-            materiaNota.Enabled = false;
-            turmaNota.Enabled = false;
-            idNota.Enabled = false;
-            ra.Enabled = false;
-            professor.Enabled = false;
-            nota.Enabled = false;
-            idNota.Enabled = false;
-            idNota.Enabled = false;
+            GetRaNotas(out int raAluno, out int materia);
+            Nota notas = new Nota();
+            btnSalvarNota.Enabled = false;
+            btnEditarNota.Enabled = false;
+            btnExcluirNota.Enabled = false;
+            btnNovoNota.Enabled = true;
+            comboMateriaNota.Enabled = false;
+            comboTurmaNota.Enabled = false;
+            comboId.Enabled = false;
+            comboRa.Enabled = false;
+            comboProfessor.Enabled = false;
+            txtNota.Enabled = false;
+            comboId.Enabled = false;
+            comboId.Enabled = false;
             SalvarNota(notas);
             LimparCampos();
             ListarNotas(raAluno, materia);
         }
         private void editarNota_Click(object sender, EventArgs e)
         {
-            Notas(out int raAluno, out int materia);
-            Notas notas = new Notas();
-            notas.Provas = new Provas();
-            notas.Provas.Id = Convert.ToInt32(gridNotas.CurrentRow.Cells["ID"].Value);
+            GetRaNotas(out int raAluno, out int materia);
+            Nota notas = new Nota();
+            notas.Provas = new Prova();
+            notas.Provas.Id = Convert.ToInt32(dgvNotas.CurrentRow.Cells["ID"].Value);
             EditarNota(notas);
             ListarNotas(raAluno, materia);
         }
         private void excluirNota_Click(object sender, EventArgs e)
         {
-            Notas(out int raAluno, out int materia);
-            Notas notas = new Notas();
-            notas.Provas = new Provas();
+            GetRaNotas(out int raAluno, out int materia);
+            Nota notas = new Nota();
+            notas.Provas = new Prova();
             if (MessageBox.Show("Tem certeza que deseja excluir a nota?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
             {
                 return;
             }
-            notas.Provas.Id = Convert.ToInt32(gridProvas.CurrentRow.Cells["ID"].Value);
+            notas.Provas.Id = Convert.ToInt32(dgvProvas.CurrentRow.Cells["ID"].Value);
             ExcluirNota(notas);
             LimparCampos();
             ListarNotas(raAluno, materia);

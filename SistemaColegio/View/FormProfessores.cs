@@ -16,31 +16,34 @@ namespace SistemaColegio.View
         private void FormProfessores_Load(object sender, EventArgs e)
         {
             ListarProfessores();
+
             timer.Start();
-            hora.Text = DateTime.Now.ToLongTimeString();
-            data.Text = DateTime.Now.ToLongDateString();
+
+            lblHora.Text = DateTime.Now.ToLongTimeString();
+            lblData.Text = DateTime.Now.ToLongDateString();
         }
         private void timer_Tick(object sender, EventArgs e)
         {
-            hora.Text = DateTime.Now.ToLongTimeString();
+            lblHora.Text = DateTime.Now.ToLongTimeString();
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public void ListarProfessores()
         {
             try
             {
-                grid.EnableHeadersVisualStyles = false;
-                grid.ColumnHeadersDefaultCellStyle.BackColor = Color.IndianRed;
-                grid.DataSource = professorModel.ListarProfessores();
-                grid.Columns[0].HeaderText = "ID";
-                grid.Columns[1].HeaderText = "Nome";
-                grid.Columns[2].HeaderText = "Sexo";
-                grid.Columns[3].HeaderText = "Data de Nascimento";
-                grid.Columns[4].HeaderText = "Matéria";
+                dgv.EnableHeadersVisualStyles = false;
+                dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.IndianRed;
+                dgv.DataSource = professorModel.ListarProfessores();
+
+                dgv.Columns[0].HeaderText = "ID";
+                dgv.Columns[1].HeaderText = "Nome";
+                dgv.Columns[2].HeaderText = "Sexo";
+                dgv.Columns[3].HeaderText = "Data de Nascimento";
+                dgv.Columns[4].HeaderText = "Matéria";
             }
             catch (Exception)
             {
-                MessageBox.Show("Erro ao listar os dados!  ", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Erro ao listar os dados dos professores!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

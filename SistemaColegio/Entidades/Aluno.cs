@@ -1,9 +1,14 @@
-﻿namespace SistemaColegio.Entidades
+﻿using System;
+
+namespace SistemaColegio.Entidades
 {
     public class Aluno : Pessoa
     {
-        private int ra;
-        private Classes classe;
+        private int _ra;
+        private Classe _classe;
+
+        public int Ra { get => _ra; set => _ra = value; }
+        public Classe Classe { get => _classe; set => _classe = value; }
 
         public Aluno()
         {
@@ -11,10 +16,20 @@
 
         public Aluno(int alunoRA, string nome) : base(nome)
         {
-            this.ra = alunoRA;
+            this._ra = alunoRA;
         }
 
-        public int Ra { get => ra; set => ra = value; }
-        public Classes Classe { get => classe; set => classe = value; }
+        public int CalcularIdade(DateTime dataNascimento)
+        {
+            DateTime dataAtual = DateTime.Now;
+            int idade = dataAtual.Year - dataNascimento.Year;
+
+            if (dataAtual.Month < DataNasc.Month || (dataAtual.Month == DataNasc.Month && dataAtual.Day < DataNasc.Day))
+            {
+                idade--;
+            }
+
+            return idade;
+        }
     }
 }

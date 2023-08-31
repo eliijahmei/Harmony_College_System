@@ -5,7 +5,7 @@ namespace SistemaColegio
 {
     internal class Conexao
     {
-        string conexao = "SERVER=localhost; DATABASE=sistemaescolar; USER=root; PASSWORD=;";
+        string conexao = "SERVER=localhost; DATABASE=sistemaescolar; USER=root; PASSWORD=1234;";
         public MySqlConnection con = null;
 
         public void abrirConexao()

@@ -1,29 +1,27 @@
 ﻿using MySql.Data.MySqlClient;
-using System.Windows.Forms;
 using System.Data;
-using System;
 
 namespace SistemaColegio.DAO
 {
-    public class MateriasDAO
+    public class ClasseDAO
     {
         MySqlCommand cmd;
         Conexao con = new Conexao();
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public DataTable ListarMaterias()
+        public DataTable ListarClasses()
         {
             DataTable dt = new DataTable();
             try
             {
                 con.abrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM materia ORDER BY ID ASC", con.con);
+                cmd = new MySqlCommand("SELECT * FROM classe ORDER BY ID ASC, classe", con.con);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("Erro ao listar materias! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw;
             }
             finally
             {

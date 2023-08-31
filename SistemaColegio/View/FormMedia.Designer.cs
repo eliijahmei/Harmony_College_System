@@ -30,42 +30,42 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMedia));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.voltar = new System.Windows.Forms.Button();
-            this.sair = new System.Windows.Forms.Button();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.btnVoltar = new System.Windows.Forms.Button();
+            this.btnSair = new System.Windows.Forms.Button();
             this.picture = new System.Windows.Forms.PictureBox();
             this.picturee = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.gridMedias = new System.Windows.Forms.DataGridView();
-            this.ra2 = new System.Windows.Forms.TextBox();
+            this.dgvMedias = new System.Windows.Forms.DataGridView();
+            this.txtRa = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.calcular = new System.Windows.Forms.Button();
+            this.btnCalcular = new System.Windows.Forms.Button();
             this.gridNotas = new System.Windows.Forms.DataGridView();
-            this.ra1 = new System.Windows.Forms.TextBox();
-            this.salvar = new System.Windows.Forms.Button();
+            this.txtRaNotas = new System.Windows.Forms.TextBox();
+            this.btnSalvar = new System.Windows.Forms.Button();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.media = new System.Windows.Forms.TextBox();
+            this.txtMedia = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.turma = new System.Windows.Forms.ComboBox();
-            this.ra = new System.Windows.Forms.ComboBox();
-            this.materia = new System.Windows.Forms.ComboBox();
+            this.comboTurma = new System.Windows.Forms.ComboBox();
+            this.comboRa = new System.Windows.Forms.ComboBox();
+            this.comboMateria = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.hora = new System.Windows.Forms.Label();
-            this.data = new System.Windows.Forms.Label();
+            this.lblHora = new System.Windows.Forms.Label();
+            this.lblData = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.picture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picturee)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridMedias)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMedias)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridNotas)).BeginInit();
@@ -73,35 +73,35 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
-            // voltar
+            // btnVoltar
             // 
-            this.voltar.BackColor = System.Drawing.Color.Transparent;
-            this.voltar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("voltar.BackgroundImage")));
-            this.voltar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.voltar.FlatAppearance.BorderSize = 0;
-            this.voltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.voltar.Location = new System.Drawing.Point(888, 20);
-            this.voltar.Margin = new System.Windows.Forms.Padding(2);
-            this.voltar.Name = "voltar";
-            this.voltar.Size = new System.Drawing.Size(45, 44);
-            this.voltar.TabIndex = 19;
-            this.voltar.UseVisualStyleBackColor = false;
-            this.voltar.Click += new System.EventHandler(this.voltarMedias_Click);
+            this.btnVoltar.BackColor = System.Drawing.Color.Transparent;
+            this.btnVoltar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnVoltar.BackgroundImage")));
+            this.btnVoltar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnVoltar.FlatAppearance.BorderSize = 0;
+            this.btnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVoltar.Location = new System.Drawing.Point(888, 20);
+            this.btnVoltar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnVoltar.Name = "btnVoltar";
+            this.btnVoltar.Size = new System.Drawing.Size(45, 44);
+            this.btnVoltar.TabIndex = 19;
+            this.btnVoltar.UseVisualStyleBackColor = false;
+            this.btnVoltar.Click += new System.EventHandler(this.voltarMedias_Click);
             // 
-            // sair
+            // btnSair
             // 
-            this.sair.BackColor = System.Drawing.Color.Transparent;
-            this.sair.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("sair.BackgroundImage")));
-            this.sair.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.sair.FlatAppearance.BorderSize = 0;
-            this.sair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.sair.Location = new System.Drawing.Point(938, 20);
-            this.sair.Margin = new System.Windows.Forms.Padding(2);
-            this.sair.Name = "sair";
-            this.sair.Size = new System.Drawing.Size(45, 44);
-            this.sair.TabIndex = 17;
-            this.sair.UseVisualStyleBackColor = false;
-            this.sair.Click += new System.EventHandler(this.sairMedias_Click);
+            this.btnSair.BackColor = System.Drawing.Color.Transparent;
+            this.btnSair.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSair.BackgroundImage")));
+            this.btnSair.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSair.FlatAppearance.BorderSize = 0;
+            this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSair.Location = new System.Drawing.Point(938, 20);
+            this.btnSair.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSair.Name = "btnSair";
+            this.btnSair.Size = new System.Drawing.Size(45, 44);
+            this.btnSair.TabIndex = 17;
+            this.btnSair.UseVisualStyleBackColor = false;
+            this.btnSair.Click += new System.EventHandler(this.sairMedias_Click);
             // 
             // picture
             // 
@@ -130,8 +130,8 @@
             this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel2.Controls.Add(this.gridMedias);
-            this.panel2.Controls.Add(this.ra2);
+            this.panel2.Controls.Add(this.dgvMedias);
+            this.panel2.Controls.Add(this.txtRa);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Location = new System.Drawing.Point(510, 152);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
@@ -139,61 +139,61 @@
             this.panel2.Size = new System.Drawing.Size(470, 504);
             this.panel2.TabIndex = 32;
             // 
-            // gridMedias
+            // dgvMedias
             // 
-            this.gridMedias.AllowUserToAddRows = false;
-            this.gridMedias.AllowUserToDeleteRows = false;
-            this.gridMedias.AllowUserToResizeColumns = false;
-            this.gridMedias.AllowUserToResizeRows = false;
-            this.gridMedias.BackgroundColor = System.Drawing.Color.Linen;
-            this.gridMedias.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.IndianRed;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMedias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
-            this.gridMedias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.DarkGray;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridMedias.DefaultCellStyle = dataGridViewCellStyle20;
-            this.gridMedias.GridColor = System.Drawing.Color.MistyRose;
-            this.gridMedias.Location = new System.Drawing.Point(111, 87);
-            this.gridMedias.Margin = new System.Windows.Forms.Padding(2);
-            this.gridMedias.Name = "gridMedias";
-            this.gridMedias.ReadOnly = true;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.DarkGray;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMedias.RowHeadersDefaultCellStyle = dataGridViewCellStyle21;
-            this.gridMedias.RowHeadersWidth = 62;
-            this.gridMedias.RowTemplate.Height = 28;
-            this.gridMedias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridMedias.Size = new System.Drawing.Size(268, 376);
-            this.gridMedias.TabIndex = 58;
+            this.dgvMedias.AllowUserToAddRows = false;
+            this.dgvMedias.AllowUserToDeleteRows = false;
+            this.dgvMedias.AllowUserToResizeColumns = false;
+            this.dgvMedias.AllowUserToResizeRows = false;
+            this.dgvMedias.BackgroundColor = System.Drawing.Color.Linen;
+            this.dgvMedias.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.IndianRed;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMedias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvMedias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkGray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMedias.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvMedias.GridColor = System.Drawing.Color.MistyRose;
+            this.dgvMedias.Location = new System.Drawing.Point(111, 87);
+            this.dgvMedias.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvMedias.Name = "dgvMedias";
+            this.dgvMedias.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.DarkGray;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMedias.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvMedias.RowHeadersWidth = 62;
+            this.dgvMedias.RowTemplate.Height = 28;
+            this.dgvMedias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvMedias.Size = new System.Drawing.Size(268, 376);
+            this.dgvMedias.TabIndex = 58;
             // 
-            // ra2
+            // txtRa
             // 
-            this.ra2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ra2.Enabled = false;
-            this.ra2.Font = new System.Drawing.Font("Microsoft Yi Baiti", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ra2.Location = new System.Drawing.Point(324, 48);
-            this.ra2.Margin = new System.Windows.Forms.Padding(2);
-            this.ra2.Multiline = true;
-            this.ra2.Name = "ra2";
-            this.ra2.Size = new System.Drawing.Size(71, 23);
-            this.ra2.TabIndex = 58;
+            this.txtRa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtRa.Enabled = false;
+            this.txtRa.Font = new System.Drawing.Font("Microsoft Yi Baiti", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRa.Location = new System.Drawing.Point(324, 48);
+            this.txtRa.Margin = new System.Windows.Forms.Padding(2);
+            this.txtRa.Multiline = true;
+            this.txtRa.Name = "txtRa";
+            this.txtRa.Size = new System.Drawing.Size(66, 23);
+            this.txtRa.TabIndex = 58;
             // 
             // pictureBox1
             // 
@@ -211,19 +211,19 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Controls.Add(this.calcular);
+            this.panel1.Controls.Add(this.btnCalcular);
             this.panel1.Controls.Add(this.gridNotas);
-            this.panel1.Controls.Add(this.ra1);
-            this.panel1.Controls.Add(this.salvar);
+            this.panel1.Controls.Add(this.txtRaNotas);
+            this.panel1.Controls.Add(this.btnSalvar);
             this.panel1.Controls.Add(this.pictureBox6);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.media);
+            this.panel1.Controls.Add(this.txtMedia);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.turma);
-            this.panel1.Controls.Add(this.ra);
-            this.panel1.Controls.Add(this.materia);
+            this.panel1.Controls.Add(this.comboTurma);
+            this.panel1.Controls.Add(this.comboRa);
+            this.panel1.Controls.Add(this.comboMateria);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(24, 152);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
@@ -231,19 +231,19 @@
             this.panel1.Size = new System.Drawing.Size(470, 504);
             this.panel1.TabIndex = 31;
             // 
-            // calcular
+            // btnCalcular
             // 
-            this.calcular.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("calcular.BackgroundImage")));
-            this.calcular.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.calcular.FlatAppearance.BorderSize = 0;
-            this.calcular.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.calcular.Location = new System.Drawing.Point(59, 429);
-            this.calcular.Margin = new System.Windows.Forms.Padding(2);
-            this.calcular.Name = "calcular";
-            this.calcular.Size = new System.Drawing.Size(75, 50);
-            this.calcular.TabIndex = 58;
-            this.calcular.UseVisualStyleBackColor = true;
-            this.calcular.Click += new System.EventHandler(this.calcular_Click);
+            this.btnCalcular.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCalcular.BackgroundImage")));
+            this.btnCalcular.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCalcular.FlatAppearance.BorderSize = 0;
+            this.btnCalcular.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCalcular.Location = new System.Drawing.Point(59, 429);
+            this.btnCalcular.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCalcular.Name = "btnCalcular";
+            this.btnCalcular.Size = new System.Drawing.Size(75, 50);
+            this.btnCalcular.TabIndex = 58;
+            this.btnCalcular.UseVisualStyleBackColor = true;
+            this.btnCalcular.Click += new System.EventHandler(this.calcular_Click);
             // 
             // gridNotas
             // 
@@ -253,36 +253,36 @@
             this.gridNotas.AllowUserToResizeRows = false;
             this.gridNotas.BackgroundColor = System.Drawing.Color.Linen;
             this.gridNotas.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.IndianRed;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridNotas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.IndianRed;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridNotas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.gridNotas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.DarkGray;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridNotas.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DarkGray;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridNotas.DefaultCellStyle = dataGridViewCellStyle5;
             this.gridNotas.GridColor = System.Drawing.Color.MistyRose;
             this.gridNotas.Location = new System.Drawing.Point(39, 245);
             this.gridNotas.Margin = new System.Windows.Forms.Padding(2);
             this.gridNotas.Name = "gridNotas";
             this.gridNotas.ReadOnly = true;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.DarkGray;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridNotas.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.DarkGray;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridNotas.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.gridNotas.RowHeadersWidth = 62;
             this.gridNotas.RowTemplate.Height = 28;
             this.gridNotas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -290,31 +290,31 @@
             this.gridNotas.TabIndex = 49;
             this.gridNotas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridNotas2_CellClick);
             // 
-            // ra1
+            // txtRaNotas
             // 
-            this.ra1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ra1.Enabled = false;
-            this.ra1.Font = new System.Drawing.Font("Microsoft Yi Baiti", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ra1.Location = new System.Drawing.Point(289, 218);
-            this.ra1.Margin = new System.Windows.Forms.Padding(2);
-            this.ra1.Multiline = true;
-            this.ra1.Name = "ra1";
-            this.ra1.Size = new System.Drawing.Size(69, 23);
-            this.ra1.TabIndex = 57;
+            this.txtRaNotas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtRaNotas.Enabled = false;
+            this.txtRaNotas.Font = new System.Drawing.Font("Microsoft Yi Baiti", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRaNotas.Location = new System.Drawing.Point(289, 218);
+            this.txtRaNotas.Margin = new System.Windows.Forms.Padding(2);
+            this.txtRaNotas.Multiline = true;
+            this.txtRaNotas.Name = "txtRaNotas";
+            this.txtRaNotas.Size = new System.Drawing.Size(69, 23);
+            this.txtRaNotas.TabIndex = 57;
             // 
-            // salvar
+            // btnSalvar
             // 
-            this.salvar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("salvar.BackgroundImage")));
-            this.salvar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.salvar.FlatAppearance.BorderSize = 0;
-            this.salvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.salvar.Location = new System.Drawing.Point(341, 434);
-            this.salvar.Margin = new System.Windows.Forms.Padding(2);
-            this.salvar.Name = "salvar";
-            this.salvar.Size = new System.Drawing.Size(40, 39);
-            this.salvar.TabIndex = 56;
-            this.salvar.UseVisualStyleBackColor = true;
-            this.salvar.Click += new System.EventHandler(this.salvarMedia_Click);
+            this.btnSalvar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSalvar.BackgroundImage")));
+            this.btnSalvar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSalvar.FlatAppearance.BorderSize = 0;
+            this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalvar.Location = new System.Drawing.Point(341, 434);
+            this.btnSalvar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSalvar.Name = "btnSalvar";
+            this.btnSalvar.Size = new System.Drawing.Size(40, 39);
+            this.btnSalvar.TabIndex = 56;
+            this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.salvarMedia_Click);
             // 
             // pictureBox6
             // 
@@ -349,17 +349,17 @@
             this.label3.TabIndex = 53;
             this.label3.Text = "Média:";
             // 
-            // media
+            // txtMedia
             // 
-            this.media.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.media.Enabled = false;
-            this.media.Font = new System.Drawing.Font("Microsoft Yi Baiti", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.media.Location = new System.Drawing.Point(237, 440);
-            this.media.Margin = new System.Windows.Forms.Padding(2);
-            this.media.Multiline = true;
-            this.media.Name = "media";
-            this.media.Size = new System.Drawing.Size(55, 23);
-            this.media.TabIndex = 52;
+            this.txtMedia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMedia.Enabled = false;
+            this.txtMedia.Font = new System.Drawing.Font("Microsoft Yi Baiti", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMedia.Location = new System.Drawing.Point(237, 440);
+            this.txtMedia.Margin = new System.Windows.Forms.Padding(2);
+            this.txtMedia.Multiline = true;
+            this.txtMedia.Name = "txtMedia";
+            this.txtMedia.Size = new System.Drawing.Size(55, 23);
+            this.txtMedia.TabIndex = 52;
             // 
             // label2
             // 
@@ -383,44 +383,44 @@
             this.label10.TabIndex = 43;
             this.label10.Text = "Materia:";
             // 
-            // turma
+            // comboTurma
             // 
-            this.turma.BackColor = System.Drawing.Color.White;
-            this.turma.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.turma.Font = new System.Drawing.Font("Microsoft Yi Baiti", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.turma.FormattingEnabled = true;
-            this.turma.Location = new System.Drawing.Point(136, 112);
-            this.turma.Margin = new System.Windows.Forms.Padding(2);
-            this.turma.Name = "turma";
-            this.turma.Size = new System.Drawing.Size(81, 28);
-            this.turma.TabIndex = 45;
-            this.turma.SelectedIndexChanged += new System.EventHandler(this.turmaMedia_SelectedIndexChanged);
+            this.comboTurma.BackColor = System.Drawing.Color.White;
+            this.comboTurma.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboTurma.Font = new System.Drawing.Font("Microsoft Yi Baiti", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboTurma.FormattingEnabled = true;
+            this.comboTurma.Location = new System.Drawing.Point(136, 112);
+            this.comboTurma.Margin = new System.Windows.Forms.Padding(2);
+            this.comboTurma.Name = "comboTurma";
+            this.comboTurma.Size = new System.Drawing.Size(81, 28);
+            this.comboTurma.TabIndex = 45;
+            this.comboTurma.SelectedIndexChanged += new System.EventHandler(this.turmaMedia_SelectedIndexChanged);
             // 
-            // ra
+            // comboRa
             // 
-            this.ra.BackColor = System.Drawing.Color.White;
-            this.ra.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ra.Font = new System.Drawing.Font("Microsoft Yi Baiti", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ra.FormattingEnabled = true;
-            this.ra.Location = new System.Drawing.Point(309, 114);
-            this.ra.Margin = new System.Windows.Forms.Padding(2);
-            this.ra.Name = "ra";
-            this.ra.Size = new System.Drawing.Size(81, 28);
-            this.ra.TabIndex = 41;
-            this.ra.SelectedIndexChanged += new System.EventHandler(this.raMedia_SelectedIndexChanged);
+            this.comboRa.BackColor = System.Drawing.Color.White;
+            this.comboRa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboRa.Font = new System.Drawing.Font("Microsoft Yi Baiti", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboRa.FormattingEnabled = true;
+            this.comboRa.Location = new System.Drawing.Point(309, 114);
+            this.comboRa.Margin = new System.Windows.Forms.Padding(2);
+            this.comboRa.Name = "comboRa";
+            this.comboRa.Size = new System.Drawing.Size(81, 28);
+            this.comboRa.TabIndex = 41;
+            this.comboRa.SelectedIndexChanged += new System.EventHandler(this.raMedia_SelectedIndexChanged);
             // 
-            // materia
+            // comboMateria
             // 
-            this.materia.BackColor = System.Drawing.Color.White;
-            this.materia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.materia.Font = new System.Drawing.Font("Microsoft Yi Baiti", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.materia.FormattingEnabled = true;
-            this.materia.Location = new System.Drawing.Point(204, 157);
-            this.materia.Margin = new System.Windows.Forms.Padding(2);
-            this.materia.Name = "materia";
-            this.materia.Size = new System.Drawing.Size(123, 28);
-            this.materia.TabIndex = 44;
-            this.materia.SelectedIndexChanged += new System.EventHandler(this.materia_SelectedIndexChanged);
+            this.comboMateria.BackColor = System.Drawing.Color.White;
+            this.comboMateria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboMateria.Font = new System.Drawing.Font("Microsoft Yi Baiti", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboMateria.FormattingEnabled = true;
+            this.comboMateria.Location = new System.Drawing.Point(204, 157);
+            this.comboMateria.Margin = new System.Windows.Forms.Padding(2);
+            this.comboMateria.Name = "comboMateria";
+            this.comboMateria.Size = new System.Drawing.Size(123, 28);
+            this.comboMateria.TabIndex = 44;
+            this.comboMateria.SelectedIndexChanged += new System.EventHandler(this.materia_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -433,31 +433,31 @@
             this.label1.TabIndex = 42;
             this.label1.Text = "RA:";
             // 
-            // hora
+            // lblHora
             // 
-            this.hora.AutoSize = true;
-            this.hora.BackColor = System.Drawing.Color.Transparent;
-            this.hora.Font = new System.Drawing.Font("Microsoft Tai Le", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hora.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.hora.Location = new System.Drawing.Point(883, 667);
-            this.hora.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.hora.Name = "hora";
-            this.hora.Size = new System.Drawing.Size(73, 29);
-            this.hora.TabIndex = 34;
-            this.hora.Text = "HORA";
+            this.lblHora.AutoSize = true;
+            this.lblHora.BackColor = System.Drawing.Color.Transparent;
+            this.lblHora.Font = new System.Drawing.Font("Microsoft Tai Le", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHora.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lblHora.Location = new System.Drawing.Point(883, 667);
+            this.lblHora.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblHora.Name = "lblHora";
+            this.lblHora.Size = new System.Drawing.Size(73, 29);
+            this.lblHora.TabIndex = 34;
+            this.lblHora.Text = "HORA";
             // 
-            // data
+            // lblData
             // 
-            this.data.AutoSize = true;
-            this.data.BackColor = System.Drawing.Color.Transparent;
-            this.data.Font = new System.Drawing.Font("Microsoft Tai Le", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.data.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.data.Location = new System.Drawing.Point(19, 667);
-            this.data.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.data.Name = "data";
-            this.data.Size = new System.Drawing.Size(68, 29);
-            this.data.TabIndex = 33;
-            this.data.Text = "DATA";
+            this.lblData.AutoSize = true;
+            this.lblData.BackColor = System.Drawing.Color.Transparent;
+            this.lblData.Font = new System.Drawing.Font("Microsoft Tai Le", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblData.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lblData.Location = new System.Drawing.Point(19, 667);
+            this.lblData.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblData.Name = "lblData";
+            this.lblData.Size = new System.Drawing.Size(68, 29);
+            this.lblData.TabIndex = 33;
+            this.lblData.Text = "DATA";
             // 
             // timer
             // 
@@ -469,12 +469,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
             this.ClientSize = new System.Drawing.Size(1005, 705);
-            this.Controls.Add(this.hora);
-            this.Controls.Add(this.data);
+            this.Controls.Add(this.lblHora);
+            this.Controls.Add(this.lblData);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.voltar);
-            this.Controls.Add(this.sair);
+            this.Controls.Add(this.btnVoltar);
+            this.Controls.Add(this.btnSair);
             this.Controls.Add(this.picture);
             this.Controls.Add(this.picturee);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -487,7 +487,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picturee)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridMedias)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMedias)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -501,31 +501,31 @@
 
         #endregion
 
-        private System.Windows.Forms.Button voltar;
-        private System.Windows.Forms.Button sair;
+        private System.Windows.Forms.Button btnVoltar;
+        private System.Windows.Forms.Button btnSair;
         private System.Windows.Forms.PictureBox picture;
         private System.Windows.Forms.PictureBox picturee;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox turma;
-        private System.Windows.Forms.ComboBox ra;
-        private System.Windows.Forms.ComboBox materia;
+        private System.Windows.Forms.ComboBox comboTurma;
+        private System.Windows.Forms.ComboBox comboRa;
+        private System.Windows.Forms.ComboBox comboMateria;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView gridNotas;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox media;
+        private System.Windows.Forms.TextBox txtMedia;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.Button salvar;
+        private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox ra1;
-        private System.Windows.Forms.DataGridView gridMedias;
-        private System.Windows.Forms.TextBox ra2;
-        private System.Windows.Forms.Label hora;
-        private System.Windows.Forms.Label data;
+        private System.Windows.Forms.TextBox txtRaNotas;
+        private System.Windows.Forms.DataGridView dgvMedias;
+        private System.Windows.Forms.TextBox txtRa;
+        private System.Windows.Forms.Label lblHora;
+        private System.Windows.Forms.Label lblData;
         private System.Windows.Forms.Timer timer;
-        private System.Windows.Forms.Button calcular;
+        private System.Windows.Forms.Button btnCalcular;
     }
 }

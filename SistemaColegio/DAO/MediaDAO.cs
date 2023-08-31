@@ -1,8 +1,7 @@
-﻿using SistemaColegio.Entidades;
-using MySql.Data.MySqlClient;
-using System.Windows.Forms;
+﻿using MySql.Data.MySqlClient;
 using System.Data;
 using System;
+using System.Collections.Generic;
 
 namespace SistemaColegio.DAO
 {
@@ -11,26 +10,54 @@ namespace SistemaColegio.DAO
         MySqlCommand cmd;
         Conexao con = new Conexao();
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public int ContarMedias(Medias medias)
+        public int ContarMedias(Media medias)
         {
-            int count = 0;
             try
             {
+                int count = 0;
                 con.abrirConexao();
                 cmd = new MySqlCommand("SELECT COUNT(*) FROM alunoMedia WHERE Materia = @Materia AND RA = @RA", con.con);
                 cmd.Parameters.AddWithValue("@Materia", medias.Materia.Id);
                 cmd.Parameters.AddWithValue("@RA", medias.Aluno.Ra);
                 count = Convert.ToInt32(cmd.ExecuteScalar());
+                return count;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao contar medias! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            catch 
+            { 
+                throw; 
             }
             finally
             {
                 con.fecharConexao();
             }
-            return count;
+        }
+        public List<double> ObterNotasPorRaMateria(int materia, int ra)
+        {
+            try
+            {
+                var notas = new List<double>();
+                con.abrirConexao();
+                cmd = new MySqlCommand("SELECT Nota FROM alunoprova WHERE Materia = @Materia AND RA = @RA", con.con);
+                cmd.Parameters.AddWithValue("@Materia", materia);
+                cmd.Parameters.AddWithValue("@RA", ra);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        notas.Add(Convert.ToDouble(reader["Nota"]));
+                    }
+                }
+                return notas;
+            }
+            catch 
+            {
+                throw;
+            }
+            finally
+            {
+                con.fecharConexao();
+            }
         }
         public DataTable ListarMedias(int ra)
         {
@@ -44,9 +71,9 @@ namespace SistemaColegio.DAO
                 dta.SelectCommand = cmd;
                 dta.Fill(dt);
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("Erro ao listar as médias! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw;
             }
             finally
             {
@@ -54,7 +81,7 @@ namespace SistemaColegio.DAO
             }
             return dt;
         }
-        public void SalvarMedia(Medias medias)
+        public void SalvarMedia(Media medias)
         {
             try
             {
@@ -62,12 +89,12 @@ namespace SistemaColegio.DAO
                 cmd = new MySqlCommand("INSERT INTO alunoMedia (RA, Materia, Media) VALUES (@RA, @Materia, @Media)", con.con);
                 cmd.Parameters.AddWithValue("@RA", medias.Aluno.Ra);
                 cmd.Parameters.AddWithValue("@Materia", medias.Materia.Id);
-                cmd.Parameters.AddWithValue("@Media", medias.Media);
+                cmd.Parameters.AddWithValue("@Media", medias.Mediaa);
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao atribuir a média! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            catch 
+            { 
+                throw; 
             }
             finally
             {

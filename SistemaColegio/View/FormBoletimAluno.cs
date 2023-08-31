@@ -1,4 +1,5 @@
-﻿using SistemaColegio.Entidades;
+﻿using static SistemaColegio.Enums;
+using SistemaColegio.Entidades;
 using SistemaColegio.Model;
 using System.Windows.Forms;
 using System;
@@ -13,12 +14,14 @@ namespace SistemaColegio.View
         public FormBoletimAluno(Entidades.Aluno aluno)
         {
             InitializeComponent();
+
             this.aluno = aluno;
         }
         private void FormBoletimAluno_Load(object sender, EventArgs e)
         {
-            NOME.Text = aluno.Nome;
-            RA.Text = aluno.Ra.ToString();
+            lblNome.Text = aluno.Nome;
+            lblRa.Text = aluno.Ra.ToString();
+
             Artes();
             Biologia();
             EducacaoAmbiental();
@@ -36,119 +39,216 @@ namespace SistemaColegio.View
         }
         private void Artes()
         {
-            n1Artes.Text = provaModel.ReceberNotaProva(aluno, 1, 1);
-            n2Artes.Text = provaModel.ReceberNotaProva(aluno, 1, 2);
-            n3Artes.Text = provaModel.ReceberNotaProva(aluno, 1, 3);
-            n4Artes.Text = provaModel.ReceberNotaProva(aluno, 1, 4);
-            mediaArtes.Text = provaModel.ReceberNotaMedia(aluno, 1);
-
+            try
+            {
+                lblN1Artes.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.ARTES, (int)Bimestres.PRIMEIRO);
+                lblN2Artes.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.ARTES, (int)Bimestres.SEGUNDO);
+                lblN3Artes.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.ARTES, (int)Bimestres.TERCEIRO);
+                lblN4Artes.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.ARTES, (int)Bimestres.QUARTO);
+                lblMediaArtes.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAARTES);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao listar as notas de Artes!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void Biologia()
         {
-            n1Biologia.Text = provaModel.ReceberNotaProva(aluno, 2, 1);
-            n2Biologia.Text = provaModel.ReceberNotaProva(aluno, 2, 2);
-            n3Biologia.Text = provaModel.ReceberNotaProva(aluno, 2, 3);
-            n4Biologia.Text = provaModel.ReceberNotaProva(aluno, 2, 4);
-            mediaBiologia.Text = provaModel.ReceberNotaMedia(aluno, 2);
+            try
+            {
+                lblN1Biologia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.BIOLOGIA, (int)Bimestres.PRIMEIRO);
+                lblN2Biologia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.BIOLOGIA, (int)Bimestres.SEGUNDO);
+                lblN3Biologia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.BIOLOGIA, (int)Bimestres.TERCEIRO);
+                lblN4Biologia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.BIOLOGIA, (int)Bimestres.QUARTO);
+                lblMediaBiologia.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIABIOLOGIA);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao listar as notas de Biologia!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void EducacaoAmbiental()
         {
-            n1EdAmbiental.Text = provaModel.ReceberNotaProva(aluno, 3, 1);
-            n2EdAmbiental.Text = provaModel.ReceberNotaProva(aluno, 3, 2);
-            n3EdAmbiental.Text = provaModel.ReceberNotaProva(aluno, 3, 3);
-            n4EdAmbiental.Text = provaModel.ReceberNotaProva(aluno, 3, 4);
-            mediaEdAmbiental.Text = provaModel.ReceberNotaMedia(aluno, 3);
+            try
+            {
+                lblN1EdAmbiental.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.EDUCACAOAMBIENTAL, (int)Bimestres.PRIMEIRO);
+                lblN2EdAmbiental.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.EDUCACAOAMBIENTAL, (int)Bimestres.SEGUNDO);
+                lblN3EdAmbiental.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.EDUCACAOAMBIENTAL, (int)Bimestres.TERCEIRO);
+                lblN4EdAmbiental.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.EDUCACAOAMBIENTAL, (int)Bimestres.QUARTO);
+                lblMediaEdAmbiental.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAEDUCACAOAMBIENTAL);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao listar as notas de Educação Ambiental!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void Educacaofisica()
         {
-            n1EdFisica.Text = provaModel.ReceberNotaProva(aluno, 4, 1);
-            n2EdFisica.Text = provaModel.ReceberNotaProva(aluno, 4, 2);
-            n3EdFisica.Text = provaModel.ReceberNotaProva(aluno, 4, 3);
-            n4EdFisica.Text = provaModel.ReceberNotaProva(aluno, 4, 4);
-            mediaEdFisica.Text = provaModel.ReceberNotaMedia(aluno, 4);
+            try
+            {
+                lblN1EdFisica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.EDUCACAOFISICA, (int)Bimestres.PRIMEIRO);
+                lblN2EdFisica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.EDUCACAOFISICA, (int)Bimestres.SEGUNDO);
+                lblN3EdFisica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.EDUCACAOFISICA, (int)Bimestres.TERCEIRO);
+                lblN4EdFisica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.EDUCACAOFISICA, (int)Bimestres.QUARTO);
+                lblMediaEdFisica.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAEDUCACAOFISICA);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao listar as notas de Educação Física!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void Filosofia()
         {
-            n1Filosofia.Text = provaModel.ReceberNotaProva(aluno, 5, 1);
-            n2Filosofia.Text = provaModel.ReceberNotaProva(aluno, 5, 2);
-            n3Filosofia.Text = provaModel.ReceberNotaProva(aluno, 5, 3);
-            n4Filosofia.Text = provaModel.ReceberNotaProva(aluno, 5, 4);
-            mediaFilosofia.Text = provaModel.ReceberNotaMedia(aluno, 5);
+            try
+            {
+                lblN1Filosofia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.FILOSOFIA, (int)Bimestres.PRIMEIRO);
+                lblN2Filosofia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.FILOSOFIA, (int)Bimestres.SEGUNDO);
+                lblN3Filosofia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.FILOSOFIA, (int)Bimestres.TERCEIRO);
+                lblN4Filosofia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.FILOSOFIA, (int)Bimestres.QUARTO);
+                lblMediaFilosofia.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAFILOSOFIA);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao listar as notas de Filosofia!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void Fisica()
         {
-            n1Fisica.Text = provaModel.ReceberNotaProva(aluno, 6, 1);
-            n2Fisica.Text = provaModel.ReceberNotaProva(aluno, 6, 2);
-            n3Fisica.Text = provaModel.ReceberNotaProva(aluno, 6, 3);
-            n4Fisica.Text = provaModel.ReceberNotaProva(aluno, 6, 4);
-            mediaFisica.Text = provaModel.ReceberNotaMedia(aluno, 6);
+            try
+            {
+                lblN1Fisica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.FISICA, (int)Bimestres.PRIMEIRO);
+                lblN2Fisica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.FISICA, (int)Bimestres.SEGUNDO);
+                lblN3Fisica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.FISICA, (int)Bimestres.TERCEIRO);
+                lblN4Fisica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.FISICA, (int)Bimestres.QUARTO);
+                lblMediaFisica.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAFISICA);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao listar as notas de Física!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void Geografia()
         {
-            n1Geografia.Text = provaModel.ReceberNotaProva(aluno, 7, 1);
-            n2Geografia.Text = provaModel.ReceberNotaProva(aluno, 7, 2);
-            n3Geografia.Text = provaModel.ReceberNotaProva(aluno, 7, 3);
-            n4Geografia.Text = provaModel.ReceberNotaProva(aluno, 7, 4);
-            mediaGeografia.Text = provaModel.ReceberNotaMedia(aluno, 7);
+            try
+            {
+                lblN1Geografia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.GEOGRAFIA, (int)Bimestres.PRIMEIRO);
+                lblN2Geografia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.GEOGRAFIA, (int)Bimestres.SEGUNDO);
+                lblN3Geografia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.GEOGRAFIA, (int)Bimestres.TERCEIRO);
+                lblN4Geografia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.GEOGRAFIA, (int)Bimestres.QUARTO);
+                lblMediaGeografia.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAGEOGRAFIA);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao listar as notas de Geografia!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void Historia()
         {
-            n1Historia.Text = provaModel.ReceberNotaProva(aluno, 8, 1);
-            n2Historia.Text = provaModel.ReceberNotaProva(aluno, 8, 2);
-            n3Historia.Text = provaModel.ReceberNotaProva(aluno, 8, 3);
-            n4Historia.Text = provaModel.ReceberNotaProva(aluno, 8, 4);
-            mediaHistoria.Text = provaModel.ReceberNotaMedia(aluno, 8);
+            try
+            {
+                lblN1Historia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.HISTORIA, (int)Bimestres.PRIMEIRO);
+                lblN2Historia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.HISTORIA, (int)Bimestres.SEGUNDO);
+                lblN3Historia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.HISTORIA, (int)Bimestres.TERCEIRO);
+                lblN4Historia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.HISTORIA, (int)Bimestres.QUARTO);
+                lblMediaHistoria.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAHISTORIA);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao listar as notas de História!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void Ingles()
         {
-            n1Ingles.Text = provaModel.ReceberNotaProva(aluno, 9, 1);
-            n2Ingles.Text = provaModel.ReceberNotaProva(aluno, 9, 2);
-            n3Ingles.Text = provaModel.ReceberNotaProva(aluno, 9, 3);
-            n4Ingles.Text = provaModel.ReceberNotaProva(aluno, 9, 4);
-            mediaIngles.Text = provaModel.ReceberNotaMedia(aluno, 9);
+            try
+            {
+                lblN1Ingles.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.INGLES, (int)Bimestres.PRIMEIRO);
+                lblN2Ingles.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.INGLES, (int)Bimestres.SEGUNDO);
+                lblN3Ingles.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.INGLES, (int)Bimestres.TERCEIRO);
+                lblN4Ingles.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.INGLES, (int)Bimestres.QUARTO);
+                lblMediaIngles.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAINGLES);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao listar as notas de Inglês!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void Portugues()
         {
-            n1Portugues.Text = provaModel.ReceberNotaProva(aluno, 10, 1);
-            n2Portugues.Text = provaModel.ReceberNotaProva(aluno, 10, 2);
-            n3Portugues.Text = provaModel.ReceberNotaProva(aluno, 10, 3);
-            n4Portugues.Text = provaModel.ReceberNotaProva(aluno, 10, 4);
-            mediaPortugues.Text = provaModel.ReceberNotaMedia(aluno, 10);
+            try
+            {
+                lblN1Portugues.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.PORTUGUES, (int)Bimestres.PRIMEIRO);
+                lblN2Portugues.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.PORTUGUES, (int)Bimestres.SEGUNDO);
+                lblN3Portugues.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.PORTUGUES, (int)Bimestres.TERCEIRO);
+                lblN4Portugues.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.PORTUGUES, (int)Bimestres.QUARTO);
+                lblMediaPortugues.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAPORTUGUES);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao listar as notas de Português!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void Matematica()
         {
-            n1Matematica.Text = provaModel.ReceberNotaProva(aluno, 11, 1);
-            n2Matematica.Text = provaModel.ReceberNotaProva(aluno, 11, 2);
-            n3Matematica.Text = provaModel.ReceberNotaProva(aluno, 11, 3);
-            n4Matematica.Text = provaModel.ReceberNotaProva(aluno, 11, 4);
-            mediaMatematica.Text = provaModel.ReceberNotaMedia(aluno, 11);
+            try
+            {
+                lblN1Matematica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.MATEMATICA, (int)Bimestres.PRIMEIRO);
+                lblN2Matematica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.MATEMATICA, (int)Bimestres.SEGUNDO);
+                lblN3Matematica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.MATEMATICA, (int)Bimestres.TERCEIRO);
+                lblN4Matematica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.MATEMATICA, (int)Bimestres.QUARTO);
+                lblMediaMatematica.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAMATEMATICA);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao listar as notas de Matemática!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void Quimica()
         {
-            n1Quimica.Text = provaModel.ReceberNotaProva(aluno, 12, 1);
-            n2Quimica.Text = provaModel.ReceberNotaProva(aluno, 12, 2);
-            n3Quimica.Text = provaModel.ReceberNotaProva(aluno, 12, 3);
-            n4Quimica.Text = provaModel.ReceberNotaProva(aluno, 12, 4);
-            mediaQuimica.Text = provaModel.ReceberNotaMedia(aluno, 12);
+            try
+            {
+                lblN1Quimica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.QUIMICA, (int)Bimestres.PRIMEIRO);
+                lblN2Quimica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.QUIMICA, (int)Bimestres.SEGUNDO);
+                lblN3Quimica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.QUIMICA, (int)Bimestres.TERCEIRO);
+                lblN4Quimica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.QUIMICA, (int)Bimestres.QUARTO);
+                lblMediaQuimica.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAQUIMICA);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao listar as notas de Química!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void Saude()
         {
-            n1Saude.Text = provaModel.ReceberNotaProva(aluno, 13, 1);
-            n2Saude.Text = provaModel.ReceberNotaProva(aluno, 13, 2);
-            n3Saude.Text = provaModel.ReceberNotaProva(aluno, 13, 3);
-            n4Saude.Text = provaModel.ReceberNotaProva(aluno, 13, 4);
-            mediaSaude.Text = provaModel.ReceberNotaMedia(aluno, 13);
+            try
+            {
+                lblN1Saude.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.SAUDE, (int)Bimestres.PRIMEIRO);
+                lblN2Saude.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.SAUDE, (int)Bimestres.SEGUNDO);
+                lblN3Saude.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.SAUDE, (int)Bimestres.TERCEIRO);
+                lblN4Saude.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.SAUDE, (int)Bimestres.QUARTO);
+                lblMediaSaude.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIASAUDE);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao listar as notas de Saúde!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void Sociologia()
         {
-            n1Sociologia.Text = provaModel.ReceberNotaProva(aluno, 14, 1);
-            n2Sociologia.Text = provaModel.ReceberNotaProva(aluno, 14, 2);
-            n3Sociologia.Text = provaModel.ReceberNotaProva(aluno, 14, 3);
-            n4Sociologia.Text = provaModel.ReceberNotaProva(aluno, 14, 4);
-            mediaSociologia.Text = provaModel.ReceberNotaMedia(aluno, 14);
+            try
+            {
+                lblN1Sociologia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.SOCIOLOGIA, (int)Bimestres.PRIMEIRO);
+                lblN2Sociologia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.SOCIOLOGIA, (int)Bimestres.SEGUNDO);
+                lblN3Sociologia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.SOCIOLOGIA, (int)Bimestres.TERCEIRO);
+                lblN4Sociologia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.SOCIOLOGIA, (int)Bimestres.QUARTO);
+                lblMediaSociologia.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIASOCIOLOGIA);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao listar as notas de Sociologia!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        private void voltar_Click(object sender, EventArgs e)
+        private void btnVoltar_Click(object sender, EventArgs e)
         {
             this.Close();
             FormBoletim form = new FormBoletim();

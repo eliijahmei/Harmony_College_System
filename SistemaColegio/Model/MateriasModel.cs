@@ -1,25 +1,24 @@
 ﻿using SistemaColegio.DAO;
 using System.Data;
-using System;
 
 namespace SistemaColegio.Model
 {
     public class MateriasModel
     {
-        MateriasDAO materiasDAO = new MateriasDAO();
+        MateriaDAO materiasDAO = new MateriaDAO();
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public DataTable ListarMateria()
         {
+            DataTable dt = new DataTable();
             try
             {
-                DataTable dt = new DataTable();
                 dt = materiasDAO.ListarMaterias();
-                return dt;
             }
-            catch (Exception ex)
+            catch  
             {
-                throw ex;
+                throw;
             }
+            return dt;
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }

@@ -17,45 +17,57 @@ namespace SistemaColegio.View
         }
         private void FormBoletim_Load(object sender, EventArgs e)
         {
-            turma.ValueMember = "ID";
-            turma.DisplayMember = "Classe";
+            comboTurma.ValueMember = "ID";
+            comboTurma.DisplayMember = "Classe";
 
             timer.Start();
-            hora.Text = DateTime.Now.ToLongTimeString();
-            data.Text = DateTime.Now.ToLongDateString();
 
-            turma.DataSource = classesModel.ListarClasses();
+            lblHora.Text = DateTime.Now.ToLongTimeString();
+            lblData.Text = DateTime.Now.ToLongDateString();
+
+            comboTurma.DataSource = classesModel.ListarClasses();
         }
         private void timer_Tick(object sender, EventArgs e)
         {
-            hora.Text = DateTime.Now.ToLongTimeString();
+            lblHora.Text = DateTime.Now.ToLongTimeString();
         }
-        private void turma_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboTurma_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (turma.SelectedValue != null)
+            if (comboTurma.SelectedValue != null)
             {
-                int sala = Convert.ToInt32(turma.SelectedValue);
+                int sala = Convert.ToInt32(comboTurma.SelectedValue);
                 ListarAlunosPorTurma(sala);
             }
+        }
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text == "")
+            {
+                int sala = Convert.ToInt32(comboTurma.SelectedValue);
+                ListarAlunosPorTurma(sala);
+                return;
+            }
+            BuscarAlunos(txtBuscar.Text);
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public void ListarAlunosPorTurma(int sala)
         {
             try
             {
-                grid.EnableHeadersVisualStyles = false;
-                grid.ColumnHeadersDefaultCellStyle.BackColor = Color.IndianRed;
-                grid.DataSource = alunoModel.ListarAlunosPorsala(sala);
-                grid.Columns[0].HeaderText = "RA";
-                grid.Columns[1].HeaderText = "Nome";
-                grid.Columns[2].HeaderText = "Sexo";
-                grid.Columns[3].HeaderText = "Data de Nascimento";
-                grid.Columns[4].HeaderText = "Classe";
-                grid.Columns[4].Visible = false;
+                dgv.EnableHeadersVisualStyles = false;
+                dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.IndianRed;
+                dgv.DataSource = alunoModel.ListarAlunosPorsala(sala);
+
+                dgv.Columns[0].HeaderText = "RA";
+                dgv.Columns[1].HeaderText = "Nome";
+                dgv.Columns[2].HeaderText = "Sexo";
+                dgv.Columns[3].HeaderText = "Data de Nascimento";
+                dgv.Columns[4].HeaderText = "Classe";
+                dgv.Columns[4].Visible = false;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Erro ao listar os alunos! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Erro ao listar os alunos pela turma! ", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,41 +75,28 @@ namespace SistemaColegio.View
         {
             try
             {
-                grid.DataSource = alunoModel.BuscarAlunosPorRA(ra);
+                dgv.DataSource = alunoModel.BuscarAlunosPorRA(ra);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Erro ao listar os dados! " + ex, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Erro ao listar os dados do aluno! ", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-        private void buscarAluno_TextChanged(object sender, EventArgs e)
-        {
-            if (buscar.Text == "")
-            {
-                int sala = Convert.ToInt32(turma.SelectedValue);
-                ListarAlunosPorTurma(sala);
-                return;
-            }
-            BuscarAlunos(buscar.Text);
-        }
-        private void buscar_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("A busca é feita por RA.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void grid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            int alunoRa = Convert.ToInt32(grid.CurrentRow.Cells[0].Value);
+            int alunoRa = Convert.ToInt32(dgv.CurrentRow.Cells[0].Value);
             Aluno aluno = alunoModel.AlunoPorRA(alunoRa);
             this.Close();
             FormBoletimAluno form = new FormBoletimAluno(aluno);
             form.Show();
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        private void sair_Click(object sender, EventArgs e)
+        private void btnSair_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-        private void voltar_Click(object sender, EventArgs e)
+
+        private void btnVoltar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
