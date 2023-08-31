@@ -98,6 +98,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalculoMedia.cs" />
     <Compile Include="Conexao.cs" />
     <Compile Include="DAO\AlunoDAO.cs" />
     <Compile Include="DAO\ClasseDAO.cs" />

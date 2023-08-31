@@ -21,7 +21,6 @@ namespace SistemaColegio.Entidades
             {
                 idade--;
             }
-
             return idade;
         }
     }

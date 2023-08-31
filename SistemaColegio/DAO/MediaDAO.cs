@@ -89,7 +89,7 @@ namespace SistemaColegio.DAO
                 cmd = new MySqlCommand("INSERT INTO alunoMedia (RA, Materia, Media) VALUES (@RA, @Materia, @Media)", con.con);
                 cmd.Parameters.AddWithValue("@RA", medias.Aluno.Ra);
                 cmd.Parameters.AddWithValue("@Materia", medias.Materia.Id);
-                cmd.Parameters.AddWithValue("@Media", medias.Mediaa);
+                cmd.Parameters.AddWithValue("@Media", medias.MediaNotas);
                 cmd.ExecuteNonQuery();
             }
             catch 

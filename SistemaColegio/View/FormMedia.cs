@@ -1,9 +1,9 @@
-﻿using SistemaColegio.Entidades;
+﻿using System.Collections.Generic;
+using SistemaColegio.Entidades;
 using SistemaColegio.Model;
 using System.Windows.Forms;
 using System.Drawing;
 using System;
-using System.Collections.Generic;
 
 namespace SistemaColegio.View
 {
@@ -78,18 +78,18 @@ namespace SistemaColegio.View
         {
             try
             {
-                gridNotas.EnableHeadersVisualStyles = false;
-                gridNotas.ColumnHeadersDefaultCellStyle.BackColor = Color.Beige;
-                gridNotas.DataSource = provaModel.ListarNotas(ra, materia);
-                gridNotas.Columns[0].HeaderText = "RA";
-                gridNotas.Columns[0].Visible = false;
-                gridNotas.Columns[1].HeaderText = "Prova";
-                gridNotas.Columns[2].HeaderText = "Nota";
-                gridNotas.Columns[3].HeaderText = "Professor avaliador";
-                gridNotas.Columns[4].HeaderText = "Materia";
-                gridNotas.Columns[4].Visible = false;
+                dgvNotas.EnableHeadersVisualStyles = false;
+                dgvNotas.ColumnHeadersDefaultCellStyle.BackColor = Color.Beige;
+                dgvNotas.DataSource = provaModel.ListarNotas(ra, materia);
+                dgvNotas.Columns[0].HeaderText = "RA";
+                dgvNotas.Columns[0].Visible = false;
+                dgvNotas.Columns[1].HeaderText = "Prova";
+                dgvNotas.Columns[2].HeaderText = "Nota";
+                dgvNotas.Columns[3].HeaderText = "Professor avaliador";
+                dgvNotas.Columns[4].HeaderText = "Materia";
+                dgvNotas.Columns[4].Visible = false;
 
-                foreach (DataGridViewRow row in gridNotas.Rows)
+                foreach (DataGridViewRow row in dgvNotas.Rows)
                 {
                     double nota = Convert.ToDouble(row.Cells["Nota"].Value);
                     DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
@@ -121,6 +121,21 @@ namespace SistemaColegio.View
                 dgvMedias.Columns[0].Visible = false;
                 dgvMedias.Columns[1].HeaderText = "Matéria";
                 dgvMedias.Columns[2].HeaderText = "Média";
+
+                foreach (DataGridViewRow row in dgvMedias.Rows)
+                {
+                    double nota = Convert.ToDouble(row.Cells["Nota"].Value);
+                    DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
+                    if (nota < 6)
+                    {
+                        cellStyle.ForeColor = Color.Red;
+                    }
+                    else
+                    {
+                        cellStyle.ForeColor = Color.Green;
+                    }
+                    row.Cells["Média"].Style = cellStyle;
+                }
             }
             catch (Exception ex)
             {
@@ -130,15 +145,15 @@ namespace SistemaColegio.View
         private void gridNotas2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             btnSalvar.Enabled = false;
-            comboRa.Text = gridNotas.CurrentRow.Cells[0].Value.ToString();
-            comboMateria.Text = gridNotas.CurrentRow.Cells[1].Value.ToString();
+            comboRa.Text = dgvNotas.CurrentRow.Cells[0].Value.ToString();
+            comboMateria.Text = dgvNotas.CurrentRow.Cells[1].Value.ToString();
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public void SalvarMedias(Media medias)
         {
             try
             {
-                medias.Mediaa = Convert.ToDouble(txtMedia.Text);
+                medias.MediaNotas = Convert.ToDouble(txtMedia.Text);
 
                 mediaModel.SalvarMedia(medias);
                 MessageBox.Show("Média atribuída com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -152,22 +167,23 @@ namespace SistemaColegio.View
         private void calcular_Click(object sender, EventArgs e)
         {
             Media medias = new Media();
+            CalculoMedia media = new CalculoMedia();
             List<double> notas = new List<double>();
-            int ra = Convert.ToInt32(comboRa.SelectedValue);
             int materia = Convert.ToInt32(comboMateria.SelectedValue);
+            int ra = Convert.ToInt32(comboRa.SelectedValue);
+
+            notas = mediaModel.NotasMedia(materia, ra);
 
             medias.Aluno = new Aluno();
             medias.Aluno.Ra = ra;
             medias.Materia = new Materia();
             medias.Materia.Id = materia;
+            
+            double mediaCalculada = media.CalcularMedia(notas);
 
-            notas = mediaModel.NotasMedia(ra, materia);
-
-            double calculatedMedia = medias.CalcularMedia(notas);
-
-            if (calculatedMedia != -1)
+            if (mediaCalculada != -1)
             {
-                txtMedia.Text = calculatedMedia.ToString("F2");
+                txtMedia.Text = mediaCalculada.ToString("F2");
             }
             else
             {

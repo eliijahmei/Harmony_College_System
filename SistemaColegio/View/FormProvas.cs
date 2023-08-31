@@ -156,6 +156,21 @@ namespace SistemaColegio.View
                 dgvNotas.Columns[3].HeaderText = "Professor";
                 dgvNotas.Columns[4].HeaderText = "Materia";
                 dgvNotas.Columns[4].Visible = false;
+
+                foreach (DataGridViewRow row in dgvNotas.Rows)
+                {
+                    double nota = Convert.ToDouble(row.Cells["Nota"].Value);
+                    DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
+                    if (nota < 6)
+                    {
+                        cellStyle.ForeColor = Color.Red;
+                    }
+                    else
+                    {
+                        cellStyle.ForeColor = Color.Green;
+                    }
+                    row.Cells["Nota"].Style = cellStyle;
+                }
             }
             catch (Exception)
             {

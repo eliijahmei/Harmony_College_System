@@ -46,7 +46,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnCalcular = new System.Windows.Forms.Button();
-            this.gridNotas = new System.Windows.Forms.DataGridView();
+            this.dgvNotas = new System.Windows.Forms.DataGridView();
             this.txtRaNotas = new System.Windows.Forms.TextBox();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
@@ -68,7 +68,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvMedias)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridNotas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNotas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -212,7 +212,7 @@
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.btnCalcular);
-            this.panel1.Controls.Add(this.gridNotas);
+            this.panel1.Controls.Add(this.dgvNotas);
             this.panel1.Controls.Add(this.txtRaNotas);
             this.panel1.Controls.Add(this.btnSalvar);
             this.panel1.Controls.Add(this.pictureBox6);
@@ -245,14 +245,14 @@
             this.btnCalcular.UseVisualStyleBackColor = true;
             this.btnCalcular.Click += new System.EventHandler(this.calcular_Click);
             // 
-            // gridNotas
+            // dgvNotas
             // 
-            this.gridNotas.AllowUserToAddRows = false;
-            this.gridNotas.AllowUserToDeleteRows = false;
-            this.gridNotas.AllowUserToResizeColumns = false;
-            this.gridNotas.AllowUserToResizeRows = false;
-            this.gridNotas.BackgroundColor = System.Drawing.Color.Linen;
-            this.gridNotas.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvNotas.AllowUserToAddRows = false;
+            this.dgvNotas.AllowUserToDeleteRows = false;
+            this.dgvNotas.AllowUserToResizeColumns = false;
+            this.dgvNotas.AllowUserToResizeRows = false;
+            this.dgvNotas.BackgroundColor = System.Drawing.Color.Linen;
+            this.dgvNotas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -260,8 +260,8 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.IndianRed;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridNotas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.gridNotas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvNotas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvNotas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -269,12 +269,12 @@
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DarkGray;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridNotas.DefaultCellStyle = dataGridViewCellStyle5;
-            this.gridNotas.GridColor = System.Drawing.Color.MistyRose;
-            this.gridNotas.Location = new System.Drawing.Point(39, 245);
-            this.gridNotas.Margin = new System.Windows.Forms.Padding(2);
-            this.gridNotas.Name = "gridNotas";
-            this.gridNotas.ReadOnly = true;
+            this.dgvNotas.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvNotas.GridColor = System.Drawing.Color.MistyRose;
+            this.dgvNotas.Location = new System.Drawing.Point(39, 245);
+            this.dgvNotas.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvNotas.Name = "dgvNotas";
+            this.dgvNotas.ReadOnly = true;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -282,13 +282,13 @@
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.DarkGray;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridNotas.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.gridNotas.RowHeadersWidth = 62;
-            this.gridNotas.RowTemplate.Height = 28;
-            this.gridNotas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridNotas.Size = new System.Drawing.Size(373, 152);
-            this.gridNotas.TabIndex = 49;
-            this.gridNotas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridNotas2_CellClick);
+            this.dgvNotas.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvNotas.RowHeadersWidth = 62;
+            this.dgvNotas.RowTemplate.Height = 28;
+            this.dgvNotas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvNotas.Size = new System.Drawing.Size(373, 152);
+            this.dgvNotas.TabIndex = 49;
+            this.dgvNotas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridNotas2_CellClick);
             // 
             // txtRaNotas
             // 
@@ -491,7 +491,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridNotas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNotas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
@@ -513,7 +513,7 @@
         private System.Windows.Forms.ComboBox comboRa;
         private System.Windows.Forms.ComboBox comboMateria;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView gridNotas;
+        private System.Windows.Forms.DataGridView dgvNotas;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtMedia;
         private System.Windows.Forms.PictureBox pictureBox2;
