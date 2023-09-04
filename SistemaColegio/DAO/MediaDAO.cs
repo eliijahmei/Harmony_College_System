@@ -59,6 +59,33 @@ namespace SistemaColegio.DAO
                 con.fecharConexao();
             }
         }
+        public List<double> ObterMediasPorRa(int ra)
+        {
+            try
+            {
+                var medias = new List<double>();
+                con.abrirConexao();
+                cmd = new MySqlCommand("SELECT Media FROM alunoMedia WHERE RA = @RA", con.con);
+                cmd.Parameters.AddWithValue("@RA", ra);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        medias.Add(Convert.ToDouble(reader["Media"]));
+                    }
+                }
+                return medias;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                con.fecharConexao();
+            }
+        }
         public DataTable ListarMedias(int ra)
         {
             DataTable dt = new DataTable();

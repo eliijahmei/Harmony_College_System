@@ -71,6 +71,7 @@ namespace SistemaColegio.View
                 txtRaNotas.Text = ra.ToString();
                 txtRa.Text = ra.ToString();
                 ListarNotas(ra, materiaId);
+                ListarMedias(ra);
             }
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -124,7 +125,7 @@ namespace SistemaColegio.View
 
                 foreach (DataGridViewRow row in dgvMedias.Rows)
                 {
-                    double nota = Convert.ToDouble(row.Cells["Nota"].Value);
+                    double nota = Convert.ToDouble(row.Cells["Media"].Value);
                     DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
                     if (nota < 6)
                     {
@@ -134,12 +135,12 @@ namespace SistemaColegio.View
                     {
                         cellStyle.ForeColor = Color.Green;
                     }
-                    row.Cells["Média"].Style = cellStyle;
+                    row.Cells["Media"].Style = cellStyle;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Erro ao listar as médias! " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Erro ao listar as médias! ", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         private void gridNotas2_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -181,14 +182,14 @@ namespace SistemaColegio.View
             
             double mediaCalculada = media.CalcularMedia(notas);
 
-            if (mediaCalculada != -1)
+            if (mediaCalculada == -1)
             {
-                txtMedia.Text = mediaCalculada.ToString("F2");
+                txtMedia.Text = string.Empty;
+                MessageBox.Show("É necessário ter exatamente 4 notas para calcular a média.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);   
             }
             else
             {
-                txtMedia.Text = string.Empty;
-                MessageBox.Show("É necessário ter exatamente 4 notas para calcular a média.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtMedia.Text = mediaCalculada.ToString("F2");
             }
         }
         private void salvarMedia_Click(object sender, EventArgs e)

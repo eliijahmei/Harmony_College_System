@@ -3,6 +3,8 @@ using SistemaColegio.Entidades;
 using SistemaColegio.Model;
 using System.Windows.Forms;
 using System;
+using System.Collections.Generic;
+using Microsoft.Win32;
 
 namespace SistemaColegio.View
 {
@@ -10,6 +12,7 @@ namespace SistemaColegio.View
     {
         Aluno aluno;
         ProvaModel provaModel = new ProvaModel();
+        MediaModel mediaModel = new MediaModel();   
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public FormBoletimAluno(Entidades.Aluno aluno)
         {
@@ -36,6 +39,32 @@ namespace SistemaColegio.View
             Quimica();
             Saude();
             Sociologia();
+            Situacao(aluno.Ra);
+        }
+        private void Situacao(int ra)
+        {
+            SituaçãoAluno media = new SituaçãoAluno();
+            List<double> medias = new List<double>();
+            ra = Convert.ToInt32(aluno.Ra);
+
+            medias = mediaModel.SituacaoAluno(ra);
+
+            string aprovacao = media.Situacao(medias);
+
+            if (aprovacao == "Reprovado")
+            {
+                lblSituacao.ForeColor = System.Drawing.Color.Red;
+            }
+            if (aprovacao == "Aprovado")
+            {
+                lblSituacao.ForeColor = System.Drawing.Color.Green;
+            }
+            if (aprovacao == "Em Análise")
+            {
+                lblSituacao.ForeColor = System.Drawing.Color.Black;
+            }
+
+            lblSituacao.Text = aprovacao;
         }
         private void Artes()
         {

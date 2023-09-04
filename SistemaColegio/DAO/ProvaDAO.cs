@@ -324,7 +324,6 @@ namespace SistemaColegio.DAO
         }
         public string ReceberNotaProva(Aluno aluno, int idMateria, int idBimestre)
         {
-            var result = cmd.ExecuteScalar();
             try
             {
                 con.abrirConexao();
@@ -332,6 +331,7 @@ namespace SistemaColegio.DAO
                 cmd.Parameters.AddWithValue("@aluno", aluno.Ra);
                 cmd.Parameters.AddWithValue("@materia", idMateria);
                 cmd.Parameters.AddWithValue("@bimestre", idBimestre);
+                var result = cmd.ExecuteScalar();
                 if (result != null && result != DBNull.Value)
                 {
                     return result.ToString();
@@ -349,13 +349,13 @@ namespace SistemaColegio.DAO
         }
         public string ReceberNotaMedia(Aluno aluno, int idMateria)
         {
-            var result = cmd.ExecuteScalar();
             try
             {
                 con.abrirConexao();
                 cmd = new MySqlCommand("SELECT am.Media FROM alunomedia am WHERE am.RA = @aluno AND am.Materia = @materia;", con.con);
                 cmd.Parameters.AddWithValue("@aluno", aluno.Ra);
                 cmd.Parameters.AddWithValue("@materia", idMateria);
+                var result = cmd.ExecuteScalar();
                 if (result != null && result != DBNull.Value)
                 {
                     return result.ToString();

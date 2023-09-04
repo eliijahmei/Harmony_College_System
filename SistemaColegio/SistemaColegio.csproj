@@ -130,6 +130,7 @@
     <Compile Include="Model\ProvaModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SituaçãoAluno.cs" />
     <Compile Include="View\FormAlunos.cs">
       <SubType>Form</SubType>
     </Compile>

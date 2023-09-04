@@ -419,7 +419,7 @@ namespace SistemaColegio.View
         {
             GetRaNotas(out int raAluno, out int materia);
             Nota notas = new Nota();
-            btnSalvarNota.Enabled = false;
+            btnSalvarNota.Enabled = true;
             btnEditarNota.Enabled = false;
             btnExcluirNota.Enabled = false;
             btnNovoNota.Enabled = true;
@@ -429,7 +429,6 @@ namespace SistemaColegio.View
             comboRa.Enabled = false;
             comboProfessor.Enabled = false;
             txtNota.Enabled = false;
-            comboId.Enabled = false;
             comboId.Enabled = false;
             SalvarNota(notas);
             LimparCampos();

@@ -1,12 +1,11 @@
 ﻿using SistemaColegio.Entidades;
 using MySql.Data.MySqlClient;
-using System.Windows.Forms;
 using System.Data;
 using System;
 
 namespace SistemaColegio.DAO
 {
-    public class AlunoDAO
+    public class AlunoDAO : IPadrao
     {
         MySqlCommand cmd;
         Conexao con = new Conexao();
@@ -154,7 +153,7 @@ namespace SistemaColegio.DAO
             }
             return dt;
         }
-        public void SalvarAluno(Aluno aluno)
+         void IPadrao.Salvar(Aluno aluno)
         {
             int ra = AlunoGerarRA();
             try

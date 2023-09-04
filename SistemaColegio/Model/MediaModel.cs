@@ -21,6 +21,17 @@ namespace SistemaColegio.Model
                 throw;
             }
         }
+        public List<double> SituacaoAluno(int ra)
+        {
+            try
+            {
+                return mediaDAO.ObterMediasPorRa(ra);
+            }
+            catch
+            {
+                throw;
+            }
+        }
         public bool VerificarLimiteMedias(Media medias)
         {
             int numeroProvas;
