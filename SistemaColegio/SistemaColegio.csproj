@@ -98,8 +98,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalculoMedia.cs" />
-    <Compile Include="Conexao.cs" />
+    <Compile Include="Util\CalculoMedia.cs" />
+    <Compile Include="Util\Conexao.cs" />
     <Compile Include="DAO\AlunoDAO.cs" />
     <Compile Include="DAO\ClasseDAO.cs" />
     <Compile Include="DAO\MateriaDAO.cs" />
@@ -115,7 +115,7 @@
     <Compile Include="Entidades\Pessoa.cs" />
     <Compile Include="Entidades\Professor.cs" />
     <Compile Include="Entidades\Prova.cs" />
-    <Compile Include="Enums.cs" />
+    <Compile Include="Util\Enums.cs" />
     <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,7 +130,8 @@
     <Compile Include="Model\ProvaModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SituaçãoAluno.cs" />
+    <Compile Include="Util\IPadrao.cs" />
+    <Compile Include="Util\SituaçãoAluno.cs" />
     <Compile Include="View\FormAlunos.cs">
       <SubType>Form</SubType>
     </Compile>

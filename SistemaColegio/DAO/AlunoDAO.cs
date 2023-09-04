@@ -5,7 +5,7 @@ using System;
 
 namespace SistemaColegio.DAO
 {
-    public class AlunoDAO : IPadrao
+    public class AlunoDAO
     {
         MySqlCommand cmd;
         Conexao con = new Conexao();
@@ -153,7 +153,7 @@ namespace SistemaColegio.DAO
             }
             return dt;
         }
-         void IPadrao.Salvar(Aluno aluno)
+         public void SalvarAluno(Aluno aluno)
         {
             int ra = AlunoGerarRA();
             try
