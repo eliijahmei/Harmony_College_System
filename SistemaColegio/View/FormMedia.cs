@@ -145,6 +145,7 @@ namespace SistemaColegio.View
         }
         private void gridNotas2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
             btnSalvar.Enabled = false;
             comboRa.Text = dgvNotas.CurrentRow.Cells[0].Value.ToString();
             comboMateria.Text = dgvNotas.CurrentRow.Cells[1].Value.ToString();
