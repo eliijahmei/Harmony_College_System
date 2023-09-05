@@ -112,7 +112,7 @@ namespace SistemaColegio.DAO
                 con.abrirConexao();
                 cmd = new MySqlCommand("SELECT b.Bimestre FROM prova p INNER JOIN bimestre b ON p.Bimestre = b.ID WHERE p.ID = @ID", con.con);
                 cmd.Parameters.AddWithValue("@ID", provaId);
-                bimestre = cmd.ExecuteScalar()?.ToString();
+                bimestre = cmd.ExecuteScalar().ToString();
             }
             catch
             {
