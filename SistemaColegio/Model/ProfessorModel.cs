@@ -4,11 +4,11 @@ using System.Data;
 
 namespace SistemaColegio.Model
 {
-    public class ProfessorModel
+    public class ProfessorModel : PessoaModel
     {
         ProfessorDAO professorDAO = new ProfessorDAO();
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public DataTable ListarProfessores()
+        public DataTable Listar()
         {
             DataTable dt = new DataTable();
             try
@@ -34,44 +34,44 @@ namespace SistemaColegio.Model
             }
             return dt;
         }
-        public void SalvarProfessor(Professor professor)
+        public void Create(Pessoa pessoa)
         {
             try
             {
-                professorDAO.SalvarProfessor(professor);
+                professorDAO.SalvarProfessor(pessoa as Professor);
             }
             catch  
             {
                 throw;
             }
         }
-        public void EditarProfessor(Professor professor)
+        public void Update(Pessoa pessoa)
         {
             try
             {
-                professorDAO.EditarProfessor(professor);
+                professorDAO.EditarProfessor(pessoa as Professor);
             }
             catch
             {
                 throw;
             }
         }
-        public void AtualizarNaoLecionando(Professor professor)
+        public void Offline(Pessoa pessoa)
         {
             try
             {
-                professorDAO.AtualizarNaoLecionando(professor);
+                professorDAO.AtualizarNaoLecionando(pessoa as Professor);
             }
             catch 
             {
                 throw;
             }
         }
-        public void AtualizarLecionando(Professor professor)
+        public void Online(Pessoa pessoa)
         {
             try
             {
-                professorDAO.AtualizarLecionando(professor);
+                professorDAO.AtualizarLecionando(pessoa as Professor);
             }
             catch 
             {

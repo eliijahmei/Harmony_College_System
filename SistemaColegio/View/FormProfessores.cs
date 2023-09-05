@@ -33,7 +33,7 @@ namespace SistemaColegio.View
             {
                 dgv.EnableHeadersVisualStyles = false;
                 dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.IndianRed;
-                dgv.DataSource = professorModel.ListarProfessores();
+                dgv.DataSource = professorModel.Listar();
 
                 dgv.Columns[0].HeaderText = "ID";
                 dgv.Columns[1].HeaderText = "Nome";

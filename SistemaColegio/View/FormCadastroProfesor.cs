@@ -78,7 +78,7 @@ namespace SistemaColegio.View
             {
                 grid.EnableHeadersVisualStyles = false;
                 grid.ColumnHeadersDefaultCellStyle.BackColor = Color.IndianRed;
-                grid.DataSource = professorModel.ListarProfessores();
+                grid.DataSource = professorModel.Listar();
 
                 grid.Columns[0].HeaderText = "ID";
                 grid.Columns[1].HeaderText = "Nome";
@@ -158,7 +158,7 @@ namespace SistemaColegio.View
                     return;
                 }
 
-                professorModel.SalvarProfessor(professor);
+                professorModel.Create(professor);
                 MessageBox.Show("Professor salvio com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -191,7 +191,7 @@ namespace SistemaColegio.View
                     MessageBox.Show("O profesor deve ter entre 19 e 70 anos de idade.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                professorModel.EditarProfessor(professor);
+                professorModel.Update(professor);
                 MessageBox.Show("Professor editado com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -203,7 +203,7 @@ namespace SistemaColegio.View
         {
             try
             {
-                professorModel.AtualizarNaoLecionando(professor);
+                professorModel.Offline(professor);
                 MessageBox.Show("Status atualizado com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -218,7 +218,7 @@ namespace SistemaColegio.View
                 DateTime dataAtual = DateTime.Now;
                 int idade = dataAtual.Year - professor.DataNasc.Year;
                 string nome = txtNome.Text.Trim();
-                professorModel.AtualizarLecionando(professor);
+                professorModel.Online(professor);
 
                 MessageBox.Show("Status atualizado com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

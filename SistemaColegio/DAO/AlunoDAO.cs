@@ -155,9 +155,9 @@ namespace SistemaColegio.DAO
         }
          public void SalvarAluno(Aluno aluno)
         {
-            int ra = AlunoGerarRA();
             try
             {
+                int ra = AlunoGerarRA();
                 con.abrirConexao();
                 cmd = new MySqlCommand("INSERT INTO aluno(RA, Nome, Sexo, DataNascimento, Classe, Situacao) VALUES(@RA, @Nome, @Sexo, @DataNascimento, @Classe, @Situacao)", con.con);
                 {

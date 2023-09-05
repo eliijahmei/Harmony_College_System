@@ -73,7 +73,7 @@ namespace SistemaColegio.View
             {
                 dgv.EnableHeadersVisualStyles = false;
                 dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.IndianRed;
-                dgv.DataSource = alunoModel.ListarAlunos();
+                dgv.DataSource = alunoModel.Listar();
                 dgv.Columns[0].HeaderText = "RA";
                 dgv.Columns[1].HeaderText = "Nome";
                 dgv.Columns[2].HeaderText = "Sexo";
@@ -139,7 +139,7 @@ namespace SistemaColegio.View
         public void SalvarAluno(Aluno aluno)
         {
             try
-            {
+            { 
                 aluno.Classe = new Classe();
                 DateTime dataNascimento = Convert.ToDateTime(dtDataNasc.Value.ToString());
                 int idade = aluno.CalcularIdade(dataNascimento);
@@ -160,8 +160,7 @@ namespace SistemaColegio.View
                     MessageBox.Show("O aluno deve ter entre 13 e 21 anos de idade.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
-                alunoModel.SalvarAluno(aluno);
+                alunoModel.Create(aluno);
                 MessageBox.Show("Aluno salvo com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
@@ -194,7 +193,7 @@ namespace SistemaColegio.View
                     return;
                 }
 
-                alunoModel.EditarAluno(aluno);
+                alunoModel.Update(aluno);
                 MessageBox.Show("Aluno editado com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
@@ -206,8 +205,7 @@ namespace SistemaColegio.View
         {
             try
             {
-                alunoModel.AtualizarNaoEstudando(aluno);
-
+                alunoModel.Offline(aluno);
                 MessageBox.Show("Situação atualizada com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
@@ -219,8 +217,7 @@ namespace SistemaColegio.View
         {
             try
             {
-                alunoModel.AtualizarEstudando(aluno);
-
+                alunoModel.Online(aluno);
                 MessageBox.Show("Status atualizado com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)

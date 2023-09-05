@@ -1,12 +1,15 @@
 ﻿using SistemaColegio.Entidades;
+using System.Data;
 
-interface PessoaModel
+public interface PessoaModel
 {
-    void Create();
+    void Create(Pessoa pessoa);
 
-    void Update();
+    void Update(Pessoa pessoa);
 
-    void Delete();
+    void Online(Pessoa pessoa);
 
-    void Listar();
+    void Offline(Pessoa pessoa);
+
+    DataTable Listar();
 }

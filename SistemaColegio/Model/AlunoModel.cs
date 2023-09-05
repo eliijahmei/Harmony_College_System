@@ -1,11 +1,10 @@
 ﻿using SistemaColegio.Entidades;
 using SistemaColegio.DAO;
 using System.Data;
-using System;
 
 namespace SistemaColegio.Model
 {
-    public class AlunoModel
+    public class AlunoModel : PessoaModel
     {
         AlunoDAO alunoDAO = new AlunoDAO();
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -22,18 +21,20 @@ namespace SistemaColegio.Model
             }
             return aluno;
         }
-        public DataTable ListarAlunos()
+        public DataTable Listar()
         {
-            DataTable dt = new DataTable();
-            try
             {
-                dt = alunoDAO.ListarAlunos();
+                DataTable dt = new DataTable();
+                try
+                {
+                    dt = alunoDAO.ListarAlunos();
+                }
+                catch
+                {
+                    throw;
+                }
+                return dt;
             }
-            catch  
-            {
-                throw;
-            }
-            return dt;
         }
         public DataTable ListarRAPorsala(int classe)
         {
@@ -42,7 +43,7 @@ namespace SistemaColegio.Model
             {
                 dt = alunoDAO.ListarRAPorSala(classe);
             }
-            catch  
+            catch
             {
                 throw;
             }
@@ -55,7 +56,7 @@ namespace SistemaColegio.Model
             {
                 dt = alunoDAO.ListarAlunosPorSala(classe);
             }
-            catch 
+            catch
             {
                 throw;
             }
@@ -68,52 +69,56 @@ namespace SistemaColegio.Model
             {
                 dt = alunoDAO.BuscarAlunosPorRA(ra);
             }
-            catch 
+            catch
             {
                 throw;
             }
             return dt;
         }
-        public void SalvarAluno(Aluno aluno)
+        public void Create(Pessoa pessoa)
+        {
+            {
+                try
+                {
+                    alunoDAO.SalvarAluno(pessoa as Aluno);
+                }
+                catch
+                {
+                    throw;
+                }
+            }
+        }
+        public void Update(Pessoa pessoa)
+        { 
+            {
+                try
+                {
+                    alunoDAO.EditarAluno(pessoa as Aluno);
+                }
+                catch
+                {
+                    throw;
+                }
+            }
+        }
+        public void Offline(Pessoa pessoa)
         {
             try
             {
-                alunoDAO.SalvarAluno(aluno);
+                alunoDAO.AtualizarNaoEstudando(pessoa as Aluno);
             }
-            catch  
+            catch
             {
                 throw;
             }
         }
-        public void EditarAluno(Aluno aluno)
+        public void Online(Pessoa pessoa)
         {
             try
             {
-                alunoDAO.EditarAluno(aluno);
+                alunoDAO.AtualizarEstudando(pessoa as Aluno);
             }
-            catch  
-            {
-                throw;
-            }
-        }
-        public void AtualizarNaoEstudando(Aluno aluno)
-        {
-            try
-            {
-                alunoDAO.AtualizarNaoEstudando(aluno);
-            }
-            catch  
-            {
-                throw;
-            }
-        }
-        public void AtualizarEstudando(Aluno aluno)
-        {
-            try
-            {
-                alunoDAO.AtualizarEstudando(aluno);
-            }
-            catch 
+            catch
             {
                 throw;
             }

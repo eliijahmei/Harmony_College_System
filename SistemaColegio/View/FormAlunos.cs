@@ -42,8 +42,7 @@ namespace SistemaColegio.View
             {
                 dgv.EnableHeadersVisualStyles = false;
                 dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.IndianRed;
-                dgv.DataSource = alunoModel.ListarAlunos();
-
+                dgv.DataSource = alunoModel.Listar();
                 dgv.Columns[0].HeaderText = "RA";
                 dgv.Columns[1].HeaderText = "Nome";
                 dgv.Columns[2].HeaderText = "Sexo";
