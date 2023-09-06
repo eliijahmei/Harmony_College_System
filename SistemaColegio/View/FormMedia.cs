@@ -45,8 +45,8 @@ namespace SistemaColegio.View
         {
             if (comboTurma.SelectedValue != null)
             {
-                int turmaId = Convert.ToInt32(comboTurma.SelectedValue);
-                comboRa.DataSource = alunoModel.ListarRAPorsala(turmaId);
+                int classe = Convert.ToInt32(comboTurma.SelectedValue);
+                comboRa.DataSource = alunoModel.ListarAlunosPorClasse(classe);
             }
         }
         private void materia_SelectedIndexChanged(object sender, EventArgs e)
@@ -56,8 +56,8 @@ namespace SistemaColegio.View
 
                 int ra = Convert.ToInt32(comboRa.SelectedValue);
                 int materiaId = Convert.ToInt32(comboMateria.SelectedValue);
-                int turmaId = Convert.ToInt32(comboTurma.SelectedValue);
-                comboRa.DataSource = alunoModel.ListarRAPorsala(turmaId);
+                int classe = Convert.ToInt32(comboTurma.SelectedValue);
+                comboRa.DataSource = alunoModel.ListarAlunosPorClasse(classe);
                 ListarNotas(ra, materiaId);
             }
         }
@@ -117,7 +117,7 @@ namespace SistemaColegio.View
             {
                 dgvMedias.EnableHeadersVisualStyles = false;
                 dgvMedias.ColumnHeadersDefaultCellStyle.BackColor = Color.Beige;
-                dgvMedias.DataSource = mediaModel.ListarMedias(ra);
+                dgvMedias.DataSource = mediaModel.ListarMediasPorRa(ra);
                 dgvMedias.Columns[0].HeaderText = "RA";
                 dgvMedias.Columns[0].Visible = false;
                 dgvMedias.Columns[1].HeaderText = "Matéria";
@@ -145,7 +145,6 @@ namespace SistemaColegio.View
         }
         private void gridNotas2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
             btnSalvar.Enabled = false;
             comboRa.Text = dgvNotas.CurrentRow.Cells[0].Value.ToString();
             comboMateria.Text = dgvNotas.CurrentRow.Cells[1].Value.ToString();
@@ -174,7 +173,7 @@ namespace SistemaColegio.View
             int materia = Convert.ToInt32(comboMateria.SelectedValue);
             int ra = Convert.ToInt32(comboRa.SelectedValue);
 
-            notas = mediaModel.NotasMedia(materia, ra);
+            notas = provaModel.NotasMedia(materia, ra);
 
             medias.Aluno = new Aluno();
             medias.Aluno.Ra = ra;

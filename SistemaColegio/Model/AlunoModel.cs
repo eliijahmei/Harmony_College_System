@@ -8,72 +8,59 @@ namespace SistemaColegio.Model
     {
         AlunoDAO alunoDAO = new AlunoDAO();
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public Aluno AlunoPorRA(int alunoRA)
+        public Aluno PegaBoletimAlunoPorRa(int ra)
         {
-            Aluno aluno = new Aluno();
             try
             {
-                aluno = alunoDAO.AlunoPorRA(alunoRA);
+                Aluno aluno = new Aluno();
+                aluno = alunoDAO.PegaBoletimAlunoPorRa(ra);
+                return aluno;
             }
             catch
             {
                 throw;
             }
-            return aluno;
         }
         public DataTable Listar()
         {
             {
-                DataTable dt = new DataTable();
                 try
                 {
+                    DataTable dt = new DataTable();
                     dt = alunoDAO.ListarAlunos();
+                    return dt;
                 }
                 catch
                 {
                     throw;
                 }
+            }
+        }
+        public DataTable ListarAlunosPorClasse(int classe)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                dt = alunoDAO.ListarAlunosPorClasse(classe);
                 return dt;
             }
-        }
-        public DataTable ListarRAPorsala(int classe)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                dt = alunoDAO.ListarRAPorSala(classe);
-            }
             catch
             {
                 throw;
             }
-            return dt;
-        }
-        public DataTable ListarAlunosPorsala(int classe)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                dt = alunoDAO.ListarAlunosPorSala(classe);
-            }
-            catch
-            {
-                throw;
-            }
-            return dt;
         }
         public DataTable BuscarAlunosPorRA(string ra)
         {
-            DataTable dt = new DataTable();
             try
             {
+                DataTable dt = new DataTable();
                 dt = alunoDAO.BuscarAlunosPorRA(ra);
+                return dt;
             }
             catch
             {
                 throw;
             }
-            return dt;
         }
         public void Create(Pessoa pessoa)
         {
@@ -89,7 +76,7 @@ namespace SistemaColegio.Model
             }
         }
         public void Update(Pessoa pessoa)
-        { 
+        {
             {
                 try
                 {

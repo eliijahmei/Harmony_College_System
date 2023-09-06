@@ -50,13 +50,13 @@ namespace SistemaColegio.View
             BuscarAlunos(txtBuscar.Text);
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public void ListarAlunosPorTurma(int sala)
+        public void ListarAlunosPorTurma(int classe)
         {
             try
             {
                 dgv.EnableHeadersVisualStyles = false;
                 dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.IndianRed;
-                dgv.DataSource = alunoModel.ListarAlunosPorsala(sala);
+                dgv.DataSource = alunoModel.ListarAlunosPorClasse(classe);
 
                 dgv.Columns[0].HeaderText = "RA";
                 dgv.Columns[1].HeaderText = "Nome";
@@ -85,7 +85,7 @@ namespace SistemaColegio.View
         private void grid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int alunoRa = Convert.ToInt32(dgv.CurrentRow.Cells[0].Value);
-            Aluno aluno = alunoModel.AlunoPorRA(alunoRa);
+            Aluno aluno = alunoModel.PegaBoletimAlunoPorRa(alunoRa);
             this.Close();
             FormBoletimAluno form = new FormBoletimAluno(aluno);
             form.Show();

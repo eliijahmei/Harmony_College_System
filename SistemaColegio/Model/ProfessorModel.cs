@@ -10,16 +10,16 @@ namespace SistemaColegio.Model
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public DataTable Listar()
         {
-            DataTable dt = new DataTable();
             try
             {
+                DataTable dt = new DataTable();
                 dt = professorDAO.ListarProfessores();
+                return dt;
             }
             catch  
             {
                 throw;
             }
-            return dt;
         }
         public DataTable ListarProfessoresPorMateria(int professor)
         {

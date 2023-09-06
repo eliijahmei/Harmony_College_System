@@ -1,26 +1,34 @@
-﻿using MySql.Data.MySqlClient;
+﻿using System.Collections.Generic;
+using MySql.Data.MySqlClient;
 using System.Data;
 using System;
-using System.Collections.Generic;
 
 namespace SistemaColegio.DAO
 {
     public class MediaDAO
     {
         MySqlCommand cmd;
-        Conexao con = new Conexao();
+        Conexao conexao = new Conexao();
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public int ContarMedias(Media medias)
+        public int ContarNumeroDeMedias(Media media)
         {
             try
             {
-                int count = 0;
-                con.abrirConexao();
-                cmd = new MySqlCommand("SELECT COUNT(*) FROM alunoMedia WHERE Materia = @Materia AND RA = @RA", con.con);
-                cmd.Parameters.AddWithValue("@Materia", medias.Materia.Id);
-                cmd.Parameters.AddWithValue("@RA", medias.Aluno.Ra);
-                count = Convert.ToInt32(cmd.ExecuteScalar());
-                return count;
+                List<double> medias = new List<double>();
+                int quantidadeMedias = medias.Count;
+                conexao.AbrirConexao();
+                cmd = new MySqlCommand("SELECT * FROM alunoMedia WHERE Materia = @Materia AND RA = @RA", conexao.conexao);
+                cmd.Parameters.AddWithValue("@Materia", media.Materia.Id);
+                cmd.Parameters.AddWithValue("@RA", media.Aluno.Ra);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        medias.Add(Convert.ToInt32(reader["Media"]));
+                    }
+                }
+                return medias.Count;
             }
             catch 
             { 
@@ -28,35 +36,7 @@ namespace SistemaColegio.DAO
             }
             finally
             {
-                con.fecharConexao();
-            }
-        }
-        public List<double> ObterNotasPorRaMateria(int materia, int ra)
-        {
-            try
-            {
-                var notas = new List<double>();
-                con.abrirConexao();
-                cmd = new MySqlCommand("SELECT Nota FROM alunoprova WHERE Materia = @Materia AND RA = @RA", con.con);
-                cmd.Parameters.AddWithValue("@Materia", materia);
-                cmd.Parameters.AddWithValue("@RA", ra);
-
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        notas.Add(Convert.ToDouble(reader["Nota"]));
-                    }
-                }
-                return notas;
-            }
-            catch 
-            {
-                throw;
-            }
-            finally
-            {
-                con.fecharConexao();
+                conexao.FecharConexao();
             }
         }
         public List<double> ObterMediasPorRa(int ra)
@@ -64,8 +44,8 @@ namespace SistemaColegio.DAO
             try
             {
                 var medias = new List<double>();
-                con.abrirConexao();
-                cmd = new MySqlCommand("SELECT Media FROM alunoMedia WHERE RA = @RA", con.con);
+                conexao.AbrirConexao();
+                cmd = new MySqlCommand("SELECT Media FROM alunoMedia WHERE RA = @RA", conexao.conexao);
                 cmd.Parameters.AddWithValue("@RA", ra);
 
                 using (var reader = cmd.ExecuteReader())
@@ -83,20 +63,21 @@ namespace SistemaColegio.DAO
             }
             finally
             {
-                con.fecharConexao();
+                conexao.FecharConexao();
             }
         }
-        public DataTable ListarMedias(int ra)
+        public DataTable ListarMediasPorRa(int ra)
         {
-            DataTable dt = new DataTable();
             try
             {
-                con.abrirConexao();
-                cmd = new MySqlCommand("SELECT am.RA, m.Materia AS Materia, am.Media FROM alunoMedia am INNER JOIN Materia m ON am.Materia = m.ID WHERE am.RA = @RA ORDER BY m.Materia ASC", con.con);
+                DataTable dt = new DataTable();
+                conexao.AbrirConexao();
+                cmd = new MySqlCommand("SELECT am.RA, m.Materia, am.Media FROM alunoMedia am INNER JOIN Materia m ON am.Materia = m.ID WHERE am.RA = @RA ORDER BY m.Materia ASC", conexao.conexao);
                 cmd.Parameters.AddWithValue("@RA", ra);
                 MySqlDataAdapter dta = new MySqlDataAdapter();
                 dta.SelectCommand = cmd;
                 dta.Fill(dt);
+                return dt;
             }
             catch
             {
@@ -104,16 +85,15 @@ namespace SistemaColegio.DAO
             }
             finally
             {
-                con.fecharConexao();
+                conexao.FecharConexao();
             }
-            return dt;
         }
         public void SalvarMedia(Media medias)
         {
             try
             {
-                con.abrirConexao();
-                cmd = new MySqlCommand("INSERT INTO alunoMedia (RA, Materia, Media) VALUES (@RA, @Materia, @Media)", con.con);
+                conexao.AbrirConexao();
+                cmd = new MySqlCommand("INSERT INTO alunoMedia (RA, Materia, Media) VALUES (@RA, @Materia, @Media)", conexao.conexao);
                 cmd.Parameters.AddWithValue("@RA", medias.Aluno.Ra);
                 cmd.Parameters.AddWithValue("@Materia", medias.Materia.Id);
                 cmd.Parameters.AddWithValue("@Media", medias.MediaNotas);
@@ -125,7 +105,7 @@ namespace SistemaColegio.DAO
             }
             finally
             {
-                con.fecharConexao();
+                conexao.FecharConexao();
             }
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -5,27 +5,27 @@ namespace SistemaColegio
 {
     internal class Conexao
     {
-        string conexao = "SERVER=localhost; DATABASE=sistemaescolar; USER=root; PASSWORD=1234;";
-        public MySqlConnection con = null;
+        string connection = "SERVER=localhost; DATABASE=sistemaescolar; USER=root; PASSWORD=1234;";
+        public MySqlConnection conexao = null;
 
-        public void abrirConexao()
+        public void AbrirConexao()
         {
             try
             {
-                con = new MySqlConnection(conexao);
-                con.Open();
+                conexao = new MySqlConnection(connection);
+                conexao.Open();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public void fecharConexao()
+        public void FecharConexao()
         {
             try
             {
-                con = new MySqlConnection(conexao);
-                con.Close();
+                conexao = new MySqlConnection(connection);
+                conexao.Close();
             }
             catch (Exception ex)
             {
@@ -33,7 +33,7 @@ namespace SistemaColegio
             }
             finally
             {
-                con.Close();
+                conexao.Close();
             }
         }
     }

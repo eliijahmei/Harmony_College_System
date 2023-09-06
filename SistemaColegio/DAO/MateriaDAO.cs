@@ -6,18 +6,19 @@ namespace SistemaColegio.DAO
     public class MateriaDAO
     {
         MySqlCommand cmd;
-        Conexao con = new Conexao();
+        Conexao conexao = new Conexao();
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public DataTable ListarMaterias()
         {
-            DataTable dt = new DataTable();
             try
             {
-                con.abrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM materia ORDER BY ID ASC", con.con);
+                DataTable dt = new DataTable();
+                conexao.AbrirConexao();
+                cmd = new MySqlCommand("SELECT * FROM materia ORDER BY ID ASC", conexao.conexao);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
+                return dt;
             }
             catch 
             { 
@@ -25,9 +26,8 @@ namespace SistemaColegio.DAO
             }
             finally
             {
-                con.fecharConexao();
+                conexao.FecharConexao();
             }
-            return dt;
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }

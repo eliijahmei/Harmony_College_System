@@ -2,32 +2,45 @@
 using MySql.Data.MySqlClient;
 using System.Data;
 using System;
+using System.Collections.Generic;
 
 namespace SistemaColegio.DAO
 {
     public class ProfessorDAO
     {
         MySqlCommand cmd;
-        Conexao con = new Conexao();
+        Conexao conexao = new Conexao();
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public int ProfessorGerarID()
+        public int GerarID()
         {
-            int idProfessor = 0;
-            int count;
             try
             {
+                List<int> ids = new List<int>();
+                int id = 0;
+                int oldRa = 0;
+                conexao.AbrirConexao();
+                cmd = new MySqlCommand("SELECT p.ID FROM professor p WHERE ID = @ID", conexao.conexao);
+                cmd.Parameters.AddWithValue("@ID", id);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ids.Add(Convert.ToInt32(reader["ID"]));
+                    }
+                }
                 do
                 {
-                    idProfessor = new Random().Next(1000, 9999);
-                    con.abrirConexao();
-                    cmd = new MySqlCommand("SELECT COUNT(*) FROM professor WHERE ID = @ID", con.con);
-                    cmd.Parameters.AddWithValue("@ID", idProfessor);
-                    count = Convert.ToInt32(cmd.ExecuteScalar());
-                    if (count == 0)
+                    id = new Random().Next(1000, 9999);
+                    foreach (int idExistente in ids)
                     {
-                        break;
+                        if (idExistente == id)
+                        {
+                            oldRa = idExistente;
+                        }
                     }
-                } while (true);
+                } while (oldRa == id);
+                return id;
             }
             catch
             {
@@ -35,20 +48,20 @@ namespace SistemaColegio.DAO
             }
             finally
             {
-                con.fecharConexao();
+                conexao.FecharConexao();
             }
-            return idProfessor;
         }
         public DataTable ListarProfessores()
         {
-            DataTable dt = new DataTable();
             try
             {
-                con.abrirConexao();
-                cmd = new MySqlCommand("SELECT professor.ID, professor.Nome, professor.Sexo, professor.DataNascimento, materia.Materia, professor.Situacao FROM professor INNER JOIN materia ON professor.MateriaProf = materia.ID ORDER BY materia.ID ASC, Nome", con.con);
+                DataTable dt = new DataTable();
+                conexao.AbrirConexao();
+                cmd = new MySqlCommand("SELECT p.ID, p.Nome, p.Sexo, p.DataNascimento, m.Materia, p.Situacao FROM professor p INNER JOIN materia m ON p.MateriaProf = m.ID ORDER BY m.ID ASC, Nome", conexao.conexao);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
+                return dt;
             }
             catch
             {
@@ -56,17 +69,16 @@ namespace SistemaColegio.DAO
             }
             finally
             {
-                con.fecharConexao();
+                conexao.FecharConexao();
             }
-            return dt;
         }
         public DataTable ListarProfessoresPorMateria(int professor)
         {
             DataTable dt = new DataTable();
             try
             {
-                con.abrirConexao();
-                cmd = new MySqlCommand("SELECT ID, Nome FROM professor  WHERE MateriaProf = @MateriaID", con.con);
+                conexao.AbrirConexao();
+                cmd = new MySqlCommand("SELECT ID, Nome FROM professor  WHERE MateriaProf = @MateriaID", conexao.conexao);
                 cmd.Parameters.AddWithValue("@MateriaID", professor);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
@@ -78,13 +90,13 @@ namespace SistemaColegio.DAO
             }
             finally
             {
-                con.fecharConexao();
+                conexao.FecharConexao();
             }
             return dt;
         }
         public void SalvarProfessor(Professor professor)
         {
-            int idProfessor = ProfessorGerarID();
+            int idProfessor = GerarID();
             try
             {
                 con.abrirConexao();

@@ -47,7 +47,7 @@ namespace SistemaColegio.View
             List<double> medias = new List<double>();
             ra = Convert.ToInt32(aluno.Ra);
 
-            medias = mediaModel.SituacaoAluno(ra);
+            medias = mediaModel.ObterMediasPorRa(ra);
 
             string aprovacao = media.Situacao(medias);
 

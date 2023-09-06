@@ -2,6 +2,7 @@
 using SistemaColegio.DAO;
 using System.Data;
 using System;
+using System.Collections.Generic;
 
 namespace SistemaColegio.Model
 {
@@ -9,6 +10,18 @@ namespace SistemaColegio.Model
     {
         ProvaDAO provaDAO = new ProvaDAO();
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public List<double> NotasMedia(int materia, int ra)
+        {
+            try
+            {
+                return provaDAO.PegaNotasPelaMateriaRa(materia, ra);
+            }
+            catch
+            {
+                throw;
+            }
+        }
         public bool VerificarLimiteProvas(Prova provas)
         {
             int numeroProvas;

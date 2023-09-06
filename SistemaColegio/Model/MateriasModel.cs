@@ -9,16 +9,16 @@ namespace SistemaColegio.Model
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public DataTable ListarMateria()
         {
-            DataTable dt = new DataTable();
             try
             {
+                DataTable dt = new DataTable();
                 dt = materiasDAO.ListarMaterias();
+                return dt;
             }
             catch  
             {
                 throw;
             }
-            return dt;
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }

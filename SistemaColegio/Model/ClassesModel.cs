@@ -9,16 +9,16 @@ namespace SistemaColegio.Model
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public DataTable ListarClasses()
         {
-            DataTable dt = new DataTable();
             try
             {
+                DataTable dt = new DataTable();
                 dt = classesDAO.ListarClasses();
+                return dt;
             }
             catch 
             {
                 throw;
             }
-            return dt;
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }

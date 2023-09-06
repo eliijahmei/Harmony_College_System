@@ -1,8 +1,7 @@
-﻿using SistemaColegio.Entidades;
+﻿using System.Collections.Generic;
 using SistemaColegio.DAO;
 using System.Data;
 using System;
-using System.Collections.Generic;
 
 namespace SistemaColegio.Model
 {
@@ -10,18 +9,20 @@ namespace SistemaColegio.Model
     {
         MediaDAO mediaDAO = new MediaDAO();
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public List<double> NotasMedia(int materia, int ra)
+        public bool VerificarSeAtingiuLimiteDeMedias(Media medias)
         {
             try
             {
-                return mediaDAO.ObterNotasPorRaMateria(materia, ra);
+                int quantidadeMedias;
+                quantidadeMedias = mediaDAO.ContarNumeroDeMedias(medias);
+                return quantidadeMedias >= 1;
             }
             catch
             {
                 throw;
             }
         }
-        public List<double> SituacaoAluno(int ra)
+        public List<double> ObterMediasPorRa(int ra)
         {
             try
             {
@@ -32,37 +33,24 @@ namespace SistemaColegio.Model
                 throw;
             }
         }
-        public bool VerificarLimiteMedias(Media medias)
+        public DataTable ListarMediasPorRa(int ra)
         {
-            int numeroProvas;
             try
             {
-                numeroProvas = mediaDAO.ContarMedias(medias);
+                DataTable dt = new DataTable();
+                dt = mediaDAO.ListarMediasPorRa(ra);
+                return dt;
             }
             catch 
             {
                 throw;
             }
-            return numeroProvas >= 1;
-        }
-        public DataTable ListarMedias(int ra)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                dt = mediaDAO.ListarMedias(ra);
-            }
-            catch 
-            {
-                throw;
-            }
-            return dt;
         }
         public void SalvarMedia(Media medias)
         {
             try
             {
-                if (VerificarLimiteMedias(medias))
+                if (VerificarSeAtingiuLimiteDeMedias(medias))
                 {
                     throw new Exception();
                 }
