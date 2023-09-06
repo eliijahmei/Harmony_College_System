@@ -66,17 +66,18 @@ namespace SistemaColegio.DAO
                 conexao.FecharConexao();
             }
         }
-        public DataTable ListarProfessoresPorMateria(int professor)
+        public DataTable ListarProfessoresPorMateria(int materia)
         {
-            DataTable dt = new DataTable();
             try
             {
+                DataTable dt = new DataTable();
                 conexao.AbrirConexao();
                 cmd = new MySqlCommand("SELECT ID, Nome FROM professor  WHERE MateriaProf = @MateriaID", conexao.conexao);
-                cmd.Parameters.AddWithValue("@MateriaID", professor);
+                cmd.Parameters.AddWithValue("@MateriaID", materia);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
+                return dt;
             }
             catch
             {
@@ -86,15 +87,14 @@ namespace SistemaColegio.DAO
             {
                 conexao.FecharConexao();
             }
-            return dt;
         }
         public void SalvarProfessor(Professor professor)
         {
-            int idProfessor = GerarID();
             try
             {
-                con.abrirConexao();
-                cmd = new MySqlCommand("INSERT INTO professor(ID, Nome, Sexo, DataNascimento, MateriaProf, Situacao) VALUES(@ID, @Nome, @Sexo, @DataNascimento, @MateriaProf, @Situacao)", con.con);
+                int idProfessor = GerarID();
+                conexao.AbrirConexao();
+                cmd = new MySqlCommand("INSERT INTO professor(ID, Nome, Sexo, DataNascimento, MateriaProf, Situacao) VALUES(@ID, @Nome, @Sexo, @DataNascimento, @MateriaProf, @Situacao)", conexao.conexao);
                 cmd.Parameters.AddWithValue("@ID", idProfessor);
                 cmd.Parameters.AddWithValue("@Nome", professor.Nome);
                 cmd.Parameters.AddWithValue("@Sexo", professor.Sexo);
@@ -109,15 +109,15 @@ namespace SistemaColegio.DAO
             }
             finally
             {
-                con.fecharConexao();
+                conexao.FecharConexao();
             }
         }
         public void EditarProfessor(Professor professor)
         {
             try
             {
-                con.abrirConexao();
-                cmd = new MySqlCommand("UPDATE professor SET Nome = @Nome, Sexo = @Sexo, DataNascimento = @DataNascimento, MateriaProf = @MateriaProf WHERE ID = @ID", con.con);
+                conexao.AbrirConexao();
+                cmd = new MySqlCommand("UPDATE professor SET Nome = @Nome, Sexo = @Sexo, DataNascimento = @DataNascimento, MateriaProf = @MateriaProf WHERE ID = @ID", conexao.conexao);
                 {
                     cmd.Parameters.AddWithValue("@ID", professor.Id);
                     cmd.Parameters.AddWithValue("@Nome", professor.Nome);
@@ -134,15 +134,15 @@ namespace SistemaColegio.DAO
             }
             finally
             {
-                con.fecharConexao();
+                conexao.FecharConexao();
             }
         }
         public void AtualizarNaoLecionando(Professor professor)
         {
             try
             {
-                con.abrirConexao();
-                cmd = new MySqlCommand("UPDATE professor SET Situacao = 'Não Lecionando' WHERE ID = @ID", con.con);
+                conexao.AbrirConexao();
+                cmd = new MySqlCommand("UPDATE professor SET Situacao = 'Não Lecionando' WHERE ID = @ID", conexao.conexao);
                 cmd.Parameters.AddWithValue("@ID", professor.Id);
                 cmd.ExecuteNonQuery();
             }
@@ -152,15 +152,15 @@ namespace SistemaColegio.DAO
             }
             finally
             {
-                con.fecharConexao();
+                conexao.FecharConexao();
             }
         }
         public void AtualizarLecionando(Professor professor)
         {
             try
             {
-                con.abrirConexao();
-                cmd = new MySqlCommand("UPDATE professor SET Situacao = 'Lecionando' WHERE ID = @ID", con.con);
+                conexao.AbrirConexao();
+                cmd = new MySqlCommand("UPDATE professor SET Situacao = 'Lecionando' WHERE ID = @ID", conexao.conexao);
                 cmd.Parameters.AddWithValue("@ID", professor.Id);
                 cmd.ExecuteNonQuery();
             }
@@ -170,7 +170,7 @@ namespace SistemaColegio.DAO
             }
             finally
             {
-                con.fecharConexao();
+                conexao.FecharConexao();
             }
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

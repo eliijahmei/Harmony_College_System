@@ -10,8 +10,8 @@ namespace SistemaColegio.Model
     {
         ProvaDAO provaDAO = new ProvaDAO();
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        public List<double> NotasMedia(int materia, int ra)
+        ////////////////////////////////////////////////////      ALUNO PROVA     ///////////////////////////////////////////////////////////////
+        public List<double> NotasPorMateriaRa(int materia, int ra)
         {
             try
             {
@@ -22,106 +22,142 @@ namespace SistemaColegio.Model
                 throw;
             }
         }
-        public bool VerificarLimiteProvas(Prova provas)
+        public bool VerificarNumeroNotasPorProvaDeCadaAluno(Nota notas)
         {
-            int numeroProvas;
             try
             {
-                numeroProvas = provaDAO.ContarProvas(provas);
-            }
-            catch 
-            {
-                throw;
-            }
-            return numeroProvas >= 1;
-        }
-        public bool VerificarLimiteNotasPorProva(Nota notas)
-        {
-            int numeroNotas;
-            try
-            {
-                numeroNotas = provaDAO.ContarNotasPorProva(notas);
+                int numeroNotas;
+                numeroNotas = provaDAO.ContarNumeroNotasPorProvaDeCadaAluno(notas);
+                return numeroNotas >= 1;
             }
             catch
             {
                 throw;
             }
-            return numeroNotas >= 1;
         }
-        public DataTable ListarProvasPorMateriaTurma(int materia, int turma)
+        public DataTable ListarNotasPorRaMateria(int ra, int materia)
         {
-            DataTable dt = new DataTable();
             try
             {
-                dt = provaDAO.ListarProvasPorMateriaTurma(materia, turma);
+                DataTable dt = new DataTable();
+                dt = provaDAO.ListarNotasPorRaMateria(ra, materia);
+                return dt;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        public void SalvarNota(Nota notas)
+        {
+            try
+            {
+                if (VerificarNumeroNotasPorProvaDeCadaAluno(notas))
+                {
+                    throw new Exception();
+                }
+                provaDAO.SalvarNota(notas);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        public void EditarNota(Nota notas)
+        {
+            try
+            {
+                provaDAO.EditarNota(notas);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        public void ExcluirNota(Nota notas)
+        {
+            try
+            {
+                provaDAO.ExcluirNota(notas);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        public string ReceberNotaProva(Aluno aluno, int idMateria, int idBimestre)
+        {
+            try
+            {
+                return provaDAO.ReceberNotaProvaDoAlunoDaMateriaDoBimestre(aluno, idMateria, idBimestre);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        ////////////////////////////////////////////////////         PROVA          ///////////////////////////////////////////////////////////////
+        public bool VerificarNumeroDeProvasPorBimestreDaMateriaPorSala(Prova provas)
+        {
+            try
+            {
+                int numeroProvas;
+                numeroProvas = provaDAO.ContarNumeroDeProvasPorBimestreDaMateriaPorSala(provas);
+                return numeroProvas >= 1;
             }
             catch 
             {
                 throw;
             }
-            return dt;
+        }
+        public string MostrarBimestreDaProva(int id)
+        {
+            try
+            {
+                return provaDAO.MostrarBimestreDaProva(id);
+            }
+            catch
+            {
+                throw;
+            }
         }
         public DataTable ListarProvas()
         {
-            DataTable dt = new DataTable();
             try
             {
+                DataTable dt = new DataTable();
                 dt = provaDAO.ListarProvas();
-            }
-            catch 
-            {
-                throw;
-            }
-            return dt;
-        }
-        public DataTable ListarBimestres()
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                dt = provaDAO.ListarBimestres();
-            }
-            catch 
-            {
-                throw;
-            }
-            return dt;
-        }
-        public string ListarBimestre(int id)
-        {
-            try
-            {
-                return provaDAO.ListarBimestre(id);
-            }
-            catch 
-            {
-                throw;
-            }
-        }
-        public DataTable ListarNotas(int ra, int materia)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                dt = provaDAO.ListarNotas(ra, materia);
+                return dt;
             }
             catch
             {
                 throw;
             }
-            return dt;
+        }
+        public DataTable ListarProvasPorMateriaTurma(int materia, int turma)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                dt = provaDAO.ListarProvasPorMateriaTurma(materia, turma);
+                return dt;
+            }
+            catch 
+            {
+                throw;
+            }
         }
         public void SalvarProva(Prova provas)
         {
             try
             {
-                if (VerificarLimiteProvas(provas))
+                if (VerificarNumeroDeProvasPorBimestreDaMateriaPorSala(provas))
                 {
                     throw new Exception();
                 }
                 provaDAO.SalvarProva(provas);
             }
-            catch 
+            catch
             {
                 throw;
             }
@@ -148,61 +184,16 @@ namespace SistemaColegio.Model
                 throw;
             }
         }
-        public void SalvarNota(Nota notas)
+        ////////////////////////////////////////////////////        BIMETSRE         ///////////////////////////////////////////////////////////////
+        public DataTable ListarBimestres()
         {
             try
             {
-                if (VerificarLimiteNotasPorProva(notas))
-                {
-                    throw new Exception();
-                }
-                provaDAO.SalvarNota(notas);
-            }
-            catch
-            {
-                throw;
-            }
-        }
-        public void EditarNota(Nota notas)
-        {
-            try
-            {
-                provaDAO.EditarNota(notas);
+                DataTable dt = new DataTable();
+                dt = provaDAO.ListarBimestres();
+                return dt;
             }
             catch 
-            {
-                throw;
-            }
-        }
-        public void ExcluirNota(Nota notas)
-        {
-            try
-            {
-                provaDAO.ExcluirNota(notas);
-            }
-            catch 
-            {
-                throw;
-            }
-        }
-        public string ReceberNotaProva(Aluno aluno, int idMateria, int idBimestre)
-        {
-            try
-            {
-                return provaDAO.ReceberNotaProva(aluno, idMateria, idBimestre);
-            }
-            catch
-            {
-                throw;
-            }
-        }
-        public string ReceberNotaMedia(Aluno aluno, int idMateria)
-        {
-            try
-            {
-                return provaDAO.ReceberNotaMedia(aluno, idMateria);
-            }
-            catch
             {
                 throw;
             }

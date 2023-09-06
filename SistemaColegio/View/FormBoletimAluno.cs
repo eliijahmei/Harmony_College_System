@@ -74,7 +74,7 @@ namespace SistemaColegio.View
                 lblN2Artes.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.ARTES, (int)Bimestres.SEGUNDO);
                 lblN3Artes.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.ARTES, (int)Bimestres.TERCEIRO);
                 lblN4Artes.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.ARTES, (int)Bimestres.QUARTO);
-                lblMediaArtes.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAARTES);
+                lblMediaArtes.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAARTES);
             }
             catch (Exception)
             {
@@ -89,7 +89,7 @@ namespace SistemaColegio.View
                 lblN2Biologia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.BIOLOGIA, (int)Bimestres.SEGUNDO);
                 lblN3Biologia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.BIOLOGIA, (int)Bimestres.TERCEIRO);
                 lblN4Biologia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.BIOLOGIA, (int)Bimestres.QUARTO);
-                lblMediaBiologia.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIABIOLOGIA);
+                lblMediaBiologia.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIABIOLOGIA);
             }
             catch (Exception)
             {
@@ -104,7 +104,7 @@ namespace SistemaColegio.View
                 lblN2EdAmbiental.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.EDUCACAOAMBIENTAL, (int)Bimestres.SEGUNDO);
                 lblN3EdAmbiental.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.EDUCACAOAMBIENTAL, (int)Bimestres.TERCEIRO);
                 lblN4EdAmbiental.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.EDUCACAOAMBIENTAL, (int)Bimestres.QUARTO);
-                lblMediaEdAmbiental.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAEDUCACAOAMBIENTAL);
+                lblMediaEdAmbiental.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAEDUCACAOAMBIENTAL);
             }
             catch (Exception)
             {
@@ -119,7 +119,7 @@ namespace SistemaColegio.View
                 lblN2EdFisica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.EDUCACAOFISICA, (int)Bimestres.SEGUNDO);
                 lblN3EdFisica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.EDUCACAOFISICA, (int)Bimestres.TERCEIRO);
                 lblN4EdFisica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.EDUCACAOFISICA, (int)Bimestres.QUARTO);
-                lblMediaEdFisica.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAEDUCACAOFISICA);
+                lblMediaEdFisica.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAEDUCACAOFISICA);
             }
             catch (Exception)
             {
@@ -134,7 +134,7 @@ namespace SistemaColegio.View
                 lblN2Filosofia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.FILOSOFIA, (int)Bimestres.SEGUNDO);
                 lblN3Filosofia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.FILOSOFIA, (int)Bimestres.TERCEIRO);
                 lblN4Filosofia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.FILOSOFIA, (int)Bimestres.QUARTO);
-                lblMediaFilosofia.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAFILOSOFIA);
+                lblMediaFilosofia.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAFILOSOFIA);
             }
             catch (Exception)
             {
@@ -149,7 +149,7 @@ namespace SistemaColegio.View
                 lblN2Fisica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.FISICA, (int)Bimestres.SEGUNDO);
                 lblN3Fisica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.FISICA, (int)Bimestres.TERCEIRO);
                 lblN4Fisica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.FISICA, (int)Bimestres.QUARTO);
-                lblMediaFisica.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAFISICA);
+                lblMediaFisica.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAFISICA);
             }
             catch (Exception)
             {
@@ -164,7 +164,7 @@ namespace SistemaColegio.View
                 lblN2Geografia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.GEOGRAFIA, (int)Bimestres.SEGUNDO);
                 lblN3Geografia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.GEOGRAFIA, (int)Bimestres.TERCEIRO);
                 lblN4Geografia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.GEOGRAFIA, (int)Bimestres.QUARTO);
-                lblMediaGeografia.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAGEOGRAFIA);
+                lblMediaGeografia.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAGEOGRAFIA);
             }
             catch (Exception)
             {
@@ -179,7 +179,7 @@ namespace SistemaColegio.View
                 lblN2Historia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.HISTORIA, (int)Bimestres.SEGUNDO);
                 lblN3Historia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.HISTORIA, (int)Bimestres.TERCEIRO);
                 lblN4Historia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.HISTORIA, (int)Bimestres.QUARTO);
-                lblMediaHistoria.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAHISTORIA);
+                lblMediaHistoria.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAHISTORIA);
             }
             catch (Exception)
             {
@@ -194,7 +194,7 @@ namespace SistemaColegio.View
                 lblN2Ingles.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.INGLES, (int)Bimestres.SEGUNDO);
                 lblN3Ingles.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.INGLES, (int)Bimestres.TERCEIRO);
                 lblN4Ingles.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.INGLES, (int)Bimestres.QUARTO);
-                lblMediaIngles.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAINGLES);
+                lblMediaIngles.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAINGLES);
             }
             catch (Exception)
             {
@@ -209,7 +209,7 @@ namespace SistemaColegio.View
                 lblN2Portugues.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.PORTUGUES, (int)Bimestres.SEGUNDO);
                 lblN3Portugues.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.PORTUGUES, (int)Bimestres.TERCEIRO);
                 lblN4Portugues.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.PORTUGUES, (int)Bimestres.QUARTO);
-                lblMediaPortugues.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAPORTUGUES);
+                lblMediaPortugues.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAPORTUGUES);
             }
             catch (Exception)
             {
@@ -224,7 +224,7 @@ namespace SistemaColegio.View
                 lblN2Matematica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.MATEMATICA, (int)Bimestres.SEGUNDO);
                 lblN3Matematica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.MATEMATICA, (int)Bimestres.TERCEIRO);
                 lblN4Matematica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.MATEMATICA, (int)Bimestres.QUARTO);
-                lblMediaMatematica.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAMATEMATICA);
+                lblMediaMatematica.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAMATEMATICA);
             }
             catch (Exception)
             {
@@ -239,7 +239,7 @@ namespace SistemaColegio.View
                 lblN2Quimica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.QUIMICA, (int)Bimestres.SEGUNDO);
                 lblN3Quimica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.QUIMICA, (int)Bimestres.TERCEIRO);
                 lblN4Quimica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.QUIMICA, (int)Bimestres.QUARTO);
-                lblMediaQuimica.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAQUIMICA);
+                lblMediaQuimica.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAQUIMICA);
             }
             catch (Exception)
             {
@@ -254,7 +254,7 @@ namespace SistemaColegio.View
                 lblN2Saude.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.SAUDE, (int)Bimestres.SEGUNDO);
                 lblN3Saude.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.SAUDE, (int)Bimestres.TERCEIRO);
                 lblN4Saude.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.SAUDE, (int)Bimestres.QUARTO);
-                lblMediaSaude.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIASAUDE);
+                lblMediaSaude.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIASAUDE);
             }
             catch (Exception)
             {
@@ -269,7 +269,7 @@ namespace SistemaColegio.View
                 lblN2Sociologia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.SOCIOLOGIA, (int)Bimestres.SEGUNDO);
                 lblN3Sociologia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.SOCIOLOGIA, (int)Bimestres.TERCEIRO);
                 lblN4Sociologia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.SOCIOLOGIA, (int)Bimestres.QUARTO);
-                lblMediaSociologia.Text = provaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIASOCIOLOGIA);
+                lblMediaSociologia.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIASOCIOLOGIA);
             }
             catch (Exception)
             {

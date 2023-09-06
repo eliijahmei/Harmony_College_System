@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System.Data;
 using System;
+using SistemaColegio.Entidades;
 
 namespace SistemaColegio.DAO
 {
@@ -65,6 +66,30 @@ namespace SistemaColegio.DAO
             {
                 conexao.FecharConexao();
             }
+        }
+        public string ReceberNotaMedia(Aluno aluno, int idMateria)
+        {
+            try
+            {
+                conexao.AbrirConexao();
+                cmd = new MySqlCommand("SELECT am.Media FROM alunomedia am WHERE am.RA = @aluno AND am.Materia = @materia;", conexao.conexao);
+                cmd.Parameters.AddWithValue("@aluno", aluno.Ra);
+                cmd.Parameters.AddWithValue("@materia", idMateria);
+                var result = cmd.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
+                {
+                    return result.ToString();
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                conexao.FecharConexao();
+            }
+            return null;
         }
         public DataTable ListarMediasPorRa(int ra)
         {

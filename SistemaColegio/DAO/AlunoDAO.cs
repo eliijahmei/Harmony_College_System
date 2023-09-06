@@ -72,7 +72,7 @@ namespace SistemaColegio.DAO
             {
                 DataTable dt = new DataTable();
                 conexao.AbrirConexao();
-                cmd = new MySqlCommand("SELECT a.RA FROM aluno a WHERE a.Classe = @ID", conexao.conexao);
+                cmd = new MySqlCommand("SELECT * FROM aluno a WHERE a.Classe = @ID", conexao.conexao);
                 cmd.Parameters.AddWithValue("@ID", classe);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;

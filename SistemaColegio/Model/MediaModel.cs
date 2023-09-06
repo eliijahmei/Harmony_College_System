@@ -2,6 +2,7 @@
 using SistemaColegio.DAO;
 using System.Data;
 using System;
+using SistemaColegio.Entidades;
 
 namespace SistemaColegio.Model
 {
@@ -27,6 +28,17 @@ namespace SistemaColegio.Model
             try
             {
                 return mediaDAO.ObterMediasPorRa(ra);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        public string ReceberNotaMedia(Aluno aluno, int idMateria)
+        {
+            try
+            {
+                return mediaDAO.ReceberNotaMedia(aluno, idMateria);
             }
             catch
             {

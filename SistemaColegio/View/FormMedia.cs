@@ -80,8 +80,8 @@ namespace SistemaColegio.View
             try
             {
                 dgvNotas.EnableHeadersVisualStyles = false;
-                dgvNotas.ColumnHeadersDefaultCellStyle.BackColor = Color.Beige;
-                dgvNotas.DataSource = provaModel.ListarNotas(ra, materia);
+                dgvNotas.ColumnHeadersDefaultCellStyle.BackColor = Color.IndianRed;
+                dgvNotas.DataSource = provaModel.ListarNotasPorRaMateria(ra, materia);
                 dgvNotas.Columns[0].HeaderText = "RA";
                 dgvNotas.Columns[0].Visible = false;
                 dgvNotas.Columns[1].HeaderText = "Prova";
@@ -116,7 +116,7 @@ namespace SistemaColegio.View
             try
             {
                 dgvMedias.EnableHeadersVisualStyles = false;
-                dgvMedias.ColumnHeadersDefaultCellStyle.BackColor = Color.Beige;
+                dgvMedias.ColumnHeadersDefaultCellStyle.BackColor = Color.IndianRed;
                 dgvMedias.DataSource = mediaModel.ListarMediasPorRa(ra);
                 dgvMedias.Columns[0].HeaderText = "RA";
                 dgvMedias.Columns[0].Visible = false;
@@ -173,7 +173,7 @@ namespace SistemaColegio.View
             int materia = Convert.ToInt32(comboMateria.SelectedValue);
             int ra = Convert.ToInt32(comboRa.SelectedValue);
 
-            notas = provaModel.NotasMedia(materia, ra);
+            notas = provaModel.NotasPorMateriaRa(materia, ra);
 
             medias.Aluno = new Aluno();
             medias.Aluno.Ra = ra;

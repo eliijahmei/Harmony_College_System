@@ -21,18 +21,18 @@ namespace SistemaColegio.Model
                 throw;
             }
         }
-        public DataTable ListarProfessoresPorMateria(int professor)
+        public DataTable ListarProfessoresPorMateria(int materia)
         {
-            DataTable dt = new DataTable();
             try
             {
-                dt = professorDAO.ListarProfessoresPorMateria(professor);
+                DataTable dt = new DataTable();
+                dt = professorDAO.ListarProfessoresPorMateria(materia);
+                return dt;
             }
             catch  
             {
                 throw;
             }
-            return dt;
         }
         public void Create(Pessoa pessoa)
         {

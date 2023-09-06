@@ -107,7 +107,7 @@ namespace SistemaColegio.View
         private void idNota_SelectedIndexChanged(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(comboId.SelectedValue);
-            txtBimestre.Text = provaModel.ListarBimestre(id);
+            txtBimestre.Text = provaModel.MostrarBimestreDaProva(id);
         }
         private void valorNota_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -127,7 +127,7 @@ namespace SistemaColegio.View
             try
             {
                 dgvProvas.EnableHeadersVisualStyles = false;
-                dgvProvas.ColumnHeadersDefaultCellStyle.BackColor = Color.Beige;
+                dgvProvas.ColumnHeadersDefaultCellStyle.BackColor = Color.IndianRed;
                 dgvProvas.DataSource = provaModel.ListarProvas();
 
                 dgvProvas.Columns[0].HeaderText = "ID";
@@ -146,8 +146,8 @@ namespace SistemaColegio.View
             try
             {
                 dgvNotas.EnableHeadersVisualStyles = false;
-                dgvNotas.ColumnHeadersDefaultCellStyle.BackColor = Color.Beige;
-                dgvNotas.DataSource = provaModel.ListarNotas(ra, materia);
+                dgvNotas.ColumnHeadersDefaultCellStyle.BackColor = Color.IndianRed;
+                dgvNotas.DataSource = provaModel.ListarNotasPorRaMateria(ra, materia);
 
                 dgvNotas.Columns[0].HeaderText = "RA";
                 dgvNotas.Columns[0].Visible = false;
