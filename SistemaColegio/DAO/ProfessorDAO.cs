@@ -17,7 +17,7 @@ namespace SistemaColegio.DAO
             {
                 List<int> ids = new List<int>();
                 int id = 0;
-                int oldRa = 0;
+                var idExiste = false;
                 conexao.AbrirConexao();
                 cmd = new MySqlCommand("SELECT p.ID FROM professor p WHERE ID = @ID", conexao.conexao);
                 cmd.Parameters.AddWithValue("@ID", id);
@@ -32,14 +32,8 @@ namespace SistemaColegio.DAO
                 do
                 {
                     id = new Random().Next(1000, 9999);
-                    foreach (int idExistente in ids)
-                    {
-                        if (idExistente == id)
-                        {
-                            oldRa = idExistente;
-                        }
-                    }
-                } while (oldRa == id);
+                    idExiste = ids.Contains(id);
+                } while (idExiste);
                 return id;
             }
             catch

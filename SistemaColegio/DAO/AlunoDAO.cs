@@ -17,7 +17,7 @@ namespace SistemaColegio.DAO
             {
                 List<int> ras = new List<int>();
                 int ra = 0;
-                int oldRa = 0;
+               var raExiste = ras.Contains(ra);
                 conexao.AbrirConexao();
                 cmd = new MySqlCommand("SELECT a.RA FROM aluno a WHERE RA = @RA", conexao.conexao);
                 cmd.Parameters.AddWithValue("@RA", ra);
@@ -32,14 +32,8 @@ namespace SistemaColegio.DAO
                 do
                 {
                     ra = new Random().Next(10000, 99999);
-                    foreach (int raExistente in ras)
-                    {
-                        if (raExistente == ra)
-                        {
-                            oldRa = raExistente;
-                        }
-                    }
-                } while (oldRa == ra);
+                    raExiste = ras.Contains(ra);
+                } while (raExiste);
                 return ra;
             }
             catch
