@@ -3,6 +3,7 @@ using SistemaColegio.Model;
 using System.Windows.Forms;
 using System.Drawing;
 using System;
+using System.Runtime.InteropServices;
 
 namespace SistemaColegio.View
 {
@@ -19,6 +20,7 @@ namespace SistemaColegio.View
         {
             comboTurma.ValueMember = "ID";
             comboTurma.DisplayMember = "Classe";
+            comboSituacao.SelectedIndex = 0;
 
             timer.Start();
 
@@ -33,30 +35,46 @@ namespace SistemaColegio.View
         }
         private void comboTurma_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboTurma.SelectedValue != null)
-            {
-                int sala = Convert.ToInt32(comboTurma.SelectedValue);
-                ListarAlunosPorTurma(sala);
-            }
+            int classe = Convert.ToInt32(comboTurma.SelectedValue);
+            string situacao = comboSituacao.Text.ToString();
+            ListarAlunosPorClasseSituacao(classe, situacao);
+        }
+        private void comboSituacao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int classe = Convert.ToInt32(comboTurma.SelectedValue);
+            string situacao = comboSituacao.Text.ToString();
+            ListarAlunosPorClasseSituacao(classe, situacao);
         }
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
+            int classe = Convert.ToInt32(comboTurma.SelectedValue);
+            string situacao = comboSituacao.Text.ToString();
             if (txtBuscar.Text == "")
             {
-                int sala = Convert.ToInt32(comboTurma.SelectedValue);
-                ListarAlunosPorTurma(sala);
+                ListarAlunosPorClasseSituacao(classe, situacao);
                 return;
             }
             BuscarAlunos(txtBuscar.Text);
         }
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public void ListarAlunosPorTurma(int classe)
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        public void BuscarAlunos(string ra)
+        {
+            try
+            {
+                dgv.DataSource = alunoModel.BuscarAlunosPorRA(ra);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao listar buscar os dados do aluno! ", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        public void ListarAlunosPorClasseSituacao(int classe, string situacao)
         {
             try
             {
                 dgv.EnableHeadersVisualStyles = false;
                 dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.IndianRed;
-                dgv.DataSource = alunoModel.ListarAlunosPorClasse(classe);
+                dgv.DataSource = alunoModel.ListarAlunosPorClasseSituacao(classe, situacao);
 
                 dgv.Columns[0].HeaderText = "RA";
                 dgv.Columns[1].HeaderText = "Nome";
@@ -67,26 +85,13 @@ namespace SistemaColegio.View
             }
             catch (Exception)
             {
-                MessageBox.Show("Erro ao listar os alunos pela turma! ", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Erro ao listar os alunos pela classe e situação! ", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public void BuscarAlunos(string ra)
+        private void dgv_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                dgv.DataSource = alunoModel.BuscarAlunosPorRA(ra);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Erro ao listar os dados do aluno! ", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-        private void grid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int alunoRa = Convert.ToInt32(dgv.CurrentRow.Cells[0].Value);
-            Aluno aluno = alunoModel.PegaBoletimAlunoPorRa(alunoRa);
-            this.Close();
+            int ra = Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value);
+            Aluno aluno = alunoModel.PegaBoletimAlunoPorRa(ra);
             FormBoletimAluno form = new FormBoletimAluno(aluno);
             form.Show();
         }

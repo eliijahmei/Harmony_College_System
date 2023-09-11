@@ -12,7 +12,7 @@ namespace SistemaColegio.View
     {
         Aluno aluno;
         ProvaModel provaModel = new ProvaModel();
-        MediaModel mediaModel = new MediaModel();   
+        MediaModel mediaModel = new MediaModel();
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public FormBoletimAluno(Entidades.Aluno aluno)
         {
@@ -74,7 +74,20 @@ namespace SistemaColegio.View
                 lblN2Artes.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.ARTES, (int)Bimestres.SEGUNDO);
                 lblN3Artes.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.ARTES, (int)Bimestres.TERCEIRO);
                 lblN4Artes.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.ARTES, (int)Bimestres.QUARTO);
-                lblMediaArtes.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAARTES);
+                string mediaStr = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAARTES);
+                lblMediaArtes.Text = mediaStr;
+
+                if (double.TryParse(mediaStr, out double media))
+                {
+                    if (media < 6)
+                    {
+                        lblMediaArtes.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else
+                    {
+                        lblMediaArtes.ForeColor = System.Drawing.Color.Green;
+                    }
+                }
             }
             catch (Exception)
             {
@@ -89,7 +102,20 @@ namespace SistemaColegio.View
                 lblN2Biologia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.BIOLOGIA, (int)Bimestres.SEGUNDO);
                 lblN3Biologia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.BIOLOGIA, (int)Bimestres.TERCEIRO);
                 lblN4Biologia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.BIOLOGIA, (int)Bimestres.QUARTO);
-                lblMediaBiologia.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIABIOLOGIA);
+                string mediaStr = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIABIOLOGIA);
+                lblMediaBiologia.Text = mediaStr;
+
+                if (double.TryParse(mediaStr, out double media))
+                {
+                    if (media < 6)
+                    {
+                        lblMediaBiologia.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else
+                    {
+                        lblMediaBiologia.ForeColor = System.Drawing.Color.Green;
+                    }
+                }
             }
             catch (Exception)
             {
@@ -104,7 +130,20 @@ namespace SistemaColegio.View
                 lblN2EdAmbiental.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.EDUCACAOAMBIENTAL, (int)Bimestres.SEGUNDO);
                 lblN3EdAmbiental.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.EDUCACAOAMBIENTAL, (int)Bimestres.TERCEIRO);
                 lblN4EdAmbiental.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.EDUCACAOAMBIENTAL, (int)Bimestres.QUARTO);
-                lblMediaEdAmbiental.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAEDUCACAOAMBIENTAL);
+                string mediaStr = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAEDUCACAOAMBIENTAL);
+                lblMediaEdAmbiental.Text = mediaStr;
+
+                if (double.TryParse(mediaStr, out double media))
+                {
+                    if (media < 6)
+                    {
+                        lblMediaEdAmbiental.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else
+                    {
+                        lblMediaEdAmbiental.ForeColor = System.Drawing.Color.Green;
+                    }
+                }
             }
             catch (Exception)
             {
@@ -119,7 +158,20 @@ namespace SistemaColegio.View
                 lblN2EdFisica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.EDUCACAOFISICA, (int)Bimestres.SEGUNDO);
                 lblN3EdFisica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.EDUCACAOFISICA, (int)Bimestres.TERCEIRO);
                 lblN4EdFisica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.EDUCACAOFISICA, (int)Bimestres.QUARTO);
-                lblMediaEdFisica.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAEDUCACAOFISICA);
+                string mediaStr = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAEDUCACAOFISICA);
+                lblMediaEdFisica.Text = mediaStr;
+
+                if (double.TryParse(mediaStr, out double media))
+                {
+                    if (media < 6)
+                    {
+                        lblMediaEdFisica.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else
+                    {
+                        lblMediaEdFisica.ForeColor = System.Drawing.Color.Green;
+                    }
+                }
             }
             catch (Exception)
             {
@@ -134,7 +186,20 @@ namespace SistemaColegio.View
                 lblN2Filosofia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.FILOSOFIA, (int)Bimestres.SEGUNDO);
                 lblN3Filosofia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.FILOSOFIA, (int)Bimestres.TERCEIRO);
                 lblN4Filosofia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.FILOSOFIA, (int)Bimestres.QUARTO);
-                lblMediaFilosofia.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAFILOSOFIA);
+                string mediaStr = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAFILOSOFIA);
+                lblMediaFilosofia.Text = mediaStr;
+
+                if (double.TryParse(mediaStr, out double media))
+                {
+                    if (media < 6)
+                    {
+                        lblMediaFilosofia.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else
+                    {
+                        lblMediaFilosofia.ForeColor = System.Drawing.Color.Green;
+                    }
+                }
             }
             catch (Exception)
             {
@@ -149,7 +214,20 @@ namespace SistemaColegio.View
                 lblN2Fisica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.FISICA, (int)Bimestres.SEGUNDO);
                 lblN3Fisica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.FISICA, (int)Bimestres.TERCEIRO);
                 lblN4Fisica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.FISICA, (int)Bimestres.QUARTO);
-                lblMediaFisica.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAFISICA);
+                string mediaStr = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAFISICA);
+                lblMediaFisica.Text = mediaStr;
+
+                if (double.TryParse(mediaStr, out double media))
+                {
+                    if (media < 6)
+                    {
+                        lblMediaFisica.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else
+                    {
+                        lblMediaFisica.ForeColor = System.Drawing.Color.Green;
+                    }
+                }
             }
             catch (Exception)
             {
@@ -164,7 +242,20 @@ namespace SistemaColegio.View
                 lblN2Geografia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.GEOGRAFIA, (int)Bimestres.SEGUNDO);
                 lblN3Geografia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.GEOGRAFIA, (int)Bimestres.TERCEIRO);
                 lblN4Geografia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.GEOGRAFIA, (int)Bimestres.QUARTO);
-                lblMediaGeografia.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAGEOGRAFIA);
+                string mediaStr = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAGEOGRAFIA);
+                lblMediaGeografia.Text = mediaStr;
+
+                if (double.TryParse(mediaStr, out double media))
+                {
+                    if (media < 6)
+                    {
+                        lblMediaGeografia.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else
+                    {
+                        lblMediaGeografia.ForeColor = System.Drawing.Color.Green;
+                    }
+                }
             }
             catch (Exception)
             {
@@ -179,7 +270,20 @@ namespace SistemaColegio.View
                 lblN2Historia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.HISTORIA, (int)Bimestres.SEGUNDO);
                 lblN3Historia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.HISTORIA, (int)Bimestres.TERCEIRO);
                 lblN4Historia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.HISTORIA, (int)Bimestres.QUARTO);
-                lblMediaHistoria.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAHISTORIA);
+                string mediaStr = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAHISTORIA);
+                lblMediaHistoria.Text = mediaStr;
+
+                if (double.TryParse(mediaStr, out double media))
+                {
+                    if (media < 6)
+                    {
+                        lblMediaHistoria.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else
+                    {
+                        lblMediaHistoria.ForeColor = System.Drawing.Color.Green;
+                    }
+                }
             }
             catch (Exception)
             {
@@ -194,7 +298,20 @@ namespace SistemaColegio.View
                 lblN2Ingles.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.INGLES, (int)Bimestres.SEGUNDO);
                 lblN3Ingles.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.INGLES, (int)Bimestres.TERCEIRO);
                 lblN4Ingles.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.INGLES, (int)Bimestres.QUARTO);
-                lblMediaIngles.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAINGLES);
+                string mediaStr = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAINGLES);
+                lblMediaIngles.Text = mediaStr;
+
+                if (double.TryParse(mediaStr, out double media))
+                {
+                    if (media < 6)
+                    {
+                        lblMediaIngles.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else
+                    {
+                        lblMediaIngles.ForeColor = System.Drawing.Color.Green;
+                    }
+                }
             }
             catch (Exception)
             {
@@ -209,7 +326,20 @@ namespace SistemaColegio.View
                 lblN2Portugues.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.PORTUGUES, (int)Bimestres.SEGUNDO);
                 lblN3Portugues.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.PORTUGUES, (int)Bimestres.TERCEIRO);
                 lblN4Portugues.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.PORTUGUES, (int)Bimestres.QUARTO);
-                lblMediaPortugues.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAPORTUGUES);
+                string mediaStr = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAPORTUGUES);
+                lblMediaPortugues.Text = mediaStr;
+
+                if (double.TryParse(mediaStr, out double media))
+                {
+                    if (media < 6)
+                    {
+                        lblMediaPortugues.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else
+                    {
+                        lblMediaPortugues.ForeColor = System.Drawing.Color.Green;
+                    }
+                }
             }
             catch (Exception)
             {
@@ -224,7 +354,20 @@ namespace SistemaColegio.View
                 lblN2Matematica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.MATEMATICA, (int)Bimestres.SEGUNDO);
                 lblN3Matematica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.MATEMATICA, (int)Bimestres.TERCEIRO);
                 lblN4Matematica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.MATEMATICA, (int)Bimestres.QUARTO);
-                lblMediaMatematica.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAMATEMATICA);
+                string mediaStr = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAMATEMATICA);
+                lblMediaMatematica.Text = mediaStr;
+
+                if (double.TryParse(mediaStr, out double media))
+                {
+                    if (media < 6)
+                    {
+                        lblMediaMatematica.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else
+                    {
+                        lblMediaMatematica.ForeColor = System.Drawing.Color.Green;
+                    }
+                }
             }
             catch (Exception)
             {
@@ -239,7 +382,20 @@ namespace SistemaColegio.View
                 lblN2Quimica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.QUIMICA, (int)Bimestres.SEGUNDO);
                 lblN3Quimica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.QUIMICA, (int)Bimestres.TERCEIRO);
                 lblN4Quimica.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.QUIMICA, (int)Bimestres.QUARTO);
-                lblMediaQuimica.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAQUIMICA);
+                string mediaStr = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIAQUIMICA);
+                lblMediaQuimica.Text = mediaStr;
+
+                if (double.TryParse(mediaStr, out double media))
+                {
+                    if (media < 6)
+                    {
+                        lblMediaQuimica.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else
+                    {
+                        lblMediaQuimica.ForeColor = System.Drawing.Color.Green;
+                    }
+                }
             }
             catch (Exception)
             {
@@ -254,7 +410,20 @@ namespace SistemaColegio.View
                 lblN2Saude.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.SAUDE, (int)Bimestres.SEGUNDO);
                 lblN3Saude.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.SAUDE, (int)Bimestres.TERCEIRO);
                 lblN4Saude.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.SAUDE, (int)Bimestres.QUARTO);
-                lblMediaSaude.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIASAUDE);
+                string mediaStr = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIASAUDE);
+                lblMediaSaude.Text = mediaStr;
+
+                if (double.TryParse(mediaStr, out double media))
+                {
+                    if (media < 6)
+                    {
+                        lblMediaSaude.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else
+                    {
+                        lblMediaSaude.ForeColor = System.Drawing.Color.Green;
+                    }
+                }
             }
             catch (Exception)
             {
@@ -269,7 +438,20 @@ namespace SistemaColegio.View
                 lblN2Sociologia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.SOCIOLOGIA, (int)Bimestres.SEGUNDO);
                 lblN3Sociologia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.SOCIOLOGIA, (int)Bimestres.TERCEIRO);
                 lblN4Sociologia.Text = provaModel.ReceberNotaProva(aluno, (int)Materias.SOCIOLOGIA, (int)Bimestres.QUARTO);
-                lblMediaSociologia.Text = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIASOCIOLOGIA);
+                string mediaStr = mediaModel.ReceberNotaMedia(aluno, (int)Medias.MEDIASOCIOLOGIA);
+                lblMediaSociologia.Text = mediaStr;
+
+                if (double.TryParse(mediaStr, out double media))
+                {
+                    if (media < 6)
+                    {
+                        lblMediaSociologia.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else
+                    {
+                        lblMediaSociologia.ForeColor = System.Drawing.Color.Green;
+                    }
+                }
             }
             catch (Exception)
             {

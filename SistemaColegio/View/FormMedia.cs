@@ -46,18 +46,15 @@ namespace SistemaColegio.View
             if (comboTurma.SelectedValue != null)
             {
                 int classe = Convert.ToInt32(comboTurma.SelectedValue);
-                comboRa.DataSource = alunoModel.ListarAlunosPorClasse(classe);
+                comboRa.DataSource = alunoModel.ListarAlunosPorClasseEstudando(classe);
             }
         }
         private void materia_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboMateria.SelectedValue != null)
             {
-
                 int ra = Convert.ToInt32(comboRa.SelectedValue);
                 int materiaId = Convert.ToInt32(comboMateria.SelectedValue);
-                int classe = Convert.ToInt32(comboTurma.SelectedValue);
-                comboRa.DataSource = alunoModel.ListarAlunosPorClasse(classe);
                 ListarNotas(ra, materiaId);
             }
         }
@@ -65,13 +62,12 @@ namespace SistemaColegio.View
         {
             if (comboRa.SelectedValue != null)
             {
-
                 int ra = Convert.ToInt32(comboRa.SelectedValue);
                 int materiaId = Convert.ToInt32(comboMateria.SelectedValue);
-                txtRaNotas.Text = ra.ToString();
-                txtRa.Text = ra.ToString();
                 ListarNotas(ra, materiaId);
                 ListarMedias(ra);
+                txtRaNotas.Text = ra.ToString();
+                txtRa.Text = ra.ToString();
             }
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

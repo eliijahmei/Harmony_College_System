@@ -36,12 +36,41 @@ namespace SistemaColegio.Model
                 }
             }
         }
-        public DataTable ListarAlunosPorClasse(int classe)
+        public DataTable ListarAlunosPorRa(int ra)
+        {
+            {
+                try
+                {
+                    DataTable dt = new DataTable();
+                    dt = alunoDAO.ListarAlunosPorRa(ra);
+                    return dt;
+                }
+                catch
+                {
+                    throw;
+                }
+            }
+        }
+
+        public DataTable ListarAlunosPorClasseEstudando(int classe)
         {
             try
             {
                 DataTable dt = new DataTable();
-                dt = alunoDAO.ListarAlunosPorClasse(classe);
+                dt = alunoDAO.ListarAlunosPorClasseEstudando(classe);
+                return dt;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        public DataTable ListarAlunosPorClasseSituacao(int classe, string situacao)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                dt = alunoDAO.ListarAlunosPorClasseSituacao(classe, situacao);
                 return dt;
             }
             catch

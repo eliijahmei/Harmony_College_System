@@ -39,9 +39,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboSituacao = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboTurma = new System.Windows.Forms.ComboBox();
-            this.txtBuscar = new System.Windows.Forms.TextBox();
             this.dgv = new System.Windows.Forms.DataGridView();
             this.lblHora = new System.Windows.Forms.Label();
             this.lblData = new System.Windows.Forms.Label();
@@ -119,9 +121,11 @@
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.pictureBox3);
+            this.panel1.Controls.Add(this.txtBuscar);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.comboSituacao);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.comboTurma);
-            this.panel1.Controls.Add(this.txtBuscar);
             this.panel1.Controls.Add(this.dgv);
             this.panel1.Location = new System.Drawing.Point(141, 150);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
@@ -132,19 +136,58 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(104, 48);
+            this.pictureBox3.Location = new System.Drawing.Point(208, 29);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(22, 23);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 57;
+            this.pictureBox3.TabIndex = 51;
             this.pictureBox3.TabStop = false;
+            // 
+            // txtBuscar
+            // 
+            this.txtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBuscar.Font = new System.Drawing.Font("Microsoft Yi Baiti", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscar.Location = new System.Drawing.Point(234, 29);
+            this.txtBuscar.Margin = new System.Windows.Forms.Padding(2);
+            this.txtBuscar.Multiline = true;
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(305, 23);
+            this.txtBuscar.TabIndex = 52;
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Mongolian Baiti", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(327, 63);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(101, 24);
+            this.label1.TabIndex = 50;
+            this.label1.Text = "Situação:";
+            // 
+            // comboSituacao
+            // 
+            this.comboSituacao.BackColor = System.Drawing.Color.White;
+            this.comboSituacao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboSituacao.Font = new System.Drawing.Font("Microsoft Yi Baiti", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboSituacao.FormattingEnabled = true;
+            this.comboSituacao.Items.AddRange(new object[] {
+            "Estudando",
+            "Não Estudando"});
+            this.comboSituacao.Location = new System.Drawing.Point(432, 61);
+            this.comboSituacao.Margin = new System.Windows.Forms.Padding(2);
+            this.comboSituacao.Name = "comboSituacao";
+            this.comboSituacao.Size = new System.Drawing.Size(146, 28);
+            this.comboSituacao.TabIndex = 49;
+            this.comboSituacao.SelectedIndexChanged += new System.EventHandler(this.comboSituacao_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Mongolian Baiti", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(471, 47);
+            this.label2.Location = new System.Drawing.Point(150, 63);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 24);
@@ -157,24 +200,12 @@
             this.comboTurma.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboTurma.Font = new System.Drawing.Font("Microsoft Yi Baiti", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboTurma.FormattingEnabled = true;
-            this.comboTurma.Location = new System.Drawing.Point(552, 43);
+            this.comboTurma.Location = new System.Drawing.Point(234, 61);
             this.comboTurma.Margin = new System.Windows.Forms.Padding(2);
             this.comboTurma.Name = "comboTurma";
-            this.comboTurma.Size = new System.Drawing.Size(81, 28);
+            this.comboTurma.Size = new System.Drawing.Size(61, 28);
             this.comboTurma.TabIndex = 47;
             this.comboTurma.SelectedIndexChanged += new System.EventHandler(this.comboTurma_SelectedIndexChanged);
-            // 
-            // txtBuscar
-            // 
-            this.txtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtBuscar.Font = new System.Drawing.Font("Microsoft Yi Baiti", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscar.Location = new System.Drawing.Point(130, 48);
-            this.txtBuscar.Margin = new System.Windows.Forms.Padding(2);
-            this.txtBuscar.Multiline = true;
-            this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(305, 23);
-            this.txtBuscar.TabIndex = 23;
-            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
             // dgv
             // 
@@ -219,7 +250,7 @@
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv.Size = new System.Drawing.Size(483, 376);
             this.dgv.TabIndex = 21;
-            this.dgv.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellContentDoubleClick);
+            this.dgv.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellContentDoubleClick);
             // 
             // lblHora
             // 
@@ -332,7 +363,6 @@
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.DataGridView dgv;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboTurma;
@@ -343,6 +373,9 @@
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboSituacao;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.TextBox txtBuscar;
     }
 }

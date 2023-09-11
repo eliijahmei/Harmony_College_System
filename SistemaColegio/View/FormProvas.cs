@@ -84,25 +84,26 @@ namespace SistemaColegio.View
                 int classe = Convert.ToInt32(comboTurmaNota.SelectedValue);
                 int materia = Convert.ToInt32(comboMateriaNota.SelectedValue);
                 comboId.DataSource = provaModel.ListarProvasPorMateriaTurma(materia, classe);
-                comboRa.DataSource = alunoModel.ListarAlunosPorClasse(classe);
+                comboRa.DataSource = alunoModel.ListarAlunosPorClasseEstudando(classe);
             }
         }
         private void raAlunoAt_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboTurmaNota.SelectedValue != null && comboRa.SelectedValue != null)
             {
-                GetRaTurma(out int ra, out int turma);
+                int ra = Convert.ToInt32(comboRa.SelectedValue);
+                int materia = Convert.ToInt32(comboMateriaNota.SelectedValue);
+                ListarNotas(ra, materia);
                 txtRaGrid.Text = ra.ToString();
-                ListarNotas(ra, turma);
             }
         }
         private void materiaProvaAT_SelectedIndexChanged(object sender, EventArgs e)
         {
             GetRaTurma(out int ra, out int turma);
-            int professor = Convert.ToInt32(comboMateriaNota.SelectedValue);
-            comboId.DataSource = provaModel.ListarProvasPorMateriaTurma(professor, turma);
-            comboProfessor.DataSource = professorModel.ListarProfessoresPorMateria(professor);
-            ListarNotas(ra, professor);
+            int materia = Convert.ToInt32(comboMateriaNota.SelectedValue);
+            comboId.DataSource = provaModel.ListarProvasPorMateriaTurma(materia, turma);
+            comboProfessor.DataSource = professorModel.ListarProfessoresPorMateria(materia);
+            ListarNotas(ra, materia);
         }
         private void idNota_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -423,13 +424,12 @@ namespace SistemaColegio.View
             btnEditarNota.Enabled = false;
             btnExcluirNota.Enabled = false;
             btnNovoNota.Enabled = true;
-            comboMateriaNota.Enabled = false;
-            comboTurmaNota.Enabled = false;
-            comboId.Enabled = false;
-            comboRa.Enabled = false;
-            comboProfessor.Enabled = false;
-            txtNota.Enabled = false;
-            comboId.Enabled = false;
+            comboMateriaNota.Enabled = true;
+            comboTurmaNota.Enabled = true;
+            comboId.Enabled = true;
+            comboRa.Enabled = true;
+            comboProfessor.Enabled = true;
+            txtNota.Enabled = true;
             SalvarNota(notas);
             LimparCampos();
             ListarNotas(raAluno, materia);

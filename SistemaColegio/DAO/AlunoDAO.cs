@@ -17,7 +17,7 @@ namespace SistemaColegio.DAO
             {
                 List<int> ras = new List<int>();
                 int ra = 0;
-               var raExiste = ras.Contains(ra);
+                var raExiste = ras.Contains(ra);
                 conexao.AbrirConexao();
                 cmd = new MySqlCommand("SELECT a.RA FROM aluno a WHERE RA = @RA", conexao.conexao);
                 cmd.Parameters.AddWithValue("@RA", ra);
@@ -49,7 +49,7 @@ namespace SistemaColegio.DAO
         {
             try
             {
-                DataTable dt = new DataTable(); 
+                DataTable dt = new DataTable();
                 conexao.AbrirConexao();
                 cmd = new MySqlCommand("SELECT a.RA, a.Nome, a.Sexo, a.DataNascimento, c.Classe, a.Situacao FROM aluno a INNER JOIN classe c ON a.Classe = c.ID ORDER BY ID ASC, Nome", conexao.conexao);
                 MySqlDataAdapter da = new MySqlDataAdapter();
@@ -66,14 +66,60 @@ namespace SistemaColegio.DAO
                 conexao.FecharConexao();
             }
         }
-        public DataTable ListarAlunosPorClasse(int classe)
+        public DataTable ListarAlunosPorRa(int ra)
         {
             try
             {
                 DataTable dt = new DataTable();
                 conexao.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM aluno a WHERE a.Classe = @ID", conexao.conexao);
+                cmd = new MySqlCommand("SELECT * FROM aluno a INNER JOIN classe c ON a.Classe = c.ID WHERE a.RA = @ra ORDER BY ID ASC, Nome", conexao.conexao);
+                cmd.Parameters.AddWithValue("RA", ra);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+                return dt;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                conexao.FecharConexao();
+            }
+        }
+        public DataTable ListarAlunosPorClasseEstudando(int classe)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                conexao.AbrirConexao();
+                cmd = new MySqlCommand("SELECT a.RA FROM aluno a WHERE a.Classe = @ID AND a.Situacao = @situacao", conexao.conexao);
                 cmd.Parameters.AddWithValue("@ID", classe);
+                cmd.Parameters.AddWithValue("@situacao", "Estudando");
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+                return dt;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                conexao.FecharConexao();
+            }
+        }
+        public DataTable ListarAlunosPorClasseSituacao(int classe, string situacao)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                conexao.AbrirConexao();
+                cmd = new MySqlCommand("SELECT * FROM aluno a WHERE a.Classe = @ID AND a.Situacao = @situacao", conexao.conexao);
+                cmd.Parameters.AddWithValue("@ID", classe);
+                cmd.Parameters.AddWithValue("@situacao", situacao);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
                 da.Fill(dt);
@@ -95,7 +141,7 @@ namespace SistemaColegio.DAO
                 Aluno aluno;
                 string nome;
                 conexao.AbrirConexao();
-                cmd = new MySqlCommand("SELECT a.Nome, a.RA FROM aluno a WHERE RA = @RA ORDER BY ID ASC, Nome", conexao.conexao);
+                cmd = new MySqlCommand("SELECT a.Nome, a.RA FROM aluno a WHERE RA = @RA ORDER BY RA ASC, Nome", conexao.conexao);
                 cmd.Parameters.AddWithValue("@RA", alunoRA);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
