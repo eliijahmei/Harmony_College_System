@@ -55,17 +55,55 @@ namespace SistemaColegio.View
         {
             btnHora.Text = DateTime.Now.ToLongTimeString();
         }
-        public void LimparCampos()
+        public void LimparCamposProvas()
         {
-            comboId.Text = "";
             txtIdProva.Text = "";
             comboBimestreProva.Text = "";
             comboMateriaProva.SelectedIndex = 0;
+            dtDataAgendamento.Value = DateTime.Now;
+            comboTurmaProva.SelectedIndex = 0;
+        }
+        public void HabilitarCamposProvas()
+        {
+            comboTurmaProva.Enabled = true;
+            comboBimestreProva.Enabled = true;
+            comboMateriaProva.Enabled = true;
+            dtDataAgendamento.Enabled = true;
+        }
+        public void DesabilitarCamposProvas()
+        {
+            comboTurmaProva.Enabled = false;
+            comboBimestreProva.Enabled = false;
+            comboMateriaProva.Enabled = false;
+            dtDataAgendamento.Enabled = false;
+        }
+        public void LimparCamposNotas()
+        {
+            comboId.Text = "";
             comboMateriaNota.SelectedIndex = 0;
             comboTurmaNota.SelectedIndex = 0;
-            comboTurmaProva.SelectedIndex = 0;
             txtNota.Text = "";
-            dtDataAgendamento.Value = DateTime.Now;
+            comboRa.SelectedIndex = 0;
+            comboProfessor.SelectedIndex = 0;
+        }
+        public void HabilitarCamposNotas()
+        {
+            comboId.Enabled = true;
+            comboProfessor.Enabled = true;
+            comboRa.Enabled = true;
+            comboMateriaNota.Enabled = true;
+            comboTurmaNota.Enabled = true;
+            txtNota.Enabled = true;
+        }
+        public void DesabilitarCamposNotas()
+        {
+            comboId.Enabled = false;
+            comboProfessor.Enabled = false;
+            comboRa.Enabled = false;
+            comboMateriaNota.Enabled = false;
+            comboTurmaNota.Enabled = false;
+            comboTurmaProva.Enabled = false;
+            txtNota.Enabled = false;
         }
         private void GetRaTurma(out int ra, out int turma)
         {
@@ -187,7 +225,7 @@ namespace SistemaColegio.View
             btnEditarProva.Enabled = true;
             btnExcluirProva.Enabled = true;
             btnNovoProva.Enabled = true;
-            comboBimestreProva.Enabled = false;
+            comboBimestreProva.Enabled = true;
 
             txtIdProva.Text = dgvProvas.CurrentRow.Cells[0].Value.ToString();
             dtDataAgendamento.Text = dgvProvas.CurrentRow.Cells[1].Value.ToString();
@@ -285,7 +323,6 @@ namespace SistemaColegio.View
                     MessageBox.Show("A nota deve estar entre 0 e 10!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
                 provaModel.SalvarNota(notas);
                 MessageBox.Show("Nota atribuida com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -323,11 +360,14 @@ namespace SistemaColegio.View
             }
         }
         public void ExcluirNota(Nota notas)
-        {
+         {
             try
             {
+                notas.Provas.Id = Convert.ToInt32(comboId.SelectedValue);
                 provaModel.ExcluirNota(notas);
                 MessageBox.Show("Nota excluida com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DesabilitarCamposNotas();
+                LimparCamposNotas();
             }
             catch (Exception)
             {
@@ -337,66 +377,51 @@ namespace SistemaColegio.View
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void novoProva_Click(object sender, EventArgs e)
         {
-            comboMateriaProva.Enabled = true;
-            dtDataAgendamento.Enabled = true;
-            comboTurmaProva.Enabled = true;
             btnSalvarProva.Enabled = true;
             btnEditarProva.Enabled = false;
             btnExcluirProva.Enabled = false;
             btnNovoProva.Enabled = false;
-            comboBimestreProva.Enabled = true;
-            LimparCampos();
+            HabilitarCamposProvas();
+            ListarProvas();
+            LimparCamposProvas();
         }
         private void salvarProva_Click(object sender, EventArgs e)
         {
             Prova provas = new Prova();
-            btnSalvarProva.Enabled = false;
             btnEditarProva.Enabled = false;
             btnExcluirProva.Enabled = false;
             btnNovoProva.Enabled = true;
-            comboMateriaProva.Enabled = false;
-            comboTurmaProva.Enabled = false;
-            comboBimestreProva.Enabled = false;
-            dtDataAgendamento.Enabled = false;
             provas.Materia = new Materia();
             SalvarProva(provas);
             ListarProvas();
-            LimparCampos();
         }
         private void editarProva_Click(object sender, EventArgs e)
         {
             Prova provas = new Prova();
             provas.Materia = new Materia();
             btnSalvarProva.Enabled = false;
-            btnEditarProva.Enabled = false;
+            btnEditarProva.Enabled = true;
             btnExcluirProva.Enabled = false;
             btnNovoProva.Enabled = true;
-
             provas.Id = Convert.ToInt32(dgvProvas.CurrentRow.Cells["ID"].Value);
             EditarProva(provas);
             ListarProvas();
-            LimparCampos();
         }
         private void excluirProva_Click(object sender, EventArgs e)
         {
             Prova provas = new Prova();
-            comboBimestreProva.Enabled = false;
-            dtDataAgendamento.Enabled = false;
             btnSalvarProva.Enabled = false;
             btnEditarProva.Enabled = false;
             btnExcluirProva.Enabled = false;
             btnNovoProva.Enabled = true;
             if (MessageBox.Show("Tem certeza que deseja cancelar o agendamento?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
             {
-                LimparCampos();
-                comboMateriaProva.Enabled = false;
-                comboTurmaProva.Enabled = false;
-                dtDataAgendamento.Enabled = false;
+                DesabilitarCamposProvas();
                 return;
             }
             provas.Id = Convert.ToInt32(dgvProvas.CurrentRow.Cells["ID"].Value);
             ExcluirProva(provas);
-            LimparCampos();
+            LimparCamposProvas();
             int raAluno = Convert.ToInt32(comboRa.SelectedValue);
             int materia = Convert.ToInt32(comboMateriaNota.SelectedValue);
             ListarNotas(raAluno, materia);
@@ -404,34 +429,21 @@ namespace SistemaColegio.View
         }
         private void novoNota_Click(object sender, EventArgs e)
         {
-            comboMateriaNota.Enabled = true;
-            comboTurmaNota.Enabled = true;
-            comboId.Enabled = true;
-            comboRa.Enabled = true;
-            comboProfessor.Enabled = true;
-            txtNota.Enabled = true;
             btnSalvarNota.Enabled = true;
             btnEditarNota.Enabled = false;
             btnExcluirNota.Enabled = false;
             btnNovoNota.Enabled = false;
-            LimparCampos();
+            LimparCamposNotas();
+            HabilitarCamposNotas();
         }
         private void salvarNota_Click(object sender, EventArgs e)
         {
             GetRaNotas(out int raAluno, out int materia);
             Nota notas = new Nota();
-            btnSalvarNota.Enabled = true;
             btnEditarNota.Enabled = false;
             btnExcluirNota.Enabled = false;
             btnNovoNota.Enabled = true;
-            comboMateriaNota.Enabled = true;
-            comboTurmaNota.Enabled = true;
-            comboId.Enabled = true;
-            comboRa.Enabled = true;
-            comboProfessor.Enabled = true;
-            txtNota.Enabled = true;
             SalvarNota(notas);
-            LimparCampos();
             ListarNotas(raAluno, materia);
         }
         private void editarNota_Click(object sender, EventArgs e)
@@ -454,8 +466,9 @@ namespace SistemaColegio.View
             }
             notas.Provas.Id = Convert.ToInt32(dgvProvas.CurrentRow.Cells["ID"].Value);
             ExcluirNota(notas);
-            LimparCampos();
             ListarNotas(raAluno, materia);
+            DesabilitarCamposNotas();
+            LimparCamposNotas();
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void sairProvas_Click(object sender, EventArgs e)

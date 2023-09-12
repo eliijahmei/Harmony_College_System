@@ -8,12 +8,12 @@ using System;
 
 namespace SistemaColegio.View
 {
-    public partial class FormCadastroProfesor : Form
+    public partial class FormCadastroProfessor : Form
     {
         ProfessorModel professorModel = new ProfessorModel();
         MateriasModel materiasModel = new MateriasModel();
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public FormCadastroProfesor()
+        public FormCadastroProfessor()
         {
             InitializeComponent();
         }
@@ -111,15 +111,13 @@ namespace SistemaColegio.View
             btnAlterarLecionando.Enabled = true;
             btnAlterarNaoLecionando.Enabled = true;
             novo.Enabled = true;
-
+            HabilitarCampos();
             txtId.Text = grid.CurrentRow.Cells[0].Value.ToString();
             txtNome.Text = grid.CurrentRow.Cells[1].Value.ToString();
             coboSexo.Text = grid.CurrentRow.Cells[2].Value.ToString();
             dtDataNasc.Text = grid.CurrentRow.Cells[3].Value.ToString();
             comboMateria.Text = grid.CurrentRow.Cells[4].Value.ToString();
             txtStatus.Text = grid.CurrentRow.Cells[5].Value.ToString();
-
-            HabilitarCampos();
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public void SalvarProfessor(Professor professor)
@@ -159,7 +157,11 @@ namespace SistemaColegio.View
                 }
 
                 professorModel.Create(professor);
-                MessageBox.Show("Professor salvio com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Professor salvo com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                LimparCampos();
+                DesabilitarCampos();
+                salvar.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -205,6 +207,8 @@ namespace SistemaColegio.View
             {
                 professorModel.Offline(professor);
                 MessageBox.Show("Status atualizado com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnAlterarLecionando.Enabled = false;
+                btnAlterarNaoLecionando.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -213,14 +217,12 @@ namespace SistemaColegio.View
         }
         public void AtualizarLecionando(Professor professor)
         {
-            try
-            {
-                DateTime dataAtual = DateTime.Now;
-                int idade = dataAtual.Year - professor.DataNasc.Year;
+            try { 
                 string nome = txtNome.Text.Trim();
                 professorModel.Online(professor);
-
                 MessageBox.Show("Status atualizado com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnAlterarLecionando.Enabled = false;
+                btnAlterarNaoLecionando.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -235,21 +237,19 @@ namespace SistemaColegio.View
             btnAlterarLecionando.Enabled = false;
             btnAlterarNaoLecionando.Enabled = false;
             novo.Enabled = false;
-            HabilitarCampos();
+            ListarProfessores();
             LimparCampos();
+            HabilitarCampos();
         }
         private void salvarProfessor_Click(object sender, EventArgs e)
         {
             Professor professor = new Professor();
-            salvar.Enabled = false;
             editar.Enabled = false;
             btnAlterarLecionando.Enabled = false;
             btnAlterarNaoLecionando.Enabled = false;
             novo.Enabled = true;
             SalvarProfessor(professor);
             ListarProfessores();
-            LimparCampos();
-            DesabilitarCampos();
         }
         private void editarProfessor_Click(object sender, EventArgs e)
         {
@@ -269,14 +269,11 @@ namespace SistemaColegio.View
 
             if (MessageBox.Show("Tem certeza que deseja atualizar o status do professor para 'Não lecionando'?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
             {
-                LimparCampos();
-                DesabilitarCampos();
                 return;
             }
 
             professor.Id = Convert.ToInt32(grid.CurrentRow.Cells["ID"].Value);
             AtualizarNaoLecionando(professor);
-            LimparCampos();
             ListarProfessores();
         }
         private void AlterarLecionando_Click(object sender, EventArgs e)
@@ -290,14 +287,11 @@ namespace SistemaColegio.View
 
             if (MessageBox.Show("Tem certeza que deseja atualizar o status do professor para 'Lecionando'?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
             {
-                LimparCampos();
-                DesabilitarCampos();
                 return;
             }
 
             professor.Id = Convert.ToInt32(grid.CurrentRow.Cells["ID"].Value);
             AtualizarLecionando(professor);
-            LimparCampos();
             ListarProfessores();
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

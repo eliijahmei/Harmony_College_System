@@ -90,6 +90,8 @@ namespace SistemaColegio.View
         }
         private void dgv_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if(e.RowIndex < 0) 
+                return;
             int ra = Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value);
             Aluno aluno = alunoModel.PegaBoletimAlunoPorRa(ra);
             FormBoletimAluno form = new FormBoletimAluno(aluno);

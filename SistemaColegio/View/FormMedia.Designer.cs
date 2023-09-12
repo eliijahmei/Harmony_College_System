@@ -167,6 +167,7 @@
             this.dgvMedias.GridColor = System.Drawing.Color.MistyRose;
             this.dgvMedias.Location = new System.Drawing.Point(111, 87);
             this.dgvMedias.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvMedias.MultiSelect = false;
             this.dgvMedias.Name = "dgvMedias";
             this.dgvMedias.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -306,6 +307,7 @@
             // 
             this.btnSalvar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSalvar.BackgroundImage")));
             this.btnSalvar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSalvar.Enabled = false;
             this.btnSalvar.FlatAppearance.BorderSize = 0;
             this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalvar.Location = new System.Drawing.Point(341, 434);
@@ -518,7 +520,6 @@
         private System.Windows.Forms.TextBox txtMedia;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox txtRaNotas;
         private System.Windows.Forms.DataGridView dgvMedias;
@@ -527,5 +528,6 @@
         private System.Windows.Forms.Label lblData;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Button btnCalcular;
+        private System.Windows.Forms.Button btnSalvar;
     }
 }

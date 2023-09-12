@@ -25,7 +25,7 @@ namespace SistemaColegio
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void btnCadProfessor_Click(object sender, EventArgs e)
         {
-            FormCadastroProfesor form = new FormCadastroProfesor();
+            FormCadastroProfessor form = new FormCadastroProfessor();
             form.Show();
         }
         private void btnCadAlunos_Click(object sender, EventArgs e)

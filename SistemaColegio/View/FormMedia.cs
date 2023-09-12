@@ -141,7 +141,6 @@ namespace SistemaColegio.View
         }
         private void gridNotas2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            btnSalvar.Enabled = false;
             comboRa.Text = dgvNotas.CurrentRow.Cells[0].Value.ToString();
             comboMateria.Text = dgvNotas.CurrentRow.Cells[1].Value.ToString();
         }
@@ -151,9 +150,9 @@ namespace SistemaColegio.View
             try
             {
                 medias.MediaNotas = Convert.ToDouble(txtMedia.Text);
-
                 mediaModel.SalvarMedia(medias);
                 MessageBox.Show("Média atribuída com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnSalvar.Enabled = false;
             }
             catch (Exception)
             {
@@ -168,6 +167,8 @@ namespace SistemaColegio.View
             List<double> notas = new List<double>();
             int materia = Convert.ToInt32(comboMateria.SelectedValue);
             int ra = Convert.ToInt32(comboRa.SelectedValue);
+
+            btnSalvar.Enabled = true;
 
             notas = provaModel.NotasPorMateriaRa(materia, ra);
 

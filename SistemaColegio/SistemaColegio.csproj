@@ -156,11 +156,11 @@
     <Compile Include="View\FormCadastroAluno.Designer.cs">
       <DependentUpon>FormCadastroAluno.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\FormCadastroProfesor.cs">
+    <Compile Include="View\FormCadastroProfessor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\FormCadastroProfesor.Designer.cs">
-      <DependentUpon>FormCadastroProfesor.cs</DependentUpon>
+    <Compile Include="View\FormCadastroProfessor.Designer.cs">
+      <DependentUpon>FormCadastroProfessor.cs</DependentUpon>
     </Compile>
     <Compile Include="View\FormMedia.cs">
       <SubType>Form</SubType>
@@ -205,8 +205,8 @@
     <EmbeddedResource Include="View\FormCadastroAluno.resx">
       <DependentUpon>FormCadastroAluno.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\FormCadastroProfesor.resx">
-      <DependentUpon>FormCadastroProfesor.cs</DependentUpon>
+    <EmbeddedResource Include="View\FormCadastroProfessor.resx">
+      <DependentUpon>FormCadastroProfessor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormMedia.resx">
       <DependentUpon>FormMedia.cs</DependentUpon>

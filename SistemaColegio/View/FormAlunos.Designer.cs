@@ -196,8 +196,9 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.GridColor = System.Drawing.Color.MistyRose;
-            this.dgv.Location = new System.Drawing.Point(81, 90);
+            this.dgv.Location = new System.Drawing.Point(67, 90);
             this.dgv.Margin = new System.Windows.Forms.Padding(2);
+            this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -212,7 +213,7 @@
             this.dgv.RowHeadersWidth = 62;
             this.dgv.RowTemplate.Height = 28;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(585, 376);
+            this.dgv.Size = new System.Drawing.Size(616, 376);
             this.dgv.TabIndex = 21;
             // 
             // btnVoltar

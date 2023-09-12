@@ -36,19 +36,19 @@ namespace SistemaColegio.View
             lblHora.Text = DateTime.Now.ToLongTimeString();
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public void HabilitarCampos()
-        {
-            txtNome.Enabled = true;
-            comboSexo.Enabled = true;
-            dtDataNasc.Enabled = true;
-            comboClasse.Enabled = true;
-        }
         public void DesabilitarCampos()
         {
             txtNome.Enabled = false;
             comboSexo.Enabled = false;
             dtDataNasc.Enabled = false;
             comboClasse.Enabled = false;
+        }
+        public void HabilitarCampos()
+        {
+            txtNome.Enabled = true;
+            comboSexo.Enabled = true;
+            dtDataNasc.Enabled = true;
+            comboClasse.Enabled = true;
         }
         public void LimparCampos()
         {
@@ -105,15 +105,13 @@ namespace SistemaColegio.View
             btnAlterarEstudando.Enabled = true;
             btnAlterarNaoEstudando.Enabled = true;
             btnNovo.Enabled = true;
-
+            HabilitarCampos();
             txtRa.Text = dgv.CurrentRow.Cells[0].Value.ToString();
             txtNome.Text = dgv.CurrentRow.Cells[1].Value.ToString();
             comboSexo.Text = dgv.CurrentRow.Cells[2].Value.ToString();
             dtDataNasc.Text = dgv.CurrentRow.Cells[3].Value.ToString();
             comboClasse.Text = dgv.CurrentRow.Cells[4].Value.ToString();
             txtStatus.Text = dgv.CurrentRow.Cells[5].Value.ToString();
-
-            HabilitarCampos();
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public void BuscarAlunos(string ra)
@@ -162,6 +160,9 @@ namespace SistemaColegio.View
                 }
                 alunoModel.Create(aluno);
                 MessageBox.Show("Aluno salvo com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LimparCampos();
+                DesabilitarCampos();
+                btnSalvar.Enabled = false;
             }
             catch (Exception)
             {
@@ -207,6 +208,8 @@ namespace SistemaColegio.View
             {
                 alunoModel.Offline(aluno);
                 MessageBox.Show("Situação atualizada com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnAlterarEstudando.Enabled = false;
+                btnAlterarNaoEstudando.Enabled = false;
             }
             catch (Exception)
             {
@@ -219,6 +222,8 @@ namespace SistemaColegio.View
             {
                 alunoModel.Online(aluno);
                 MessageBox.Show("Status atualizado com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnAlterarEstudando.Enabled = false;
+                btnAlterarNaoEstudando.Enabled = false;
             }
             catch (Exception)
             {
@@ -234,76 +239,57 @@ namespace SistemaColegio.View
             btnAlterarNaoEstudando.Enabled = false;
             btnNovo.Enabled = false;
             ListarAlunos();
-            LimparCampos();
             HabilitarCampos();
+            LimparCampos();
         }
         private void salvarAluno_Click(object sender, EventArgs e)
         {
             Aluno aluno = new Aluno();
-            btnSalvar.Enabled = false;
             btnEditar.Enabled = false;
             btnAlterarEstudando.Enabled = false;
             btnAlterarNaoEstudando.Enabled = false;
             btnNovo.Enabled = true;
             SalvarAluno(aluno);
             ListarAlunos();
-            LimparCampos();
-            DesabilitarCampos();
         }
         private void editarAluno_Click(object sender, EventArgs e)
         {
             Aluno aluno = new Aluno();
             btnSalvar.Enabled = false;
-            btnEditar.Enabled = false;
+            btnEditar.Enabled = true;
             btnAlterarEstudando.Enabled = false;
             btnAlterarNaoEstudando.Enabled = false;
             btnNovo.Enabled = true;
             aluno.Ra = Convert.ToInt32(dgv.CurrentRow.Cells["RA"].Value);
             EditarAluno(aluno);
             ListarAlunos();
-            LimparCampos();
-            DesabilitarCampos();
         }
         private void btnAlterarEstudando_Click(object sender, EventArgs e)
         {
             Aluno aluno = new Aluno();
-            btnSalvar.Enabled = false;
-            btnEditar.Enabled = false;
-            btnAlterarEstudando.Enabled = false;
-            btnAlterarNaoEstudando.Enabled = false;
             btnNovo.Enabled = true;
 
             if (MessageBox.Show("Tem certeza que deseja atualizar o status do aluno para 'Estudando'?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
             {
-                LimparCampos();
-                DesabilitarCampos();
                 return;
             }
-
             aluno.Ra = Convert.ToInt32(dgv.CurrentRow.Cells["RA"].Value);
             AtualizarEstudando(aluno);
-            LimparCampos();
             ListarAlunos();
+
         }
         private void btnAlterarNaoEstudando_Click(object sender, EventArgs e)
         {
             Aluno aluno = new Aluno();
-            btnSalvar.Enabled = false;
-            btnEditar.Enabled = false;
-            btnAlterarEstudando.Enabled = false;
-            btnAlterarNaoEstudando.Enabled = false;
             btnNovo.Enabled = true;
 
             if (MessageBox.Show("Tem certeza que deseja atualizar o status do aluno para 'Não Estudando'?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
             {
-                LimparCampos();
-                DesabilitarCampos();
                 return;
             }
 
             aluno.Ra = Convert.ToInt32(dgv.CurrentRow.Cells["RA"].Value);
             AtualizarNaoEstudando(aluno);
-            LimparCampos();
             ListarAlunos();
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

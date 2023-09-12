@@ -42,10 +42,10 @@ C:\Users\Dell\Desktop\SistemaColegio\SistemaColegio\obj\Debug\SistemaColegio.csp
 C:\Users\Dell\Desktop\SistemaColegio\SistemaColegio\obj\Debug\SistemaColegio.exe
 C:\Users\Dell\Desktop\SistemaColegio\SistemaColegio\obj\Debug\SistemaColegio.pdb
 C:\Users\Dell\Desktop\SistemaColegio\SistemaColegio\obj\Debug\SistemaColegio.View.FormCadastroAluno.resources
-C:\Users\Dell\Desktop\SistemaColegio\SistemaColegio\obj\Debug\SistemaColegio.View.FormCadastroProfesor.resources
 C:\Users\Dell\Desktop\SistemaColegio\SistemaColegio\obj\Debug\SistemaColegio.View.FormProfessores.resources
 C:\Users\Dell\Desktop\SistemaColegio\SistemaColegio\obj\Debug\SistemaColegio.View.FormAlunos.resources
 C:\Users\Dell\Desktop\SistemaColegio\SistemaColegio\obj\Debug\SistemaColegio.View.FormProvas.resources
 C:\Users\Dell\Desktop\SistemaColegio\SistemaColegio\obj\Debug\SistemaColegio.View.FormMedia.resources
 C:\Users\Dell\Desktop\SistemaColegio\SistemaColegio\obj\Debug\SistemaColegio.View.FormBoletim.resources
 C:\Users\Dell\Desktop\SistemaColegio\SistemaColegio\obj\Debug\SistemaColegio.View.FormBoletimAluno.resources
+C:\Users\Dell\Desktop\SistemaColegio\SistemaColegio\obj\Debug\SistemaColegio.View.FormCadastroProfessor.resources

@@ -396,7 +396,7 @@
             this.comboId.Location = new System.Drawing.Point(102, 317);
             this.comboId.Margin = new System.Windows.Forms.Padding(2);
             this.comboId.Name = "comboId";
-            this.comboId.Size = new System.Drawing.Size(67, 28);
+            this.comboId.Size = new System.Drawing.Size(91, 28);
             this.comboId.TabIndex = 23;
             this.comboId.SelectedIndexChanged += new System.EventHandler(this.idNota_SelectedIndexChanged);
             // 
@@ -642,7 +642,7 @@
             this.txtRaGrid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRaGrid.Enabled = false;
             this.txtRaGrid.Font = new System.Drawing.Font("Microsoft Yi Baiti", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRaGrid.Location = new System.Drawing.Point(317, 269);
+            this.txtRaGrid.Location = new System.Drawing.Point(317, 316);
             this.txtRaGrid.Margin = new System.Windows.Forms.Padding(2);
             this.txtRaGrid.Multiline = true;
             this.txtRaGrid.Name = "txtRaGrid";
@@ -675,8 +675,9 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvNotas.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvNotas.GridColor = System.Drawing.Color.MistyRose;
-            this.dgvNotas.Location = new System.Drawing.Point(59, 304);
+            this.dgvNotas.Location = new System.Drawing.Point(94, 343);
             this.dgvNotas.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvNotas.MultiSelect = false;
             this.dgvNotas.Name = "dgvNotas";
             this.dgvNotas.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -687,10 +688,11 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvNotas.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvNotas.RowHeadersVisible = false;
             this.dgvNotas.RowHeadersWidth = 62;
             this.dgvNotas.RowTemplate.Height = 28;
             this.dgvNotas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvNotas.Size = new System.Drawing.Size(381, 177);
+            this.dgvNotas.Size = new System.Drawing.Size(304, 133);
             this.dgvNotas.TabIndex = 31;
             this.dgvNotas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridNotas_CellClick);
             // 
@@ -720,8 +722,9 @@
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvProvas.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvProvas.GridColor = System.Drawing.Color.MistyRose;
-            this.dgvProvas.Location = new System.Drawing.Point(59, 66);
+            this.dgvProvas.Location = new System.Drawing.Point(40, 60);
             this.dgvProvas.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvProvas.MultiSelect = false;
             this.dgvProvas.Name = "dgvProvas";
             this.dgvProvas.ReadOnly = true;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -732,17 +735,18 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvProvas.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvProvas.RowHeadersVisible = false;
             this.dgvProvas.RowHeadersWidth = 62;
             this.dgvProvas.RowTemplate.Height = 28;
             this.dgvProvas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProvas.Size = new System.Drawing.Size(381, 172);
+            this.dgvProvas.Size = new System.Drawing.Size(416, 232);
             this.dgvProvas.TabIndex = 5;
             this.dgvProvas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridProvas_CellClick);
             // 
             // pictureBox6
             // 
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(47, 255);
+            this.pictureBox6.Location = new System.Drawing.Point(47, 302);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(401, 60);
