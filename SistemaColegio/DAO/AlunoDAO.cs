@@ -17,11 +17,10 @@ namespace SistemaColegio.DAO
             {
                 List<int> ras = new List<int>();
                 int ra = 0;
-                var raExiste = ras.Contains(ra);
                 conexao.AbrirConexao();
                 cmd = new MySqlCommand("SELECT a.RA FROM aluno a WHERE RA = @RA", conexao.conexao);
                 cmd.Parameters.AddWithValue("@RA", ra);
-
+                var raExiste = ras.Contains(ra);
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
