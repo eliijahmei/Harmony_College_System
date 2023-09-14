@@ -7,11 +7,5 @@ namespace SistemaColegio.Entidades
         void Create(Pessoa pessoa);
 
         void Update(Pessoa pessoa);
-
-        void Online(Pessoa pessoa);
-
-        void Offline(Pessoa pessoa);
-
-        DataTable Listar();
     }
 }

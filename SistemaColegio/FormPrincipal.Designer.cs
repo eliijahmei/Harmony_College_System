@@ -35,10 +35,8 @@
             this.btnAlunos = new System.Windows.Forms.Button();
             this.btnProfessores = new System.Windows.Forms.Button();
             this.btnProvas = new System.Windows.Forms.Button();
-            this.btnCadProfessor = new System.Windows.Forms.Button();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.sair = new System.Windows.Forms.Button();
-            this.btnCadAlunos = new System.Windows.Forms.Button();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.data = new System.Windows.Forms.Label();
@@ -84,7 +82,7 @@
             this.btnAlunos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnAlunos.FlatAppearance.BorderSize = 0;
             this.btnAlunos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAlunos.Location = new System.Drawing.Point(448, 58);
+            this.btnAlunos.Location = new System.Drawing.Point(368, 58);
             this.btnAlunos.Margin = new System.Windows.Forms.Padding(2);
             this.btnAlunos.Name = "btnAlunos";
             this.btnAlunos.Size = new System.Drawing.Size(120, 120);
@@ -99,7 +97,7 @@
             this.btnProfessores.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnProfessores.FlatAppearance.BorderSize = 0;
             this.btnProfessores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProfessores.Location = new System.Drawing.Point(324, 58);
+            this.btnProfessores.Location = new System.Drawing.Point(122, 58);
             this.btnProfessores.Margin = new System.Windows.Forms.Padding(2);
             this.btnProfessores.Name = "btnProfessores";
             this.btnProfessores.Size = new System.Drawing.Size(120, 120);
@@ -122,21 +120,6 @@
             this.btnProvas.UseVisualStyleBackColor = false;
             this.btnProvas.Click += new System.EventHandler(this.btnProvas_Click);
             // 
-            // btnCadProfessor
-            // 
-            this.btnCadProfessor.BackColor = System.Drawing.Color.Transparent;
-            this.btnCadProfessor.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCadProfessor.BackgroundImage")));
-            this.btnCadProfessor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCadProfessor.FlatAppearance.BorderSize = 0;
-            this.btnCadProfessor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCadProfessor.Location = new System.Drawing.Point(76, 58);
-            this.btnCadProfessor.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCadProfessor.Name = "btnCadProfessor";
-            this.btnCadProfessor.Size = new System.Drawing.Size(120, 120);
-            this.btnCadProfessor.TabIndex = 5;
-            this.btnCadProfessor.UseVisualStyleBackColor = false;
-            this.btnCadProfessor.Click += new System.EventHandler(this.btnCadProfessor_Click);
-            // 
             // timer
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
@@ -156,25 +139,10 @@
             this.sair.UseVisualStyleBackColor = false;
             this.sair.Click += new System.EventHandler(this.sair_Click);
             // 
-            // btnCadAlunos
-            // 
-            this.btnCadAlunos.BackColor = System.Drawing.Color.Transparent;
-            this.btnCadAlunos.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCadAlunos.BackgroundImage")));
-            this.btnCadAlunos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCadAlunos.FlatAppearance.BorderSize = 0;
-            this.btnCadAlunos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCadAlunos.Location = new System.Drawing.Point(200, 58);
-            this.btnCadAlunos.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCadAlunos.Name = "btnCadAlunos";
-            this.btnCadAlunos.Size = new System.Drawing.Size(120, 120);
-            this.btnCadAlunos.TabIndex = 6;
-            this.btnCadAlunos.UseVisualStyleBackColor = false;
-            this.btnCadAlunos.Click += new System.EventHandler(this.btnCadAlunos_Click);
-            // 
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(268, 11);
+            this.pictureBox5.Location = new System.Drawing.Point(274, 11);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(246, 147);
@@ -191,8 +159,6 @@
             this.panel1.Controls.Add(this.btnMedias);
             this.panel1.Controls.Add(this.btnProfessores);
             this.panel1.Controls.Add(this.btnBoletim);
-            this.panel1.Controls.Add(this.btnCadProfessor);
-            this.panel1.Controls.Add(this.btnCadAlunos);
             this.panel1.Controls.Add(this.btnProvas);
             this.panel1.Location = new System.Drawing.Point(85, 156);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
@@ -257,11 +223,9 @@
         private System.Windows.Forms.Button btnAlunos;
         private System.Windows.Forms.Button btnProfessores;
         private System.Windows.Forms.Button btnProvas;
-        private System.Windows.Forms.Button btnCadProfessor;
         private System.Windows.Forms.Button sair;
         private System.Windows.Forms.Button btnBoletim;
         private System.Windows.Forms.Timer timer;
-        private System.Windows.Forms.Button btnCadAlunos;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label data;

@@ -124,9 +124,10 @@ namespace SistemaColegio.View
         {
             try
             {
+                Pessoa pessoa = new Pessoa();
                 professor.Materia = new Materia();
                 DateTime dataNascimento = Convert.ToDateTime(dtDataNasc.Value.ToString());
-                int idade = professor.CalcularIdade(dataNascimento);
+                int idade = pessoa.CalcularIdade(dataNascimento);
                 string nome = txtNome.Text.Trim();
 
                 professor.Nome = txtNome.Text;
@@ -172,9 +173,10 @@ namespace SistemaColegio.View
         {
             try
             {
+                Pessoa pessoa = new Pessoa();
                 professor.Materia = new Materia();
                 DateTime dataNascimento = Convert.ToDateTime(dtDataNasc.Value.ToString());
-                int idade = professor.CalcularIdade(dataNascimento);
+                int idade = pessoa.CalcularIdade(dataNascimento);
                 string nome = txtNome.Text.Trim();
 
                 professor.Nome = txtNome.Text;

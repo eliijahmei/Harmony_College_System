@@ -167,7 +167,7 @@ namespace SistemaColegio.View
             List<double> notas = new List<double>();
             int materia = Convert.ToInt32(comboMateria.SelectedValue);
             int ra = Convert.ToInt32(comboRa.SelectedValue);
-
+            const int qtdeErradaDeNotasParaCalculo = 1;
             btnSalvar.Enabled = true;
 
             notas = provaModel.NotasPorMateriaRa(materia, ra);
@@ -179,7 +179,7 @@ namespace SistemaColegio.View
             
             double mediaCalculada = media.CalcularMedia(notas);
 
-            if (mediaCalculada == -1)
+            if (mediaCalculada == qtdeErradaDeNotasParaCalculo)
             {
                 txtMedia.Text = string.Empty;
                 MessageBox.Show("É necessário ter exatamente 4 notas para calcular a média.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);   

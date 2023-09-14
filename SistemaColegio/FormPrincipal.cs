@@ -28,11 +28,6 @@ namespace SistemaColegio
             FormCadastroProfessor form = new FormCadastroProfessor();
             form.Show();
         }
-        private void btnCadAlunos_Click(object sender, EventArgs e)
-        {
-            FormCadastroAluno form = new FormCadastroAluno();
-            form.Show();
-        }
         private void btnProfessores_Click(object sender, EventArgs e)
         {
             FormProfessores form = new FormProfessores();

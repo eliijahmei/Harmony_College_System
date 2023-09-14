@@ -154,7 +154,6 @@
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(305, 23);
             this.txtBuscar.TabIndex = 52;
-            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
             // label1
             // 
@@ -181,7 +180,6 @@
             this.comboSituacao.Name = "comboSituacao";
             this.comboSituacao.Size = new System.Drawing.Size(146, 28);
             this.comboSituacao.TabIndex = 49;
-            this.comboSituacao.SelectedIndexChanged += new System.EventHandler(this.comboSituacao_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -205,7 +203,6 @@
             this.comboTurma.Name = "comboTurma";
             this.comboTurma.Size = new System.Drawing.Size(61, 28);
             this.comboTurma.TabIndex = 47;
-            this.comboTurma.SelectedIndexChanged += new System.EventHandler(this.comboTurma_SelectedIndexChanged);
             // 
             // dgv
             // 

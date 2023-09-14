@@ -44,39 +44,36 @@ namespace SistemaColegio.DAO
                 conexao.FecharConexao();
             }
         }
-        public DataTable ListarAlunos()
+        public List<Aluno> ListaAlunos()
         {
             try
             {
-                DataTable dt = new DataTable();
+                var alunos = new List<Aluno>();
                 conexao.AbrirConexao();
-                cmd = new MySqlCommand("SELECT a.RA, a.Nome, a.Sexo, a.DataNascimento, c.Classe, a.Situacao FROM aluno a INNER JOIN classe c ON a.Classe = c.ID ORDER BY ID ASC, Nome", conexao.conexao);
-                MySqlDataAdapter da = new MySqlDataAdapter();
-                da.SelectCommand = cmd;
-                da.Fill(dt);
-                return dt;
-            }
-            catch
-            {
-                throw;
-            }
-            finally
-            {
-                conexao.FecharConexao();
-            }
-        }
-        public DataTable ListarAlunosPorRa(int ra)
-        {
-            try
-            {
-                DataTable dt = new DataTable();
-                conexao.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM aluno a INNER JOIN classe c ON a.Classe = c.ID WHERE a.RA = @ra ORDER BY ID ASC, Nome", conexao.conexao);
-                cmd.Parameters.AddWithValue("RA", ra);
-                MySqlDataAdapter da = new MySqlDataAdapter();
-                da.SelectCommand = cmd;
-                da.Fill(dt);
-                return dt;
+                cmd = new MySqlCommand("SELECT a.RA, a.Nome, a.Sexo, a.DataNascimento, c.Classe, a.Status, c.ID FROM aluno a INNER JOIN classe c ON a.Classe = c.ID ORDER BY c.ID ASC, a.Nome", conexao.conexao);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var classes = new Classe
+                        {
+                            Id = Convert.ToInt32(reader["ID"]),
+                            Classee = reader["Classe"].ToString()
+                        };
+                        var aluno = new Aluno
+                        {
+                            Ra = Convert.ToInt32(reader["RA"].ToString()),
+                            Nome = reader["Nome"].ToString(),
+                            Sexo = reader["Sexo"].ToString(),
+                            DataNasc = Convert.ToDateTime(reader["DataNascimento"]),
+                            Classe = classes,
+                            Status = reader["Status"].ToString()
+                        };
+                        alunos.Add(aluno);
+                    }
+                }
+                return alunos;
             }
             catch
             {
@@ -110,29 +107,7 @@ namespace SistemaColegio.DAO
                 conexao.FecharConexao();
             }
         }
-        public DataTable ListarAlunosPorClasseSituacao(int classe, string situacao)
-        {
-            try
-            {
-                DataTable dt = new DataTable();
-                conexao.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM aluno a WHERE a.Classe = @ID AND a.Situacao = @situacao", conexao.conexao);
-                cmd.Parameters.AddWithValue("@ID", classe);
-                cmd.Parameters.AddWithValue("@situacao", situacao);
-                MySqlDataAdapter da = new MySqlDataAdapter();
-                da.SelectCommand = cmd;
-                da.Fill(dt);
-                return dt;
-            }
-            catch
-            {
-                throw;
-            }
-            finally
-            {
-                conexao.FecharConexao();
-            }
-        }
+
         public Aluno PegaBoletimAlunoPorRa(int alunoRA)
         {
             try
@@ -160,42 +135,21 @@ namespace SistemaColegio.DAO
             }
             return null;
         }
-        public DataTable BuscarAlunosPorRA(string ra)
-        {
-            try
-            {
-                DataTable dt = new DataTable();
-                conexao.AbrirConexao();
-                cmd = new MySqlCommand("SELECT a.RA, a.Nome, a.Sexo, a.DataNascimento, c.Classe FROM aluno a INNER JOIN classe c ON a.Classe = c.ID WHERE RA LIKE @RA ORDER BY ID ASC, Nome", conexao.conexao);
-                cmd.Parameters.AddWithValue("@RA", "%" + ra + "%");
-                MySqlDataAdapter da = new MySqlDataAdapter();
-                da.SelectCommand = cmd;
-                da.Fill(dt);
-                return dt;
-            }
-            catch
-            {
-                throw;
-            }
-            finally
-            {
-                conexao.FecharConexao();
-            }
-        }
+
         public void SalvarAluno(Aluno aluno)
         {
             try
             {
                 int ra = GerarRA();
                 conexao.AbrirConexao();
-                cmd = new MySqlCommand("INSERT INTO aluno(RA, Nome, Sexo, DataNascimento, Classe, Situacao) VALUES(@RA, @Nome, @Sexo, @DataNascimento, @Classe, @Situacao)", conexao.conexao);
+                cmd = new MySqlCommand("INSERT INTO aluno(RA, Nome, Sexo, DataNascimento, Classe, Status) VALUES(@RA, @Nome, @Sexo, @DataNascimento, @Classe, @Status)", conexao.conexao);
                 {
                     cmd.Parameters.AddWithValue("@RA", ra);
                     cmd.Parameters.AddWithValue("@Nome", aluno.Nome);
                     cmd.Parameters.AddWithValue("@Sexo", aluno.Sexo);
                     cmd.Parameters.AddWithValue("@DataNascimento", aluno.DataNasc);
                     cmd.Parameters.AddWithValue("@Classe", aluno.Classe.Id);
-                    cmd.Parameters.AddWithValue("@Situacao", "Estudando");
+                    cmd.Parameters.AddWithValue("@Status", "Estudando");
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -213,54 +167,20 @@ namespace SistemaColegio.DAO
             try
             {
                 conexao.AbrirConexao();
-                cmd = new MySqlCommand("UPDATE aluno SET Nome = @Nome, Sexo = @Sexo, DataNascimento = @DataNascimento, Classe = @Classe WHERE RA = @RA", conexao.conexao);
+                cmd = new MySqlCommand("UPDATE aluno SET Nome = @Nome, Sexo = @Sexo, DataNascimento = @DataNascimento, Classe = @Classe, Status = @Status WHERE RA = @RA", conexao.conexao);
                 {
                     cmd.Parameters.AddWithValue("@RA", aluno.Ra);
                     cmd.Parameters.AddWithValue("@Nome", aluno.Nome);
                     cmd.Parameters.AddWithValue("@Sexo", aluno.Sexo);
                     cmd.Parameters.AddWithValue("@DataNascimento", aluno.DataNasc);
                     cmd.Parameters.AddWithValue("@Classe", aluno.Classe.Id);
+                    cmd.Parameters.AddWithValue("@Status", aluno.Status);
                     cmd.ExecuteNonQuery();
                 }
             }
             catch
             {
-                throw;
-            }
-            finally
-            {
-                conexao.FecharConexao();
-            }
-        }
-        public void AtualizarNaoEstudando(Aluno aluno)
-        {
-            try
-            {
-                conexao.AbrirConexao();
-                cmd = new MySqlCommand("UPDATE aluno SET Situacao = 'Não Estudando' WHERE RA = @RA", conexao.conexao);
-                cmd.Parameters.AddWithValue("@RA", aluno.Ra);
-                cmd.ExecuteNonQuery();
-            }
-            catch
-            {
-                throw;
-            }
-            finally
-            {
-                conexao.FecharConexao();
-            }
-        }
-        public void AtualizarEstudando(Aluno aluno)
-        {
-            try
-            {
-                conexao.AbrirConexao();
-                cmd = new MySqlCommand("UPDATE aluno SET Situacao = 'Estudando' WHERE RA = @RA", conexao.conexao);
-                cmd.Parameters.AddWithValue("@RA", aluno.Ra);
-                cmd.ExecuteNonQuery();
-            }
-            catch
-            {
+
                 throw;
             }
             finally

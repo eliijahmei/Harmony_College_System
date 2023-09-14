@@ -41,7 +41,6 @@ C:\Users\Dell\Desktop\SistemaColegio\SistemaColegio\obj\Debug\SistemaColegio.csp
 C:\Users\Dell\Desktop\SistemaColegio\SistemaColegio\obj\Debug\SistemaColegio.csproj.CopyComplete
 C:\Users\Dell\Desktop\SistemaColegio\SistemaColegio\obj\Debug\SistemaColegio.exe
 C:\Users\Dell\Desktop\SistemaColegio\SistemaColegio\obj\Debug\SistemaColegio.pdb
-C:\Users\Dell\Desktop\SistemaColegio\SistemaColegio\obj\Debug\SistemaColegio.View.FormCadastroAluno.resources
 C:\Users\Dell\Desktop\SistemaColegio\SistemaColegio\obj\Debug\SistemaColegio.View.FormProfessores.resources
 C:\Users\Dell\Desktop\SistemaColegio\SistemaColegio\obj\Debug\SistemaColegio.View.FormAlunos.resources
 C:\Users\Dell\Desktop\SistemaColegio\SistemaColegio\obj\Debug\SistemaColegio.View.FormProvas.resources

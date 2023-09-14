@@ -17,11 +17,10 @@ namespace SistemaColegio.DAO
             {
                 List<int> ids = new List<int>();
                 int id = 0;
-                var idExiste = false;
                 conexao.AbrirConexao();
                 cmd = new MySqlCommand("SELECT p.ID FROM professor p WHERE ID = @ID", conexao.conexao);
                 cmd.Parameters.AddWithValue("@ID", id);
-
+                var idExiste = ids.Contains(id);
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())

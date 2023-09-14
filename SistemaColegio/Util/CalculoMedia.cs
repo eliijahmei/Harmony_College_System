@@ -10,16 +10,18 @@ namespace SistemaColegio
             double media;
             double totalNotas = 0;
             int quantidadeNotas = notas.Count;
+            const int qtdeNecessaria = 4;
+            const int qtdeErradaDeNotasParaCalculo = 1;
 
             totalNotas += notas.Sum();
 
-            if (quantidadeNotas == 4)
+            if (quantidadeNotas == qtdeNecessaria)
             {
                 media = totalNotas / quantidadeNotas;
             }
             else
             {
-                media = -1;
+                media = qtdeErradaDeNotasParaCalculo;
             }
             return media;
         }

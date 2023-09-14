@@ -32,62 +32,62 @@ namespace SistemaColegio.View
         private void timer_Tick(object sender, EventArgs e)
         {
             lblHora.Text = DateTime.Now.ToLongTimeString();
+        //}
+        //private void comboTurma_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    int classe = Convert.ToInt32(comboTurma.SelectedValue);
+        //    string situacao = comboSituacao.Text.ToString();
+        //    ListarAlunosPorClasseSituacao(classe, situacao);
+        //}
+        //private void comboSituacao_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    int classe = Convert.ToInt32(comboTurma.SelectedValue);
+        //    string situacao = comboSituacao.Text.ToString();
+        //    ListarAlunosPorClasseSituacao(classe, situacao);
         }
-        private void comboTurma_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int classe = Convert.ToInt32(comboTurma.SelectedValue);
-            string situacao = comboSituacao.Text.ToString();
-            ListarAlunosPorClasseSituacao(classe, situacao);
-        }
-        private void comboSituacao_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int classe = Convert.ToInt32(comboTurma.SelectedValue);
-            string situacao = comboSituacao.Text.ToString();
-            ListarAlunosPorClasseSituacao(classe, situacao);
-        }
-        private void txtBuscar_TextChanged(object sender, EventArgs e)
-        {
-            int classe = Convert.ToInt32(comboTurma.SelectedValue);
-            string situacao = comboSituacao.Text.ToString();
-            if (txtBuscar.Text == "")
-            {
-                ListarAlunosPorClasseSituacao(classe, situacao);
-                return;
-            }
-            BuscarAlunos(txtBuscar.Text);
-        }
+        //private void txtBuscar_TextChanged(object sender, EventArgs e)
+        //{
+        //    int classe = Convert.ToInt32(comboTurma.SelectedValue);
+        //    string situacao = comboSituacao.Text.ToString();
+        //    if (txtBuscar.Text == "")
+        //    {
+        //        ListarAlunosPorClasseSituacao(classe, situacao);
+        //        return;
+        //    }
+        //    BuscarAlunos(txtBuscar.Text);
+        //}
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public void BuscarAlunos(string ra)
-        {
-            try
-            {
-                dgv.DataSource = alunoModel.BuscarAlunosPorRA(ra);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Erro ao listar buscar os dados do aluno! ", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-        public void ListarAlunosPorClasseSituacao(int classe, string situacao)
-        {
-            try
-            {
-                dgv.EnableHeadersVisualStyles = false;
-                dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.IndianRed;
-                dgv.DataSource = alunoModel.ListarAlunosPorClasseSituacao(classe, situacao);
+        //public void BuscarAlunos(string ra)
+        //{
+        //    try
+        //    {
+        //        dgv.DataSource = alunoModel.BuscarAlunosPorRA(ra);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        MessageBox.Show("Erro ao listar buscar os dados do aluno! ", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //    }
+        //}
+        //public void ListarAlunosPorClasseSituacao(int classe, string situacao)
+        //{
+        //    try
+        //    {
+        //        dgv.EnableHeadersVisualStyles = false;
+        //        dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.IndianRed;
+        //        dgv.DataSource = alunoModel.ListarAlunosPorClasse(classe, situacao);
 
-                dgv.Columns[0].HeaderText = "RA";
-                dgv.Columns[1].HeaderText = "Nome";
-                dgv.Columns[2].HeaderText = "Sexo";
-                dgv.Columns[3].HeaderText = "Data de Nascimento";
-                dgv.Columns[4].HeaderText = "Classe";
-                dgv.Columns[4].Visible = false;
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Erro ao listar os alunos pela classe e situação! ", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
+        //        dgv.Columns[0].HeaderText = "RA";
+        //        dgv.Columns[1].HeaderText = "Nome";
+        //        dgv.Columns[2].HeaderText = "Sexo";
+        //        dgv.Columns[3].HeaderText = "Data de Nascimento";
+        //        dgv.Columns[4].HeaderText = "Classe";
+        //        dgv.Columns[4].Visible = false;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        MessageBox.Show("Erro ao listar os alunos pela classe e situação! ", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //    }
+        //}
         private void dgv_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if(e.RowIndex < 0) 
