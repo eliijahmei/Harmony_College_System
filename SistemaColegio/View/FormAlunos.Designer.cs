@@ -54,6 +54,12 @@
             this.comboClasseFiltro = new System.Windows.Forms.ComboBox();
             this.txtBuscarRa = new System.Windows.Forms.TextBox();
             this.dgv = new System.Windows.Forms.DataGridView();
+            this.RA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sexo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataNasc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Classe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
@@ -75,10 +81,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.comboSexo = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.RA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sexo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataNascimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -291,10 +293,6 @@
             this.comboStatusFiltro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboStatusFiltro.Font = new System.Drawing.Font("Microsoft Yi Baiti", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboStatusFiltro.FormattingEnabled = true;
-            this.comboStatusFiltro.Items.AddRange(new object[] {
-            "Selecione",
-            "Estudando",
-            "Não estudando"});
             this.comboStatusFiltro.Location = new System.Drawing.Point(210, 131);
             this.comboStatusFiltro.Margin = new System.Windows.Forms.Padding(2);
             this.comboStatusFiltro.Name = "comboStatusFiltro";
@@ -337,6 +335,7 @@
             this.txtBuscarRa.Size = new System.Drawing.Size(72, 23);
             this.txtBuscarRa.TabIndex = 20;
             this.txtBuscarRa.TextChanged += new System.EventHandler(this.txtBuscarRa_TextChanged);
+            this.txtBuscarRa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarRa_KeyPress);
             // 
             // dgv
             // 
@@ -359,7 +358,9 @@
             this.RA,
             this.Nome,
             this.Sexo,
-            this.DataNascimento});
+            this.DataNasc,
+            this.Classe,
+            this.Status});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -369,7 +370,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.GridColor = System.Drawing.Color.MistyRose;
-            this.dgv.Location = new System.Drawing.Point(99, 211);
+            this.dgv.Location = new System.Drawing.Point(96, 210);
             this.dgv.Margin = new System.Windows.Forms.Padding(2);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
@@ -389,6 +390,50 @@
             this.dgv.Size = new System.Drawing.Size(419, 326);
             this.dgv.TabIndex = 5;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
+            // 
+            // RA
+            // 
+            this.RA.DataPropertyName = "Ra";
+            this.RA.HeaderText = "RA";
+            this.RA.Name = "RA";
+            this.RA.ReadOnly = true;
+            // 
+            // Nome
+            // 
+            this.Nome.DataPropertyName = "Nome";
+            this.Nome.HeaderText = "Nome";
+            this.Nome.Name = "Nome";
+            this.Nome.ReadOnly = true;
+            // 
+            // Sexo
+            // 
+            this.Sexo.DataPropertyName = "Sexo";
+            this.Sexo.HeaderText = "Sexo";
+            this.Sexo.Name = "Sexo";
+            this.Sexo.ReadOnly = true;
+            // 
+            // DataNasc
+            // 
+            this.DataNasc.DataPropertyName = "DataNasc";
+            this.DataNasc.HeaderText = "Data de nascimento";
+            this.DataNasc.Name = "DataNasc";
+            this.DataNasc.ReadOnly = true;
+            // 
+            // Classe
+            // 
+            this.Classe.DataPropertyName = "Classe";
+            this.Classe.HeaderText = "Classe";
+            this.Classe.Name = "Classe";
+            this.Classe.ReadOnly = true;
+            this.Classe.Visible = false;
+            // 
+            // Status
+            // 
+            this.Status.DataPropertyName = "Status";
+            this.Status.HeaderText = "Status";
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            this.Status.Visible = false;
             // 
             // pictureBox7
             // 
@@ -471,10 +516,6 @@
             this.comboStatus.Enabled = false;
             this.comboStatus.Font = new System.Drawing.Font("Microsoft Yi Baiti", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboStatus.FormattingEnabled = true;
-            this.comboStatus.Items.AddRange(new object[] {
-            "Selecione",
-            "Estudando",
-            "Não estudando"});
             this.comboStatus.Location = new System.Drawing.Point(181, 381);
             this.comboStatus.Margin = new System.Windows.Forms.Padding(2);
             this.comboStatus.Name = "comboStatus";
@@ -618,6 +659,7 @@
             this.dtDataNasc.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtDataNasc.Location = new System.Drawing.Point(315, 328);
             this.dtDataNasc.Margin = new System.Windows.Forms.Padding(2);
+            this.dtDataNasc.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dtDataNasc.Name = "dtDataNasc";
             this.dtDataNasc.Size = new System.Drawing.Size(105, 20);
             this.dtDataNasc.TabIndex = 4;
@@ -673,34 +715,6 @@
             this.label2.Size = new System.Drawing.Size(75, 24);
             this.label2.TabIndex = 1;
             this.label2.Text = "Nome:";
-            // 
-            // RA
-            // 
-            this.RA.DataPropertyName = "Ra";
-            this.RA.HeaderText = "RA";
-            this.RA.Name = "RA";
-            this.RA.ReadOnly = true;
-            // 
-            // Nome
-            // 
-            this.Nome.DataPropertyName = "Nome";
-            this.Nome.HeaderText = "Nome";
-            this.Nome.Name = "Nome";
-            this.Nome.ReadOnly = true;
-            // 
-            // Sexo
-            // 
-            this.Sexo.DataPropertyName = "Sexo";
-            this.Sexo.HeaderText = "Sexo";
-            this.Sexo.Name = "Sexo";
-            this.Sexo.ReadOnly = true;
-            // 
-            // DataNascimento
-            // 
-            this.DataNascimento.DataPropertyName = "DataNasc";
-            this.DataNascimento.HeaderText = "Data de nascimento";
-            this.DataNascimento.Name = "DataNascimento";
-            this.DataNascimento.ReadOnly = true;
             // 
             // FormAlunos
             // 
@@ -792,6 +806,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn RA;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sexo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DataNascimento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataNasc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Classe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
     }
 }

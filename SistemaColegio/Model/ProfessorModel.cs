@@ -56,28 +56,6 @@ namespace SistemaColegio.Model
                 throw;
             }
         }
-        public void Offline(Pessoa pessoa)
-        {
-            try
-            {
-                professorDAO.AtualizarNaoLecionando(pessoa as Professor);
-            }
-            catch 
-            {
-                throw;
-            }
-        }
-        public void Online(Pessoa pessoa)
-        {
-            try
-            {
-                professorDAO.AtualizarLecionando(pessoa as Professor);
-            }
-            catch 
-            {
-                throw;
-            }
-        }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 }

@@ -7,7 +7,6 @@ namespace SistemaColegio.Entidades
         private string _nome;
         private string _sexo;
         private DateTime _dataNasc;
-        private string _status;
 
         public Pessoa()
         {  
@@ -20,7 +19,6 @@ namespace SistemaColegio.Entidades
         public string Nome { get => _nome; set => _nome = value; }
         public string Sexo { get => _sexo; set => _sexo = value; }
         public DateTime DataNasc { get => _dataNasc; set => _dataNasc = value; }
-        public string Status { get => _status; set => _status = value; }
 
         public int CalcularIdade(DateTime dataNascimento)
         {

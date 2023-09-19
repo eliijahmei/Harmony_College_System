@@ -7,5 +7,10 @@
 
         public string Classee { get => classe; set => classe = value; }
         public int Id { get => id; set => id = value; }
+
+        public override string ToString()
+        {
+            return classe;
+        }
     }
 }

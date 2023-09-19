@@ -362,6 +362,7 @@
             this.txtMedia.Name = "txtMedia";
             this.txtMedia.Size = new System.Drawing.Size(55, 23);
             this.txtMedia.TabIndex = 52;
+            this.txtMedia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMedia_KeyPress);
             // 
             // label2
             // 

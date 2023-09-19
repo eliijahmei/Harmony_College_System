@@ -98,6 +98,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\StatusDAO.cs" />
+    <Compile Include="Entidades\StatusAluno.cs" />
+    <Compile Include="Entidades\StatusProfessor.cs" />
+    <Compile Include="Model\StatusModel.cs" />
     <Compile Include="Util\CalculoMedia.cs" />
     <Compile Include="Util\Conexao.cs" />
     <Compile Include="DAO\AlunoDAO.cs" />

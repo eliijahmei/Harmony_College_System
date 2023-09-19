@@ -203,34 +203,7 @@ namespace SistemaColegio.View
                 MessageBox.Show("Erro ao editar o professor! " + ex, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        public void AtualizarNaoLecionando(Professor professor)
-        {
-            try
-            {
-                professorModel.Offline(professor);
-                MessageBox.Show("Status atualizado com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                btnAlterarLecionando.Enabled = false;
-                btnAlterarNaoLecionando.Enabled = false;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao atualizar o status!  " + ex, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-        public void AtualizarLecionando(Professor professor)
-        {
-            try { 
-                string nome = txtNome.Text.Trim();
-                professorModel.Online(professor);
-                MessageBox.Show("Status atualizado com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                btnAlterarLecionando.Enabled = false;
-                btnAlterarNaoLecionando.Enabled = false;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao atualizar o status!  " + ex, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
+       
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void novoProfessor_Click(object sender, EventArgs e)
         {
@@ -275,7 +248,6 @@ namespace SistemaColegio.View
             }
 
             professor.Id = Convert.ToInt32(grid.CurrentRow.Cells["ID"].Value);
-            AtualizarNaoLecionando(professor);
             ListarProfessores();
         }
         private void AlterarLecionando_Click(object sender, EventArgs e)
@@ -293,7 +265,6 @@ namespace SistemaColegio.View
             }
 
             professor.Id = Convert.ToInt32(grid.CurrentRow.Cells["ID"].Value);
-            AtualizarLecionando(professor);
             ListarProfessores();
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

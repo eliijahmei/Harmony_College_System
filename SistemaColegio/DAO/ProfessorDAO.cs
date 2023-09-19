@@ -1,8 +1,8 @@
-﻿using SistemaColegio.Entidades;
+﻿using System.Collections.Generic;
+using SistemaColegio.Entidades;
 using MySql.Data.MySqlClient;
 using System.Data;
 using System;
-using System.Collections.Generic;
 
 namespace SistemaColegio.DAO
 {

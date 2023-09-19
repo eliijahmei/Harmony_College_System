@@ -122,7 +122,6 @@ namespace SistemaColegio.View
                 int classe = Convert.ToInt32(comboTurmaNota.SelectedValue);
                 int materia = Convert.ToInt32(comboMateriaNota.SelectedValue);
                 comboId.DataSource = provaModel.ListarProvasPorMateriaTurma(materia, classe);
-                comboRa.DataSource = alunoModel.ListarAlunosPorClasseEstudando(classe);
             }
         }
         private void raAlunoAt_SelectedIndexChanged(object sender, EventArgs e)

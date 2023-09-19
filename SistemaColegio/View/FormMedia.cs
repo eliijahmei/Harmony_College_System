@@ -46,7 +46,6 @@ namespace SistemaColegio.View
             if (comboTurma.SelectedValue != null)
             {
                 int classe = Convert.ToInt32(comboTurma.SelectedValue);
-                comboRa.DataSource = alunoModel.ListarAlunosPorClasseEstudando(classe);
             }
         }
         private void materia_SelectedIndexChanged(object sender, EventArgs e)
@@ -218,6 +217,11 @@ namespace SistemaColegio.View
         private void sairMedias_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void txtMedia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }

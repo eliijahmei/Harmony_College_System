@@ -1,16 +1,17 @@
-﻿using SistemaColegio.Model;
+﻿using SistemaColegio.Entidades;
+using SistemaColegio.Model;
 using System.Windows.Forms;
 using System.Drawing;
 using System;
-using System.Data;
-using SistemaColegio.Entidades;
 
 namespace SistemaColegio.View
 {
     public partial class FormAlunos : Form
     {
-        AlunoModel alunoModel = new AlunoModel();
+
         ClassesModel classesModel = new ClassesModel();
+        StatusModel statusModel = new StatusModel();
+        AlunoModel alunoModel = new AlunoModel();
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public FormAlunos()
         {
@@ -18,17 +19,23 @@ namespace SistemaColegio.View
         }
         private void FormAlunos_Load(object sender, EventArgs e)
         {
-            comboSexo.SelectedIndex = 0;
-            comboStatusFiltro.SelectedIndex = 0;
-            comboStatus.SelectedIndex = 0;
-            comboClasse.ValueMember = "ID";
-            comboClasse.DisplayMember = "Classe";
             comboClasseFiltro.ValueMember = "ID";
+            comboStatusFiltro.ValueMember = "ID";
+            comboClasse.ValueMember = "ID";
+            comboStatus.ValueMember = "ID";
             comboClasseFiltro.DisplayMember = "Classe";
-            comboClasse.DataSource = ListarClasses();
-            comboClasseFiltro.DataSource = ListarClasses();
+            comboStatusFiltro.DisplayMember = "Status";
+            comboClasse.DisplayMember = "Classe";
+            comboStatus.DisplayMember = "Status";
 
-            PopulandoDgv();
+            comboStatusFiltro.SelectedValue = 0;
+            comboClasse.SelectedValue = 0;
+            comboSexo.SelectedIndex = 0;
+
+            comboStatusFiltro.DataSource = statusModel.ListarStatusAluno();
+            comboClasseFiltro.DataSource = classesModel.ListarClasses();
+            comboStatus.DataSource = statusModel.ListarStatusAluno();
+            comboClasse.DataSource = classesModel.ListarClasses();
 
             timer.Start();
 
@@ -77,6 +84,13 @@ namespace SistemaColegio.View
                 e.Handled = true;
             }
         }
+        public void KeyPressTXTra(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
         private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
         {
             KeyPressTXT(sender, e);
@@ -84,6 +98,10 @@ namespace SistemaColegio.View
         private void txtBuscarNome_KeyPress(object sender, KeyPressEventArgs e)
         {
             KeyPressTXT(sender, e);
+        }
+        private void txtBuscarRa_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            KeyPressTXTra(sender, e);
         }
 
         #endregion
@@ -94,7 +112,7 @@ namespace SistemaColegio.View
         {
             try
             {
-                FiltroDgv();
+                PopulandoDgv();
             }
             catch
             {
@@ -105,7 +123,7 @@ namespace SistemaColegio.View
         {
             try
             {
-                FiltroDgv();
+                PopulandoDgv();
             }
             catch
             {
@@ -116,7 +134,7 @@ namespace SistemaColegio.View
         {
             try
             {
-                FiltroDgv();
+                PopulandoDgv();
             }
             catch
             {
@@ -127,7 +145,7 @@ namespace SistemaColegio.View
         {
             try
             {
-                FiltroDgv();
+                PopulandoDgv();
             }
             catch
             {
@@ -141,15 +159,13 @@ namespace SistemaColegio.View
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            comboStatus.Enabled = true;
             btnSalvar.Enabled = false;
             btnEditar.Enabled = true;
             btnNovo.Enabled = true;
 
             if (e.RowIndex < 0)
                 return;
-
-            HabilitarCampos();
-            comboStatus.Enabled = true;
 
             txtRa.Text = dgv.CurrentRow.Cells[0].Value.ToString();
             txtNome.Text = dgv.CurrentRow.Cells[1].Value.ToString();
@@ -158,69 +174,35 @@ namespace SistemaColegio.View
             comboClasse.Text = dgv.CurrentRow.Cells[4].Value.ToString();
             comboStatus.Text = dgv.CurrentRow.Cells[5].Value.ToString();
 
-            if (e.RowIndex < 0)
-                return;
+            HabilitarCampos();
         }
         public void PopulandoDgv()
         {
-            dgv.AutoGenerateColumns = false;
-            dgv.EnableHeadersVisualStyles = false;
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.IndianRed;
+            if (comboClasseFiltro.Items.Count == 13 && comboStatusFiltro.Items.Count == 3)
+            {
+                dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.IndianRed;
+                dgv.EnableHeadersVisualStyles = false;
+                dgv.AutoGenerateColumns = false;
 
-            dgv.Columns[0].HeaderText = "RA";
-            dgv.Columns[1].HeaderText = "Nome";
-            dgv.Columns[2].HeaderText = "Sexo";
-            dgv.Columns[3].HeaderText = "Data de Nascimento";
-        }
-        public void FiltroDgv()
-        {
-            //Busca apenas por RA:
-            if (!(txtBuscarRa.Text == "") && (txtBuscarNome.Text == "") && Convert.ToInt32(comboClasseFiltro.SelectedValue) == 0 && comboStatusFiltro.SelectedIndex == 0)
-            {
                 string ra = txtBuscarRa.Text;
-                dgv.DataSource = alunoModel.ListarAlunosPorRa(ra);
-            }
-            //Busca apenas por Nome:
-            if (!(txtBuscarNome.Text == "") && (txtBuscarRa.Text == "") && Convert.ToInt32(comboClasseFiltro.SelectedValue) == 0 && comboStatusFiltro.SelectedIndex == 0)
-            {
                 string nome = txtBuscarNome.Text;
-                dgv.DataSource = alunoModel.ListarAlunosPorNome(nome);
+                string classe = comboClasseFiltro.SelectedValue.ToString();
+                string status = comboStatusFiltro.SelectedValue.ToString();
+
+                //Atualiza a grid:
+                if (txtBuscarRa.Text == "" && (txtBuscarNome.Text == "") && Convert.ToInt32(comboClasseFiltro.SelectedValue) == 0 && Convert.ToInt32(comboStatusFiltro.SelectedValue) == 0)
+                {
+                    dgv.DataSource = null;
+                }
+                else
+                {
+                    dgv.DataSource = alunoModel.ListarAlunos(ra, nome, classe, status);
+                }
             }
-            //Busca apenas por Classe:
-            if (!(Convert.ToInt32(comboClasseFiltro.SelectedValue) == 0) && txtBuscarRa.Text == "" && txtBuscarNome.Text == "" && comboStatusFiltro.SelectedIndex == 0)
-            {
-                string classe = comboClasse.SelectedValue.ToString();
-                dgv.DataSource = alunoModel.ListarAlunosPorClasse(classe);
-            }
-            //Busca apenas por Status:
-            if (!(comboStatusFiltro.SelectedIndex == 0) && txtBuscarRa.Text == "" && txtBuscarNome.Text == "" && Convert.ToInt32(comboClasseFiltro.SelectedValue) == 0)
-            {
-                string status = comboStatusFiltro.Text;
-                dgv.DataSource = alunoModel.ListarAlunosPorStatus(status);
-            }
-            //Busca por RA e Status:
-            if (!(txtBuscarRa.Text == "") && !(comboStatusFiltro.SelectedIndex == 0) && (txtBuscarNome.Text == "") && Convert.ToInt32(comboClasseFiltro.SelectedValue) == 0)
-            {
-                string ra = txtBuscarRa.Text;
-                string status = comboStatusFiltro.SelectedIndex.ToString();
-                dgv.DataSource = alunoModel.ListarAlunosPorRaStatus(ra, status);
-            }
+
         }
         #endregion
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////     
-        public DataTable ListarClasses()
-        {
-            try
-            {
-                return classesModel.ListarClasses();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Erro ao listar as classes!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return null;
-            }
-        }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public void SalvarAluno(Aluno aluno)
@@ -233,7 +215,6 @@ namespace SistemaColegio.View
                 DateTime dataNascimento = Convert.ToDateTime(dtDataNasc.Value.ToString());
 
                 int idade = pessoa.CalcularIdade(dataNascimento);
-
                 string nome = txtNome.Text.Trim();
 
                 aluno.Nome = txtNome.Text;
@@ -266,9 +247,11 @@ namespace SistemaColegio.View
 
                 MessageBox.Show("Aluno salvo com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                LimparCampos();
-                DesabilitarCampos();
                 btnSalvar.Enabled = false;
+
+                DesabilitarCampos();
+                LimparCampos();
+                PopulandoDgv();
             }
             catch (Exception)
             {
@@ -280,19 +263,20 @@ namespace SistemaColegio.View
             try
             {
                 Pessoa pessoa = new Pessoa();
+
+                aluno.Status = new StatusAluno();
                 aluno.Classe = new Classe();
 
                 DateTime dataNascimento = Convert.ToDateTime(dtDataNasc.Value.ToString());
 
                 int idade = pessoa.CalcularIdade(dataNascimento);
-
                 string nome = this.txtNome.Text.Trim();
 
                 aluno.Nome = this.txtNome.Text;
                 aluno.Sexo = comboSexo.Text;
                 aluno.DataNasc = Convert.ToDateTime(this.dtDataNasc.Text);
                 aluno.Classe.Id = Convert.ToInt32(comboClasse.SelectedValue);
-                aluno.Status = comboStatus.Text;
+                aluno.Status.Id = Convert.ToInt32(comboStatus.SelectedValue);
 
                 if (Convert.ToInt32(comboClasse.SelectedValue) == 0)
                 {
@@ -321,7 +305,10 @@ namespace SistemaColegio.View
                 }
 
                 alunoModel.Update(aluno);
+
                 MessageBox.Show("Aluno editado com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                PopulandoDgv();
             }
             catch (Exception)
             {
@@ -331,13 +318,12 @@ namespace SistemaColegio.View
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void btnNovo_Click(object sender, EventArgs e)
         {
-            btnSalvar.Enabled = true;
             btnEditar.Enabled = false;
+            btnSalvar.Enabled = true;
             btnNovo.Enabled = false;
 
-            HabilitarCampos();
             LimparCampos();
-            PopulandoDgv();
+            HabilitarCampos();
         }
         private void btnSalvar_Click(object sender, EventArgs e)
         {
@@ -371,7 +357,6 @@ namespace SistemaColegio.View
         {
             this.Close();
         }
-
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 }

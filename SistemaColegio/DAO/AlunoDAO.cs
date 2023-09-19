@@ -50,16 +50,21 @@ namespace SistemaColegio.DAO
             {
                 var alunos = new List<Aluno>();
                 conexao.AbrirConexao();
-                cmd = new MySqlCommand("SELECT a.RA, a.Nome, a.Sexo, a.DataNascimento, c.Classe, a.Status, c.ID FROM aluno a INNER JOIN classe c ON a.Classe = c.ID ORDER BY c.ID ASC, a.Nome", conexao.conexao);
-
+                cmd = new MySqlCommand("SELECT a.RA, a.Nome, a.Sexo, a.DataNascimento, c.Classe, sa.Status, c.ID AS classeID, sa.ID AS statusID FROM aluno a INNER JOIN classe c ON a.Classe = c.ID INNER JOIN statusAluno sa ON a.Status = sa.ID ORDER BY c.ID ASC, a.Nome", conexao.conexao);
+               
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         var classes = new Classe
                         {
-                            Id = Convert.ToInt32(reader["ID"]),
+                            Id = Convert.ToInt32(reader["classeID"]),
                             Classee = reader["Classe"].ToString()
+                        }; 
+                        var status = new StatusAluno
+                        {
+                            Id = Convert.ToInt32(reader["statusID"]),
+                            Status = reader["Status"].ToString()
                         };
                         var aluno = new Aluno
                         {
@@ -68,7 +73,7 @@ namespace SistemaColegio.DAO
                             Sexo = reader["Sexo"].ToString(),
                             DataNasc = Convert.ToDateTime(reader["DataNascimento"]),
                             Classe = classes,
-                            Status = reader["Status"].ToString()
+                            Status = status
                         };
                         alunos.Add(aluno);
                     }
@@ -149,7 +154,7 @@ namespace SistemaColegio.DAO
                     cmd.Parameters.AddWithValue("@Sexo", aluno.Sexo);
                     cmd.Parameters.AddWithValue("@DataNascimento", aluno.DataNasc);
                     cmd.Parameters.AddWithValue("@Classe", aluno.Classe.Id);
-                    cmd.Parameters.AddWithValue("@Status", "Estudando");
+                    cmd.Parameters.AddWithValue("@Status", 1);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -174,7 +179,7 @@ namespace SistemaColegio.DAO
                     cmd.Parameters.AddWithValue("@Sexo", aluno.Sexo);
                     cmd.Parameters.AddWithValue("@DataNascimento", aluno.DataNasc);
                     cmd.Parameters.AddWithValue("@Classe", aluno.Classe.Id);
-                    cmd.Parameters.AddWithValue("@Status", aluno.Status);
+                    cmd.Parameters.AddWithValue("@Status", aluno.Status.Id);
                     cmd.ExecuteNonQuery();
                 }
             }
